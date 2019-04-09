@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 
 const defaultState = {
+  level: null,
   score: 0,
 };
 
 const Context = React.createContext(defaultState);
 
-const ScoreProvider = ({ children }) => {
+const GameProvider = ({ children }) => {
   const [score, setScore] = useState(defaultState.score);
+  const [level, setLevel] = useState(defaultState.level);
 
   return (
     <Context.Provider
       value={{
+        level,
+        setLevel,
         score,
         setScore,
       }}
@@ -23,4 +27,4 @@ const ScoreProvider = ({ children }) => {
 
 export default Context;
 
-export { ScoreProvider };
+export { GameProvider };

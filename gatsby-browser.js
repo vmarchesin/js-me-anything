@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ScoreProvider } from '@context/score';
+import { GameProvider } from '@context/game';
 
 export const wrapRootElement = ({ element }) => (
-  <ScoreProvider>{element}</ScoreProvider>
+  <GameProvider>{element}</GameProvider>
 );
