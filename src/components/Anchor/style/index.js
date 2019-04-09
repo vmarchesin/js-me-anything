@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
+import { colors } from '@layouts/theme'
+
 const StyledAnchor = styled.a`
-  color: #F18805;
+  color: ${colors.primary};
   font-weight: 600;
 `;
 

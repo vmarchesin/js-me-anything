@@ -35,6 +35,7 @@ module.exports = {
         aliases: {
           '@components': './components', // <- will become ./src/components
           '@layouts': './layouts', // <- will become ./src/layouts
+          '@context': './context', // <- will become ./src/context
           static: {
             root: './public', // <- will used as this alias' root dir
             alias: './static' // <- will become ./public/static

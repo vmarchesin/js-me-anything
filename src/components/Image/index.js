@@ -12,7 +12,7 @@ import Img from 'gatsby-image';
  * - `gatsby-image`: https://gatsby.dev/gatsby-image
  * - `StaticQuery`: https://gatsby.dev/staticquery
  */
-const Image = (props) => (
+const Image = props => (
   <StaticQuery
     query={graphql`
       query {
@@ -31,12 +31,13 @@ const Image = (props) => (
         }
       }
     `}
-
-    render={(data) => {
+    render={data => {
       const image = data.images.edges.find(n => {
         return n.node.relativePath.includes(props.filename);
       });
-      if (!image) { return null; }
+      if (!image) {
+        return null;
+      }
 
       const imageSizes = image.node.childImageSharp.sizes;
       return (
