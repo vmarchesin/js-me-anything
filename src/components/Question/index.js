@@ -1,20 +1,50 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ifProp, ifNotProp } from 'styled-tools';
+import { ifProp } from 'styled-tools';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { FaCheckCircle, FaTimesCircle, FaRegCircle } from 'react-icons/fa'
+import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
 import Button from '@components/Button';
-import { shuffle } from '@utils/array';
+import { colors } from '@layouts/theme';
+import { parseCode } from '@utils/parse';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
 const StyledQuestion = styled.div`
+  max-width: 800px;
+
+  p {
+    text-align: center;
+  }
+
+  pre {
+    max-width: 600px;
+    margin: 0 auto 1.45rem auto;
+  }
+
   .hide-solution {
     visibility: ${ifProp('solutionsAreVisible', 'visible', 'hidden')};
+  }
+
+  .explanation {
+    margin-top: 16px;
+    > div > div {
+      text-align: center;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+
+    > * {
+      margin: 0 8px;
+    }
   }
 `;
 
@@ -27,9 +57,12 @@ const Answers = styled.div`
     min-width: 50%;
     margin: 8px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
     > span {
-      display: inline;
+      display: inline-block;
+      margin-top: 4px;
 
       &.solution {
         margin-left: 8px;
@@ -37,7 +70,7 @@ const Answers = styled.div`
     }
 
     > div {
-      display: inline;
+      display: inline-block;
       padding: 4px;
       background-color: #F3F3F3;
       border: 2px solid #BEBEBE;
@@ -59,11 +92,10 @@ const onAnswer = (answer, onCorrect, showSolutions, toggleSolutions) => {
   toggleSolutions(true);
 };
 
-const renderSolution = isCorrect => (
-  <span className="hide-solution">
-    {isCorrect ? 'T' : 'F'}
-  </span>
-);
+const onNext = (next, toggleSolutions) => {
+  toggleSolutions(false);
+  next();
+};
 
 const Question = ({ hasCode, codeString, title, answers, explanation, next, onCorrect }) => {
   if (!title) {
@@ -86,20 +118,32 @@ const Question = ({ hasCode, codeString, title, answers, explanation, next, onCo
             onClick={() => onAnswer(answer, onCorrect, showSolutions, toggleSolutions)}
             key={index}
           >
-            <span>{index})</span>
+            <span style={{ verticalAlign: 'middle' }}>
+              {showSolutions
+                ? answer.isCorrect
+                  ? <FaCheckCircle fill={colors.success} />
+                  : <FaTimesCircle fill={colors.error} />
+                : <FaRegCircle />}
+            </span>
             <div>
               {answer.value}
             </div>
-            {renderSolution(answer.isCorrect, showSolutions)}
           </div>
         ))}
       </Answers>
 
-      <p className="hide-solution">{explanation}</p>
+      <div
+        className="hide-solution explanation"
+        style={{ marginTop: 16 }}
+      >
+        {parseCode(explanation)}
+      </div>
 
-      <Button className="hide-solution" onClick={next}>
-        Next
-      </Button>
+      <div className="actions">
+        <Button className="hide-solution" onClick={() => onNext(next, toggleSolutions)}>
+          Next
+        </Button>
+      </div>
     </StyledQuestion>
   );
 };

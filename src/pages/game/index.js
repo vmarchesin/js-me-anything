@@ -1,25 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
-import styled from 'styled-components';
+import React from 'react';
 import { navigate } from 'gatsby';
 
 import Layout from '@layouts';
-import Image from '@components/Image';
-import Button from '@components/Button';
-import Card from '@components/Card';
 import SEO from '@components/SEO';
-import Question from '@components/Question';
-
 import GameContext from '@context/game';
 import { shuffle } from '@utils/array';
 
-const CardRow = styled.div`
-  display: flex;
-
-  > div {
-    margin: 8px;
-  }
-`;
+import Question from './question';
 
 class Game extends React.Component {
   constructor(props) {
@@ -39,7 +26,6 @@ class Game extends React.Component {
       navigate('/');
     }
 
-    let module = null;
     let questions = null;
     if (subject) {
       const beginner = await import(`../../questions/beginner.js`);
@@ -48,15 +34,35 @@ class Game extends React.Component {
 
       questions = [...beginner.default, ...intermediate.default, ...master.default]
         .filter(q => q.subjects.includes(subject));
-    } else {
+    } else if (level) {
       const module = await import(`../../questions/${level}.js`);
       questions = module.default
+    } else {
+      questions = [];
     }
 
-    questions = questions.slice(0, 10);
+    questions = shuffle(questions.slice(0, 10));
+    questions = questions.map(q => ({ ...q, answers: shuffle(q.answers) }));
 
     this.setState({ questions });
   }
+
+  renderCompleteScreen = score => (
+    <React.Fragment>
+      <h1>Congratulations!</h1>
+      <p>Score: {score}</p>
+    </React.Fragment>
+  )
+
+  renderQuestion = (questions, currentQuestion, score, setCurrentQuestion, setScore) => (
+    <Question
+      questions={questions}
+      currentQuestion={currentQuestion}
+      score={score}
+      setCurrentQuestion={setCurrentQuestion}
+      setScore={setScore}
+    />
+  )
 
   render() {
     const { questions } = this.state;
@@ -66,17 +72,10 @@ class Game extends React.Component {
         {({ currentQuestion, setCurrentQuestion, score, setScore }) => (
           <Layout>
             <SEO title="Game On!" keywords={['javascript', 'questions', 'interview']} />
-            <h1>
-              Question {currentQuestion + 1} / {questions.length}
-            </h1>
-
-            {questions && (
-              <Question
-                {...questions[currentQuestion]}
-                next={() => setCurrentQuestion(currentQuestion + 1)}
-                onCorrect={() => setScore(score + 1)}
-              />
-            )}
+            {currentQuestion === questions.length
+              ? this.renderCompleteScreen(score)
+              : this.renderQuestion(questions, currentQuestion, score, setCurrentQuestion, setScore)
+            }
           </Layout>
         )}
       </GameContext.Consumer>

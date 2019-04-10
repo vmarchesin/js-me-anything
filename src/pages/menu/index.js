@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import { navigate } from 'gatsby';
 
 import Layout from '@layouts';
-import Image from '@components/Image';
-import Button from '@components/Button';
 import Card from '@components/Card';
 import SEO from '@components/SEO';
-import Question from '@components/Question';
 
 import GameContext from '@context/game';
 
@@ -29,37 +25,47 @@ const Menu = () => {
       <h1>Select a level</h1>
 
       <GameContext.Consumer>
-        {() => (
-          <CardRow>
-            <Link
-              to='/game'
-              state={{ level: 'beginner' }}
+        {({ setCurrentQuestion, setScore }) => {
+          const resetQuestions = () => {
+            setCurrentQuestion(0);
+            setScore(0);
+          };
+
+          return (
+            <CardRow>
+              <Link
+                to='/game'
+                state={{ level: 'beginner' }}
               >
-              <Card
-                content="Beginner"
-                image="avatar-beginner"
-              />
-            </Link>
-            <Link
-              to='/game'
-              state={{ level: 'intermediate' }}
+                <Card
+                  content="Beginner"
+                  image="avatar-beginner"
+                  onClick={resetQuestions}
+                />
+              </Link>
+              <Link
+                to='/game'
+                state={{ level: 'intermediate' }}
               >
-              <Card
-                content="Intermediate"
-                image="avatar-intermediate"
-              />
-            </Link>
-            <Link
-              to='/game'
-              state={{ level: 'master' }}
+                <Card
+                  content="Intermediate"
+                  image="avatar-intermediate"
+                  onClick={resetQuestions}
+                />
+              </Link>
+              <Link
+                to='/game'
+                state={{ level: 'master' }}
               >
-              <Card
-                content="Master"
-                image="avatar-master"
-              />
-            </Link>
-          </CardRow>
-        )}
+                <Card
+                  content="Master"
+                  image="avatar-master"
+                  onClick={resetQuestions}
+                />
+              </Link>
+            </CardRow>
+          );
+        }}
       </GameContext.Consumer>
     </Layout>
   );
