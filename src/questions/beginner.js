@@ -1,7 +1,6 @@
 export default [
   {
     codeString: `(function() { let i = 0; })();\nconsole.log(i);`,
-    hasCode: true,
     level: 'beginner',
     subjects: ['scope', 'es6'],
     title: 'What does the following code output?',
@@ -14,7 +13,7 @@ export default [
     explanation: 'The let keyword is block scoped. In this case the variable only exists inside the function scope.'
   },
   {
-    hasCode: false,
+    codeString: '',
     level: 'beginner',
     subjects: ['conceptual'],
     title: "Which of the following is false about JavaScript?",
@@ -27,7 +26,7 @@ export default [
     explanation: "JavaScript supports asynchronous code by default.",
   },
   {
-    hasCode: false,
+    codeString: '',
     level: 'beginner',
     subjects: ['browser'],
     title: "Which of the following is not a browser function?",

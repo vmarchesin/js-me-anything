@@ -17,7 +17,7 @@ const IndexPage = () => (
     <p>Pick a level or subject and test your knowledge.</p>
     <Image filename="gatsby-astronaut.png" width={200} />
     <Button>
-      <Link to="/menu/">Let's Go</Link>
+      <Link to="/menu">Let's Go</Link>
     </Button>
   </Layout>
 );

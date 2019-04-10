@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { FaCheckCircle, FaTimesCircle, FaRegCircle } from 'react-icons/fa'
-import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
@@ -97,10 +96,11 @@ const onNext = (next, toggleSolutions) => {
   next();
 };
 
-const Question = ({ hasCode, codeString, title, answers, explanation, next, onCorrect }) => {
+const Question = ({ codeString, title, answers, explanation, next, onCorrect }) => {
   if (!title) {
     return null;
   }
+
   const [showSolutions, toggleSolutions] = useState(false);
 
   return (
@@ -108,7 +108,7 @@ const Question = ({ hasCode, codeString, title, answers, explanation, next, onCo
       solutionsAreVisible={showSolutions ? 'visible' : undefined}
     >
       <p>{title}</p>
-      {hasCode
+      {codeString
         ? <SyntaxHighlighter language='javascript' style={dark}>{codeString}</SyntaxHighlighter>
         : null}
 
@@ -150,7 +150,6 @@ const Question = ({ hasCode, codeString, title, answers, explanation, next, onCo
 
 Question.propTypes = {
   codeString: PropTypes.string,
-  hasCode: PropTypes.bool,
   title: PropTypes.string,
   answers: PropTypes.array,
   next: PropTypes.func,
