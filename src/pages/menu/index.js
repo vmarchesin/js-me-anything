@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
@@ -14,48 +14,55 @@ import GameContext from '@context/game';
 
 const CardRow = styled.div`
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
-  > div {
+  > * {
     margin: 8px;
   }
 `;
 
-const Menu = () => (
-  <Layout>
-    <SEO title="Level Select" keywords={[`javascript`, `questions`, `interview`]} />
-    <h1>Select a level</h1>
+const Menu = () => {
+  return (
+    <Layout>
+      <SEO title="Level Select" keywords={[`javascript`, `questions`, `interview`]} />
+      <h1>Select a level</h1>
 
-    <GameContext.Consumer>
-      {({ level, setLevel }) => (
-        <CardRow>
-          <Card
-            content="Beginner"
-            image="avatar-beginner"
-            onClick={() => {
-              setLevel('beginner');
-              navigate('/');
-            }}
-          />
-          <Card
-            content="Intermediate"
-            image="avatar-intermediate"
-            onClick={() => {
-              setLevel('intermediate');
-              navigate('/');
-            }}
-          />
-          <Card
-            content="Master"
-            image="avatar-master"
-            onClick={() => {
-              setLevel('intermediate');
-              navigate('/');
-            }}
-          />
-        </CardRow>
-      )}
-    </GameContext.Consumer>
-  </Layout>
-);
+      <GameContext.Consumer>
+        {() => (
+          <CardRow>
+            <Link
+              to='/game'
+              state={{ level: 'beginner' }}
+              >
+              <Card
+                content="Beginner"
+                image="avatar-beginner"
+              />
+            </Link>
+            <Link
+              to='/game'
+              state={{ level: 'intermediate' }}
+              >
+              <Card
+                content="Intermediate"
+                image="avatar-intermediate"
+              />
+            </Link>
+            <Link
+              to='/game'
+              state={{ level: 'master' }}
+              >
+              <Card
+                content="Master"
+                image="avatar-master"
+              />
+            </Link>
+          </CardRow>
+        )}
+      </GameContext.Consumer>
+    </Layout>
+  );
+};
 
 export default Menu;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const defaultState = {
-  level: null,
+  currentQuestion: 0,
   score: 0,
 };
 
@@ -9,15 +9,13 @@ const Context = React.createContext(defaultState);
 
 const GameProvider = ({ children }) => {
   const [score, setScore] = useState(defaultState.score);
-  const [level, setLevel] = useState(defaultState.level);
+  const [currentQuestion, setCurrentQuestion] = useState(defaultState.currentQuestion);
 
   return (
     <Context.Provider
       value={{
-        level,
-        setLevel,
-        score,
-        setScore,
+        currentQuestion, setCurrentQuestion,
+        score, setScore,
       }}
     >
       {children}

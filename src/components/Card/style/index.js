@@ -13,9 +13,9 @@ const StyledCard = styled.div`
   justify-content: space-between;
   padding: 8px;
 
-  transition: 0.2s ease-in;
+  transition: 0.1s ease-in;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 
