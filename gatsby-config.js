@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/js-me-anything",
   siteMetadata: {
     title: `JS Me Anything`,
     description: `A place to test your JavaScript skills. Prepare yourself for the next interview.`,
