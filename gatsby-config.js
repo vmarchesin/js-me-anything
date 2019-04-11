@@ -26,7 +26,7 @@ module.exports = {
         background_color: `#f9ce00`,
         theme_color: `#f9ce00`,
         display: `minimal-ui`,
-        icon: `src/images/js-logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/js-logo.png`,
       },
     },
     {
@@ -34,10 +34,11 @@ module.exports = {
       options: {
         root: './src', // <- will be used as a root dir
         aliases: {
-          '@components': './components', // <- will become ./src/components
-          '@layouts': './layouts', // <- will become ./src/layouts
-          '@context': './context', // <- will become ./src/context
-          '@utils': './utils', // <- will become ./src/utils
+          '@apollo': './apollo', // <- will become ./src/apollo
+          '@components': './components',
+          '@layouts': './layouts',
+          '@context': './context',
+          '@utils': './utils',
           static: {
             root: './public', // <- will used as this alias' root dir
             alias: './static' // <- will become ./public/static

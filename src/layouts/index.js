@@ -15,7 +15,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import './layout.css';
 
-import client from '@context/apollo'
+import client from '@apollo/client'
 
 const Main = styled.main`
   display: flex;

@@ -32,6 +32,7 @@
     "styled-tools": "^1.7.1"
   },
   "devDependencies": {
+    "now-lambda-runner": "^3.3.0",
     "prettier": "^1.16.4"
   },
   "keywords": [
@@ -40,9 +41,10 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop NODE_ENV=development",
     "serve": "gatsby serve",
     "format": "prettier --write src/**/*.{js,jsx}",
+    "now-lambda": "now-lambda --port 8004",
     "now-build": "npm run build",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
