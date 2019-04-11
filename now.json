@@ -6,6 +6,8 @@
       "src": "package.json",
       "use": "@now/static-build",
       "config": { "distDir": "public" }
-    }
-  ]
+    },
+    { "src": "api/index.js", "use": "@now/node" }
+  ],
+  "routes": [{ "src": "/graphql", "dest": "api/index.js" }]
 }
