@@ -5,18 +5,23 @@ import styled from 'styled-components';
 import Layout from '@layouts';
 import Card from '@components/Card';
 import SEO from '@components/SEO';
+import { Title } from '@components/_styled/Heading';
 
 import GameContext from '@context/game';
+import { capitalize } from '@utils/string';
 
 const CardRow = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 32px;
 
   > * {
     margin: 8px;
   }
 `;
+
+const subjects = ['browser', 'ES6', 'scope'];
 
 const Menu = () => {
   return (
@@ -25,7 +30,7 @@ const Menu = () => {
         title="Level Select"
         keywords={[`javascript`, `questions`, `interview`]}
       />
-      <h1>Select a level</h1>
+      <Title>Select a level</Title>
 
       <GameContext.Consumer>
         {({ setCurrentQuestion, setScore }) => {
@@ -57,6 +62,30 @@ const Menu = () => {
                   onClick={resetQuestions}
                 />
               </Link>
+            </CardRow>
+          );
+        }}
+      </GameContext.Consumer>
+
+      <Title>or a subject</Title>
+
+      <GameContext.Consumer>
+        {({ setCurrentQuestion, setScore }) => {
+          const resetQuestions = () => {
+            setCurrentQuestion(0);
+            setScore(0);
+          };
+
+          return (
+            <CardRow>
+              {subjects.map(subject => (
+                <Link to="/game" state={{ subject }} key={subject}>
+                  <Card
+                    content={capitalize(subject)}
+                    onClick={resetQuestions}
+                  />
+                </Link>
+              ))}
             </CardRow>
           );
         }}

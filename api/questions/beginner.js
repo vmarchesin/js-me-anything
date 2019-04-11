@@ -3,7 +3,7 @@ module.exports = [
     id: 'beginner-0',
     codeString: `(function() { let i = 0; })();\nconsole.log(i);`,
     level: 'beginner',
-    subjects: ['scope', 'es6'],
+    subjects: ['scope', 'ES6'],
     title: 'What does the following code output?',
     answers: [
       { id: 'beginner-0-a', value: 'undefined', isCorrect: true },

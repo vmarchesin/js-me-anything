@@ -3,16 +3,9 @@ import Question from '@components/Question';
 
 import GameContext from '@context/game';
 
-const renderCompleteScreen = score => (
-  <React.Fragment>
-    <h1>Congratulations!</h1>
-    <p>Score: {score}</p>
-  </React.Fragment>
-);
+import Finish from './finish';
 
-const QuestionScreen = ({
-  questions,
-}) => {
+const QuestionScreen = ({ questions }) => {
   if (!questions) {
     return null;
   }
@@ -21,7 +14,7 @@ const QuestionScreen = ({
     <GameContext.Consumer>
       {({ currentQuestion, setCurrentQuestion, score, setScore }) => {
         if (currentQuestion === questions.length) {
-          return renderCompleteScreen(score);
+          return <Finish score={score} total={questions.length} />;
         }
 
         return (

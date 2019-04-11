@@ -1,7 +1,7 @@
 import React from 'react';
 import { navigate } from 'gatsby';
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Layout from '@layouts';
 import SEO from '@components/SEO';
@@ -67,11 +67,7 @@ class Game extends React.Component {
               data.questions.map(q => ({ ...q, answers: shuffle(q.answers) }))
             );
 
-            return (
-              <Question
-                questions={questions}
-              />
-            );
+            return <Question questions={questions} />;
           }}
         </Query>
       </Layout>

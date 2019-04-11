@@ -7,23 +7,13 @@ const Foot = styled.footer`
 `;
 
 const Footer = () => (
-  <Foot style={{ position: 'fixed', bottom: 0 }}>
+  <Foot>
     © {new Date().getFullYear()}, Built with{' '}
-    <Anchor
-      anchor
-      href="https://www.gatsbyjs.org"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
+    <Anchor anchor href="https://www.gatsbyjs.org" newTab>
       Gatsby
     </Anchor>
     . Made by{' '}
-    <Anchor
-      anchor
-      href="https://github.com/vmarchesin/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
+    <Anchor anchor href="https://github.com/vmarchesin/" newTab>
       vmarchesin
     </Anchor>
   </Foot>

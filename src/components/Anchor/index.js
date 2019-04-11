@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 
 import Styled from './style';
 
-const renderAnchor = ({ children, href, ...props }) => (
-  <Styled.Anchor href={href} {...props}>
-    {children}
-  </Styled.Anchor>
-);
+const renderAnchor = ({ children, href, ...props }) => {
+  if (props.newTab) {
+    props.rel = 'noopener noreferrer';
+    props.target = '_blank';
+  }
+
+  return (
+    <Styled.Anchor href={href} {...props}>
+      {children}
+    </Styled.Anchor>
+  );
+};
 
 const renderLink = ({ children, href, ...props }) => (
   <Styled.Link to={href} {...props}>
