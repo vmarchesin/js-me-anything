@@ -7,7 +7,7 @@ const Card = ({ content, image, imageWidth, onClick }) => (
     <Image filename={image} width={imageWidth} />
     <div>{content}</div>
   </StyledCard>
-)
+);
 
 Card.defaultProps = {
   imageWidth: 150,

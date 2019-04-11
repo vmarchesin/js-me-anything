@@ -9,8 +9,11 @@ export function shuffle(array) {
   while (0 !== currentIndex) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
 
   return array;
-};
+}

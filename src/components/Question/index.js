@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { FaCheckCircle, FaTimesCircle, FaRegCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaTimesCircle, FaRegCircle } from 'react-icons/fa';
 
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
@@ -71,8 +71,8 @@ const Answers = styled.div`
     > div {
       display: inline-block;
       padding: 4px;
-      background-color: #F3F3F3;
-      border: 2px solid #BEBEBE;
+      background-color: #f3f3f3;
+      border: 2px solid #bebebe;
       margin-left: 8px;
 
       border-radius: 8px;
@@ -96,7 +96,14 @@ const onNext = (next, toggleSolutions) => {
   next();
 };
 
-const Question = ({ codeString, title, answers, explanation, next, onCorrect }) => {
+const Question = ({
+  codeString,
+  title,
+  answers,
+  explanation,
+  next,
+  onCorrect,
+}) => {
   if (!title) {
     return null;
   }
@@ -104,43 +111,47 @@ const Question = ({ codeString, title, answers, explanation, next, onCorrect }) 
   const [showSolutions, toggleSolutions] = useState(false);
 
   return (
-    <StyledQuestion
-      solutionsAreVisible={showSolutions ? 'visible' : undefined}
-    >
+    <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
       <p>{title}</p>
-      {codeString
-        ? <SyntaxHighlighter language='javascript' style={dark}>{codeString}</SyntaxHighlighter>
-        : null}
+      {codeString ? (
+        <SyntaxHighlighter language="javascript" style={dark}>
+          {codeString}
+        </SyntaxHighlighter>
+      ) : null}
 
       <Answers>
         {answers.map((answer, index) => (
           <div
-            onClick={() => onAnswer(answer, onCorrect, showSolutions, toggleSolutions)}
+            onClick={() =>
+              onAnswer(answer, onCorrect, showSolutions, toggleSolutions)
+            }
             key={index}
           >
             <span style={{ verticalAlign: 'middle' }}>
-              {showSolutions
-                ? answer.isCorrect
-                  ? <FaCheckCircle fill={colors.success} />
-                  : <FaTimesCircle fill={colors.error} />
-                : <FaRegCircle />}
+              {showSolutions ? (
+                answer.isCorrect ? (
+                  <FaCheckCircle fill={colors.success} />
+                ) : (
+                  <FaTimesCircle fill={colors.error} />
+                )
+              ) : (
+                <FaRegCircle />
+              )}
             </span>
-            <div>
-              {answer.value}
-            </div>
+            <div>{answer.value}</div>
           </div>
         ))}
       </Answers>
 
-      <div
-        className="hide-solution explanation"
-        style={{ marginTop: 16 }}
-      >
+      <div className="hide-solution explanation" style={{ marginTop: 16 }}>
         {parseCode(explanation)}
       </div>
 
       <div className="actions">
-        <Button className="hide-solution" onClick={() => onNext(next, toggleSolutions)}>
+        <Button
+          className="hide-solution"
+          onClick={() => onNext(next, toggleSolutions)}
+        >
           Next
         </Button>
       </div>
@@ -154,6 +165,6 @@ Question.propTypes = {
   answers: PropTypes.array,
   next: PropTypes.func,
   onCorrect: PropTypes.func,
-}
+};
 
 export default Question;

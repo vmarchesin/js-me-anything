@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { switchProp } from 'styled-tools';
 
-import { colors } from '@layouts/theme'
+import { colors } from '@layouts/theme';
 
 const StyledButton = styled.button`
   padding: 8px;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
-  background-color: #F3F3F3;
-  border: 2px solid #BEBEBE;
+  background-color: #f3f3f3;
+  border: 2px solid #bebebe;
 
   border-radius: 8px;
   cursor: pointer;

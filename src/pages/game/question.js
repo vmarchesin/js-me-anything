@@ -1,7 +1,13 @@
 import React from 'react';
 import Question from '@components/Question';
 
-const QuestionScreen = ({ questions, currentQuestion, score, setCurrentQuestion, setScore }) => {
+const QuestionScreen = ({
+  questions,
+  currentQuestion,
+  score,
+  setCurrentQuestion,
+  setScore,
+}) => {
   if (!questions) {
     return null;
   }

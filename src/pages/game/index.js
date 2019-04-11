@@ -32,11 +32,14 @@ class Game extends React.Component {
       const intermediate = await import(`../../questions/intermediate.js`);
       const master = await import(`../../questions/master.js`);
 
-      questions = [...beginner.default, ...intermediate.default, ...master.default]
-        .filter(q => q.subjects.includes(subject));
+      questions = [
+        ...beginner.default,
+        ...intermediate.default,
+        ...master.default,
+      ].filter(q => q.subjects.includes(subject));
     } else if (level) {
       const module = await import(`../../questions/${level}.js`);
-      questions = module.default
+      questions = module.default;
     } else {
       questions = [];
     }
@@ -52,9 +55,15 @@ class Game extends React.Component {
       <h1>Congratulations!</h1>
       <p>Score: {score}</p>
     </React.Fragment>
-  )
+  );
 
-  renderQuestion = (questions, currentQuestion, score, setCurrentQuestion, setScore) => (
+  renderQuestion = (
+    questions,
+    currentQuestion,
+    score,
+    setCurrentQuestion,
+    setScore
+  ) => (
     <Question
       questions={questions}
       currentQuestion={currentQuestion}
@@ -62,7 +71,7 @@ class Game extends React.Component {
       setCurrentQuestion={setCurrentQuestion}
       setScore={setScore}
     />
-  )
+  );
 
   render() {
     const { questions } = this.state;
@@ -71,11 +80,19 @@ class Game extends React.Component {
       <GameContext.Consumer>
         {({ currentQuestion, setCurrentQuestion, score, setScore }) => (
           <Layout>
-            <SEO title="Game On!" keywords={['javascript', 'questions', 'interview']} />
+            <SEO
+              title="Game On!"
+              keywords={['javascript', 'questions', 'interview']}
+            />
             {currentQuestion === questions.length
               ? this.renderCompleteScreen(score)
-              : this.renderQuestion(questions, currentQuestion, score, setCurrentQuestion, setScore)
-            }
+              : this.renderQuestion(
+                  questions,
+                  currentQuestion,
+                  score,
+                  setCurrentQuestion,
+                  setScore
+                )}
           </Layout>
         )}
       </GameContext.Consumer>

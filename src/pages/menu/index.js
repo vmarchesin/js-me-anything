@@ -21,7 +21,10 @@ const CardRow = styled.div`
 const Menu = () => {
   return (
     <Layout>
-      <SEO title="Level Select" keywords={[`javascript`, `questions`, `interview`]} />
+      <SEO
+        title="Level Select"
+        keywords={[`javascript`, `questions`, `interview`]}
+      />
       <h1>Select a level</h1>
 
       <GameContext.Consumer>
@@ -33,30 +36,21 @@ const Menu = () => {
 
           return (
             <CardRow>
-              <Link
-                to='/game'
-                state={{ level: 'beginner' }}
-              >
+              <Link to="/game" state={{ level: 'beginner' }}>
                 <Card
                   content="Beginner"
                   image="avatar-beginner"
                   onClick={resetQuestions}
                 />
               </Link>
-              <Link
-                to='/game'
-                state={{ level: 'intermediate' }}
-              >
+              <Link to="/game" state={{ level: 'intermediate' }}>
                 <Card
                   content="Intermediate"
                   image="avatar-intermediate"
                   onClick={resetQuestions}
                 />
               </Link>
-              <Link
-                to='/game'
-                state={{ level: 'master' }}
-              >
+              <Link to="/game" state={{ level: 'master' }}>
                 <Card
                   content="Master"
                   image="avatar-master"

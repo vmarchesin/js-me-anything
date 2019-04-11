@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { colors } from '@layouts/theme'
+import { colors } from '@layouts/theme';
 
 const StyledAnchor = styled.a`
   color: ${colors.primary};

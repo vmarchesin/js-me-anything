@@ -9,19 +9,23 @@ const Context = React.createContext(defaultState);
 
 const GameProvider = ({ children }) => {
   const [score, setScore] = useState(defaultState.score);
-  const [currentQuestion, setCurrentQuestion] = useState(defaultState.currentQuestion);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    defaultState.currentQuestion
+  );
 
   return (
     <Context.Provider
       value={{
-        currentQuestion, setCurrentQuestion,
-        score, setScore,
+        currentQuestion,
+        setCurrentQuestion,
+        score,
+        setScore,
       }}
     >
       {children}
     </Context.Provider>
   );
-}
+};
 
 export default Context;
 
