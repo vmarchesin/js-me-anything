@@ -32,6 +32,8 @@ const StyledQuestion = styled.div`
 
   .explanation {
     margin-top: 16px;
+    line-height: 32px;
+
     > div > div {
       text-align: center;
     }
@@ -106,6 +108,7 @@ const Question = ({
   title,
   answers,
   explanation,
+  explanationCodeString,
   next,
   onCorrect,
 }) => {
@@ -150,6 +153,15 @@ const Question = ({
 
       <div className="hide-solution explanation" style={{ marginTop: 16 }}>
         {parseCode(explanation)}
+
+      </div>
+
+      <div className="hide-solution" style={{ marginTop: 16 }}>
+        {explanationCodeString ? (
+          <SyntaxHighlighter language="javascript" style={dark}>
+            {explanationCodeString}
+          </SyntaxHighlighter>
+        ) : null}
       </div>
 
       <div className="actions">

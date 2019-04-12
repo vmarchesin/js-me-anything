@@ -50,6 +50,7 @@ class Game extends React.Component {
                 level
                 subjects
                 explanation
+                explanationCodeString
                 answers {
                   id
                   value

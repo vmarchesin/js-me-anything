@@ -11,13 +11,13 @@ export function parseCode(str) {
   const content = str
     .split(/(#[^#]*#)/)
     .map((s, i) =>
-      s.match(/(#.*#)/) ? (
+      s.match(/#([^#]*)#/) ? (
         <SyntaxHighlighter
           language="javascript"
           style={{ ...dark, display: 'inline' }}
           key={i}
         >
-          {s.match(/#(.*)#/)[1]}
+          {s.match(/#([^#]*)#/)[1]}
         </SyntaxHighlighter>
       ) : (
         <span key={i}>
