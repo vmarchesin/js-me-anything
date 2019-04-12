@@ -21,6 +21,8 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 40px;
 
+  margin: 0;
+
   ${switchProp(
     'variant',
     {

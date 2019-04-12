@@ -6,6 +6,10 @@ import { colors } from '@layouts/theme';
 const StyledAnchor = styled.a`
   color: ${colors.primary};
   font-weight: 600;
+
+  background-color: transparent;
+  outline: none;
+  text-decoration: none;
 `;
 
 const StyledLink = StyledAnchor.withComponent(Link);
