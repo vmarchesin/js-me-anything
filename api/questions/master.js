@@ -15,8 +15,8 @@ module.exports = [
       { id: 'master-0-d', value: '[ ]', isCorrect: false },
     ],
     explanation: `
-    #NaN <= 100# and #NaN > 100# are #false# so if the value of x is #NaN# the statements are not the same. The same holds true for any value of x that being converted to Number, returns NaN.\n
-    #undefined || [1,2,5] || {a:22} // etc#
+    #NaN <= 100# and #NaN > 100# are #false# so if the value of x is #NaN# the statements are not the same. The same holds true for any value of x that being converted to #Number#, returns #NaN#.\n
+    #undefined || [1,2,5] || { a:22 } // etc#
     \nThis is why you need to pay attention when you deal with numeric variables. #NaN# can’t be equal, less than or more than any other numeric value, so the only reliable way to check if the value is #NaN# is to use #isNaN()#.
     `,
   },
@@ -79,9 +79,9 @@ module.exports = [
     subjects: ['operators'],
     title: 'What will be the output of the following code?',
     answers: [
-      { id: 'master-3-a', value: 'undefined', isCorrect: true },
-      { id: 'master-3-b', value: "1", isCorrect: false },
-      { id: 'master-3-c', value: 'null', isCorrect: false },
+      { id: 'master-3-a', value: '5', isCorrect: true },
+      { id: 'master-3-b', value: '4', isCorrect: false },
+      { id: 'master-3-c', value: 'undefined', isCorrect: false },
       { id: 'master-3-d', value: 'ReferenceError', isCorrect: false },
     ],
     explanation: `
