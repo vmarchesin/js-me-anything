@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Layout from '@layouts';
 import Card from '@components/Card';
@@ -20,8 +22,6 @@ const CardRow = styled.div`
     margin: 8px;
   }
 `;
-
-const subjects = ['browser', 'ES6', 'scope'];
 
 const Menu = () => {
   return (
@@ -77,17 +77,35 @@ const Menu = () => {
           };
 
           return (
-            <CardRow>
-              {subjects.map(subject => (
-                <Link to="/game" state={{ subject }} key={subject}>
-                  <Card
-                    content={capitalize(subject)}
-                    onClick={resetQuestions}
-                  />
-                </Link>
-              ))}
-            </CardRow>
-          );
+            <Query
+              query={gql`
+                {
+                  subjects
+                }
+              `}
+            >
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>Error :(</p>;
+
+                const subjects = data.subjects;
+                subjects.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+                return (
+                  <CardRow>
+                    {subjects.map(subject => (
+                      <Link to="/game" state={{ subject }} key={subject}>
+                        <Card
+                          content={capitalize(subject)}
+                          onClick={resetQuestions}
+                        />
+                      </Link>
+                    ))}
+                  </CardRow>
+                )
+              }}
+            </Query>
+          )
         }}
       </GameContext.Consumer>
     </Layout>

@@ -35,6 +35,10 @@ const StyledQuestion = styled.div`
     > div > div {
       text-align: center;
     }
+
+    pre {
+      display: inline!important;
+    }
   }
 
   .actions {

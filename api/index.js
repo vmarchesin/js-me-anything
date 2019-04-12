@@ -21,6 +21,7 @@ const typeDefs = gql`
 
   type Query {
     questions(level: String, subject: String): [Question]
+    subjects: [String]
   }
 `;
 
@@ -30,6 +31,7 @@ const resolvers = {
         .filter(q => !level || q.level === level)
         .filter(q => !subject || q.subjects.includes(subject))
         .slice(0, 10),
+    subjects: () => questions.map(q => q.subjects).flatMap(q => q),
   },
 };
 
@@ -38,17 +40,13 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
-  formatError: error => {
-    console.log(error);
-    return error;
-  },
-  formatResponse: response => {
-    console.log(response);
-    return response;
-  },
 });
 
 const app = express();
 server.applyMiddleware({ app, path: '*' });
+
+// Only uncomment the lines below if you intend to use the graphql playground
+// const PORT = 8004;
+// app.listen(PORT, () => console.log(`🚀  Server ready at http://localhost:${PORT}`))
 
 module.exports = app;

@@ -24,9 +24,7 @@ const IndexPage = () => (
         skills in various levels, from amateur to pro. Perfect to prepare for
         that job interview.
       </p>
-      <Button>
-        <Link to="/menu">LET'S GO</Link>
-      </Button>
+      <Link to="/menu"><Button>LET'S GO</Button></Link>
     </Display>
   </Layout>
 );

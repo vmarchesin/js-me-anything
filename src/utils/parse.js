@@ -6,16 +6,27 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
+// TODO: fix react-keys warning
 export function parseCode(str) {
   const content = str
-    .split(/(%{.*})/)
+    .split(/(#[^#]*#)/)
     .map((s, i) =>
-      s.match(/(%{.*})/) ? (
-        <SyntaxHighlighter language="javascript" style={dark} key={i}>
-          {s.match(/%{(.*)}/)[1]}
+      s.match(/(#.*#)/) ? (
+        <SyntaxHighlighter
+          language="javascript"
+          style={{ ...dark, display: 'inline' }}
+          key={i}
+        >
+          {s.match(/#(.*)#/)[1]}
         </SyntaxHighlighter>
       ) : (
-        <div key={i}>{s}</div>
+        <span key={i}>
+          {s.includes('\n') ? (
+            <React.Fragment key={`fragment-${i}`}>
+              {s.split('\n').reduce((prev, curr) => [prev, <br />, curr])}
+            </React.Fragment>
+          ) : s}
+        </span>
       )
     )
     .reduce((prev, curr) => [prev, '', curr]);
