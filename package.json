@@ -41,8 +41,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop NODE_ENV=development",
+    "build": "rm -rf public/ && gatsby build",
+    "dev": "gatsby develop NODE_ENV=development",
     "serve": "gatsby serve",
     "format": "prettier --write src/**/*.{js,jsx}",
     "now-lambda": "now-lambda --port 8004",

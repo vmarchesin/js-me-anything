@@ -25,7 +25,7 @@ const IndexPage = () => (
         that job interview.
       </p>
       <Button>
-        <Link to="/menu">Let's Go</Link>
+        <Link to="/menu">LET'S GO</Link>
       </Button>
     </Display>
   </Layout>

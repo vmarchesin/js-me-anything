@@ -32,7 +32,7 @@ const ShareRow = styled.div`
   }
 `;
 
-const getBucket = ratio => {
+const getBucket = (ratio = 0) => {
   const range = [
     { poor: [0, 0.2] },
     { belowAverage: [0.2, 0.4] },
@@ -47,10 +47,18 @@ const getBucket = ratio => {
   });
 
   const buckets = range.map(r => Object.keys(r)).flatMap(e => e);
+  if (!bucket[0]) {
+    return 0;
+  }
+
   return buckets.indexOf(Object.keys(bucket[0])[0]);
 };
 
 const Finish = ({ score, total }) => {
+  if (total === 0) {
+    return false;
+  }
+
   const shareString = `I just scored ${score}/${total} on my JavaScript test. What about you?`;
 
   const greetings = [

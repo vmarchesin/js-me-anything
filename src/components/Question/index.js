@@ -40,6 +40,7 @@ const StyledQuestion = styled.div`
   .actions {
     display: flex;
     justify-content: center;
+    margin-top: 16px;
 
     > * {
       margin: 0 8px;
@@ -152,7 +153,7 @@ const Question = ({
           className="hide-solution"
           onClick={() => onNext(next, toggleSolutions)}
         >
-          Next
+          NEXT
         </Button>
       </div>
     </StyledQuestion>
