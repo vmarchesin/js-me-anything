@@ -22,7 +22,7 @@ const renderLink = ({ children, href, ...props }) => (
   </Styled.Link>
 );
 
-const Button = ({ children, href, link, ...props }) => {
+const Anchor = ({ children, href, link, ...props }) => {
   if (link) {
     return renderLink({ children, href, ...props });
   }
@@ -30,15 +30,15 @@ const Button = ({ children, href, link, ...props }) => {
   return renderAnchor({ children, href, ...props });
 };
 
-Button.propTypes = {
+Anchor.propTypes = {
   children: PropTypes.node.isRequired,
   href: PropTypes.string,
   link: PropTypes.bool,
 };
 
-Button.defaultProps = {
+Anchor.defaultProps = {
   href: '',
   link: false,
 };
 
-export default Button;
+export default Anchor;

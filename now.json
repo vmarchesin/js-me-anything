@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "js-me-anything",
+  "alias": "jsmeanything.now.sh",
   "builds": [
     {
       "src": "package.json",

@@ -26,7 +26,10 @@ const QuestionScreen = ({ questions }) => {
             {questions && (
               <Question
                 {...questions[currentQuestion]}
-                next={() => setCurrentQuestion(currentQuestion + 1)}
+                next={() => {
+                  setCurrentQuestion(currentQuestion + 1);
+                  window && window.scrollTo(0, 0);
+                }}
                 onCorrect={() => setScore(score + 1)}
               />
             )}

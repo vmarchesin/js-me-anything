@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "js-me-anything",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "A game to test your JavaScript knowledge.",
+  "version": "0.2.0",
+  "author": "Vinicius Marchesin Araujo <dev@vmarches.in>",
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "apollo-server-express": "^2.4.8",
@@ -37,7 +37,10 @@
     "prettier": "^1.16.4"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "javascript",
+    "game",
+    "interview"
   ],
   "license": "MIT",
   "scripts": {
@@ -46,14 +49,13 @@
     "serve": "gatsby serve",
     "format": "prettier --write src/**/*.{js,jsx}",
     "now-lambda": "now-lambda --port 8004",
-    "now-build": "npm run build",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "now-build": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/vmarchesin/js-me-anything/"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/vmarchesin/js-me-anything/issues"
   }
 }

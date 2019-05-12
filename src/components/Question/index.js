@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
@@ -9,13 +9,15 @@ import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
 import Button from '@components/Button';
+import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
 import { parseCode } from '@utils/parse';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
 const StyledQuestion = styled.div`
-  max-width: 800px;
+  max-width: 100vw;
+  padding: 8px;
 
   p {
     text-align: center;
@@ -31,6 +33,7 @@ const StyledQuestion = styled.div`
   }
 
   .explanation {
+    max-width: 800px;
     margin-top: 16px;
     line-height: 32px;
 
@@ -58,6 +61,7 @@ const Answers = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  max-width: 800px;
 
   > div {
     min-width: 50%;
@@ -88,93 +92,133 @@ const Answers = styled.div`
   }
 `;
 
-const onAnswer = (answer, onCorrect, showSolutions, toggleSolutions) => {
-  if (showSolutions) {
-    return;
-  } else if (answer.isCorrect) {
-    onCorrect();
+class Question extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.interval = null;
+    this.countdownStartAt = 60;
+
+    this.state = {
+      time: this.countdownStartAt,
+      timeIsRunning: true,
+      showSolutions: false,
+    }
   }
 
-  toggleSolutions(true);
-};
-
-const onNext = (next, toggleSolutions) => {
-  toggleSolutions(false);
-  next();
-};
-
-const Question = ({
-  codeString,
-  title,
-  answers,
-  explanation,
-  explanationCodeString,
-  next,
-  onCorrect,
-}) => {
-  if (!title) {
-    return null;
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({ time: this.state.time - 1 }), 1000);
   }
 
-  const [showSolutions, toggleSolutions] = useState(false);
+  componentWillMount() {
+    clearInterval(this.interval);
+  }
 
-  return (
-    <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
-      <p>{title}</p>
-      {codeString ? (
-        <SyntaxHighlighter language="javascript" style={dark}>
-          {codeString}
-        </SyntaxHighlighter>
-      ) : null}
+  onAnswer = (answer) => {
+    const { onCorrect } = this.props;
+    const { showSolutions, time } = this.state;
 
-      <Answers>
-        {answers.map((answer, index) => (
-          <div
-            onClick={() =>
-              onAnswer(answer, onCorrect, showSolutions, toggleSolutions)
-            }
-            key={index}
-          >
-            <span style={{ verticalAlign: 'middle' }}>
-              {showSolutions ? (
-                answer.isCorrect ? (
-                  <FaCheckCircle fill={colors.success} />
-                ) : (
-                  <FaTimesCircle fill={colors.error} />
-                )
-              ) : (
-                <FaRegCircle />
-              )}
-            </span>
-            <div>{answer.value}</div>
-          </div>
-        ))}
-      </Answers>
+    if (showSolutions) {
+      return;
+    } else if (answer.isCorrect && time > 0) {
+      onCorrect();
+    }
 
-      <div className="hide-solution explanation" style={{ marginTop: 16 }}>
-        {parseCode(explanation)}
+    clearInterval(this.interval);
+    this.setState({ showSolutions: true, timeIsRunning: false });
+  };
 
-      </div>
+  onNext = () => {
+    const { next } = this.props;
+    this.setState({
+      time: this.countdownStartAt,
+      timeIsRunning: true,
+      showSolutions: false,
+    }, () => {
+      next();
+      this.interval = setInterval(() => this.setState({ time: this.state.time - 1 }), 1000);
+    })
+  };
 
-      <div className="hide-solution" style={{ marginTop: 16 }}>
-        {explanationCodeString ? (
+  render() {
+    const {
+      codeString,
+      title,
+      answers,
+      explanation,
+      explanationCodeString,
+    } = this.props;
+
+    const { showSolutions, time, timeIsRunning } = this.state;
+
+    if (!title) {
+      return null;
+    }
+
+    if (time <= 0 && timeIsRunning) {
+      clearInterval(this.interval);
+    }
+
+    return (
+      <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
+        <Timer
+          countdownStartAt={this.countdownStartAt}
+          time={time}
+          timeIsRunning={timeIsRunning}
+        />
+        <p>{title}</p>
+        {codeString ? (
           <SyntaxHighlighter language="javascript" style={dark}>
-            {explanationCodeString}
+            {codeString}
           </SyntaxHighlighter>
         ) : null}
-      </div>
 
-      <div className="actions">
-        <Button
-          className="hide-solution"
-          onClick={() => onNext(next, toggleSolutions)}
-        >
-          NEXT
-        </Button>
-      </div>
-    </StyledQuestion>
-  );
-};
+        <Answers>
+          {answers.map((answer, index) => (
+            <div
+              onClick={() => this.onAnswer(answer)}
+              key={index}
+            >
+              <span style={{ verticalAlign: 'middle' }}>
+                {showSolutions ? (
+                  answer.isCorrect ? (
+                    <FaCheckCircle fill={colors.success} />
+                  ) : (
+                    <FaTimesCircle fill={colors.error} />
+                  )
+                ) : (
+                  <FaRegCircle />
+                )}
+              </span>
+              <div>{answer.value}</div>
+            </div>
+          ))}
+        </Answers>
+
+        <div className="hide-solution explanation" style={{ marginTop: 16 }}>
+          {parseCode(explanation)}
+        </div>
+
+        <div className="hide-solution" style={{ marginTop: 16 }}>
+          {explanationCodeString ? (
+            <SyntaxHighlighter language="javascript" style={dark}>
+              {explanationCodeString}
+            </SyntaxHighlighter>
+          ) : null}
+        </div>
+
+        <div className="actions">
+          <Button
+            className="hide-solution"
+            onClick={() => this.onNext()}
+          >
+            NEXT
+          </Button>
+        </div>
+      </StyledQuestion>
+    );
+  }
+}
 
 Question.propTypes = {
   codeString: PropTypes.string,

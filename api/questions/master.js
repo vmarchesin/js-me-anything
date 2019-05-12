@@ -32,7 +32,7 @@ module.exports = [
     `,
     level: 'master',
     subjects: ['operators'],
-    title: 'What will be the output of the following code?',
+    title: 'What does the following code output?',
     answers: [
       { id: 'master-1-a', value: '0', isCorrect: true },
       { id: 'master-1-b', value: "undefined", isCorrect: false },
@@ -56,7 +56,7 @@ module.exports = [
     `,
     level: 'master',
     subjects: ['operators'],
-    title: 'What will be the output of the following code?',
+    title: 'What does the following code output?',
     answers: [
       { id: 'master-2-a', value: 'undefined', isCorrect: true },
       { id: 'master-2-b', value: "1", isCorrect: false },
@@ -76,8 +76,8 @@ module.exports = [
     console.log(trees.length);
     `,
     level: 'master',
-    subjects: ['operators'],
-    title: 'What will be the output of the following code?',
+    subjects: ['arrays', 'operators'],
+    title: 'What does the following code output?',
     answers: [
       { id: 'master-3-a', value: '5', isCorrect: true },
       { id: 'master-3-b', value: '4', isCorrect: false },
@@ -101,7 +101,7 @@ module.exports = [
     `,
     level: 'master',
     subjects: ['scope'],
-    title: 'What will be the output of the following code?',
+    title: 'What does the following code output?',
     answers: [
       { id: 'master-4-a', value: "undefined, '5000$'", isCorrect: true },
       { id: 'master-4-b', value: "'1000$', '5000$'", isCorrect: false },
@@ -121,6 +121,80 @@ module.exports = [
       console.log(salary);
     })();
     `,
+  },
+  {
+    id: 'master-5',
+    codeString: `
+    (function() {
+      return [
+        (() => this.x).bind({ x: 'inner' })(),
+        (() => this.x)(),
+      ];
+    }).call({ x: 'outer' });
+    `,
+    level: 'master',
+    subjects: ['scope', 'ES6'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'master-5-a', value: "['outer', 'outer']", isCorrect: true },
+      { id: 'master-5-b', value: "['inner', 'outer']", isCorrect: false },
+      { id: 'master-5-c', value: "['inner', 'inner']", isCorrect: false },
+      { id: 'master-5-d', value: 'Error', isCorrect: false },
+    ],
+    explanation: `
+    Arrow functions have lexical #this#, it inherits value from the context they are defined in. In this case both #this# calls are made within the context of #{x:'outer'}#. The fact that #.bind({x:'inner'})# is applied on the first function doesn't change its value.
+    `,
+  },
+  {
+    id: 'master-6',
+    codeString: `
+    function aaa() {
+      return
+      {
+        test: 1
+      };
+    }
+    console.log(typeof aaa());
+    `,
+    level: 'master',
+    subjects: ['conceptual'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'master-6-a', value: "'undefined'", isCorrect: true },
+      { id: 'master-6-b', value: "'function'", isCorrect: false },
+      { id: 'master-6-c', value: "'object'", isCorrect: false },
+      { id: 'master-6-d', value: 'ReferenceError', isCorrect: false },
+    ],
+    explanation: "This is an exercise in JavaScript's automatic semicolon insertion. While this code looks correct, JavaScript inserts semicolons where it thinks the user has missed them. Once JS has done this the function changes to the code below, which does not return the object as you would expect, and results in the type of the function being #undefined#, instead of #object# as you might expect.",
+    explanationCodeString: `
+    function aaa() {
+      return;
+      {
+        test: 1
+      };
+    }
+    console.log(typeof aaa());
+    `,
+  },
+  {
+    id: 'master-7',
+    codeString: `
+    function user(name) {
+      this.type = name;
+      console.log(this);
+    }
+    var user1 = new user('foo');
+    `,
+    level: 'beginner',
+    subjects: ['browser', 'scope'],
+    title: 'What does the following code output on the browser?',
+    answers: [
+      { id: 'master-7-a', value: 'user', isCorrect: true },
+      { id: 'master-7-b', value: 'user1', isCorrect: false },
+      { id: 'master-7-c', value: "'window'", isCorrect: false },
+      { id: 'master-7-d', value: "'foo'", isCorrect: false },
+    ],
+    explanation: "When a function is used as a constructor (with the #new# keyword), it is bound to the new object being constructed, changing the value of #this#.",
   },
 ];
 
