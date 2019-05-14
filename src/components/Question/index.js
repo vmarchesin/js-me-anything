@@ -110,7 +110,7 @@ class Question extends React.PureComponent {
     this.interval = setInterval(() => this.setState({ time: this.state.time - 1 }), 1000);
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
