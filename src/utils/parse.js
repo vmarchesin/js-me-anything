@@ -23,7 +23,7 @@ export function parseCode(str) {
         <span key={i}>
           {s.includes('\n') ? (
             <React.Fragment key={`fragment-${i}`}>
-              {s.split('\n').reduce((prev, curr) => [prev, <br />, curr])}
+              {s.split('\n').reduce((prev, curr, i) => [prev, <br key={i}/>, curr])}
             </React.Fragment>
           ) : (
             s
