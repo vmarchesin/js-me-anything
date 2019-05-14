@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   background-color: #f3f3f3;
-  border: 2px solid #bebebe;
+  border: 1px solid #bebebe;
 
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
 
   display: flex;
@@ -16,6 +16,7 @@ const StyledCard = styled.div`
   transition: 0.1s ease-in;
   &:hover {
     transform: scale(1.02);
+    box-shadow: 0px 5px 10px -4px rgba(0,0,0,0.75);
   }
 `;
 
