@@ -196,6 +196,25 @@ module.exports = [
     ],
     explanation: "When a function is used as a constructor (with the #new# keyword), it is bound to the new object being constructed, changing the value of #this#.",
   },
+  {
+    id: 'master-8',
+    codeString: `
+    var arr = [1, 2, 3];
+    for(var i = 0; i < arr.length; i++) {
+      setTimeout(function() {
+        console.log(arr[i]);
+      }, 3000);
+    }
+    `,
+    level: 'beginner',
+    subjects: ['scope'],
+    title: 'What does the following code output on the browser?',
+    answers: [
+      { id: 'master-8-a', value: 'undefined, undefined, undefined', isCorrect: true },
+      { id: 'master-8-b', value: '1, 2, 3', isCorrect: false },
+      { id: 'master-8-c', value: '0, 1, 2', isCorrect: false },
+      { id: 'master-8-d', value: 'ReferenceError', isCorrect: false },
+    ],
+    explanation: "The reason for this is because the #setTimeout# function creates a function (the closure) that has access to its outer scope, which is the loop that contains the index #i#. After 3 seconds go by, the function is executed and it prints out the value of #arr[i]#, which at the end of the loop #i# is at 3 because it cycles through 0, 1, 2, 3 and the loop finally stops at 3. #arr[3]# does not exist, which is why you get undefined.",
+  },
 ];
-
-

@@ -102,10 +102,10 @@ module.exports = [
     subjects: ['scope'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'intermediate-5-a', value: 'function', isCorrect: true },
-      { id: 'intermediate-5-b', value: 'undefined', isCorrect: false },
-      { id: 'intermediate-5-c', value: 'number', isCorrect: false },
-      { id: 'intermediate-5-d', value: 'string', isCorrect: false },
+      { id: 'intermediate-5-a', value: `'function'`, isCorrect: true },
+      { id: 'intermediate-5-b', value: `'undefined'`, isCorrect: false },
+      { id: 'intermediate-5-c', value: `'number'`, isCorrect: false },
+      { id: 'intermediate-5-d', value: `'string'`, isCorrect: false },
     ],
     explanation: `Considering the placement of the return statement, it's easy to make the mistake of thinking the above code will result in #undefined#, although this is not the case. The result is #function# because JavaScript is compiled instead of being a purely interpreted language. Function declarations are evaluated during compile time, and therefore while creating the #bar# function #foo# is also created, since it is in the scope of #bar#.
 
