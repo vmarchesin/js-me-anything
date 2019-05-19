@@ -11,7 +11,7 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 import Button from '@components/Button';
 import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
-import { parseCode } from '@utils/parse';
+import { parseAnswer, parseCode } from '@utils/parse';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
@@ -190,7 +190,7 @@ class Question extends React.PureComponent {
                   <FaRegCircle />
                 )}
               </span>
-              <div>{answer.value}</div>
+              <div>{parseAnswer(answer.value)}</div>
             </div>
           ))}
         </Answers>

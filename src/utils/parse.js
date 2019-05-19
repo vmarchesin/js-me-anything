@@ -6,7 +6,15 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
-// TODO: fix react-keys warning
+export function parseAnswer(str) {
+  return str.includes('\n')
+    ? (
+      <React.Fragment>
+        {str.split('\n').reduce((prev, curr, i) => [prev, <br key={i}/>, curr])}
+      </React.Fragment>
+    ) : str;
+}
+
 export function parseCode(str) {
   const content = str
     .split(/(#[^#]*#)/)
