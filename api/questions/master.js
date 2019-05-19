@@ -103,10 +103,10 @@ module.exports = [
     subjects: ['scope'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'master-4-a', value: "undefined, '5000$'", isCorrect: true },
-      { id: 'master-4-b', value: "'1000$', '5000$'", isCorrect: false },
-      { id: 'master-4-c', value: "'1000$', undefined", isCorrect: false },
-      { id: 'master-4-d', value: "'1000$', '1000$'", isCorrect: false },
+      { id: 'master-4-a', value: "undefined\n'5000$'", isCorrect: true },
+      { id: 'master-4-b', value: "'1000$'\n'5000$'", isCorrect: false },
+      { id: 'master-4-c', value: "'1000$'\nundefined", isCorrect: false },
+      { id: 'master-4-d', value: "'1000$'\n'1000$'", isCorrect: false },
     ],
     explanation: `
     The code above will output: #undefined, 5000$# because of hoisting. You might be expecting #salary# to retain its value from the outer scope until the point that #salary# was redeclared in the inner scope. But due to hoisting, #salary# was #undefined# instead. To better understand it, have a look at the following code. Here #salary# is hoisted and declared at the top inside the function scope. When we print its value using #console.log# the result is #undefined#. Afterwards the variable is redeclared and the new value #"5000$"# is assigned to it.
@@ -185,7 +185,7 @@ module.exports = [
     }
     var user1 = new user('foo');
     `,
-    level: 'beginner',
+    level: 'master',
     subjects: ['browser', 'scope'],
     title: 'What does the following code output on the browser?',
     answers: [
@@ -206,15 +206,121 @@ module.exports = [
       }, 3000);
     }
     `,
-    level: 'beginner',
+    level: 'master',
     subjects: ['scope'],
     title: 'What does the following code output on the browser?',
     answers: [
-      { id: 'master-8-a', value: 'undefined, undefined, undefined', isCorrect: true },
-      { id: 'master-8-b', value: '1, 2, 3', isCorrect: false },
-      { id: 'master-8-c', value: '0, 1, 2', isCorrect: false },
+      { id: 'master-8-a', value: 'undefined\nundefined\nundefined', isCorrect: true },
+      { id: 'master-8-b', value: '1\n2\n3', isCorrect: false },
+      { id: 'master-8-c', value: '0\n1\n2', isCorrect: false },
       { id: 'master-8-d', value: 'ReferenceError', isCorrect: false },
     ],
     explanation: "The reason for this is because the #setTimeout# function creates a function (the closure) that has access to its outer scope, which is the loop that contains the index #i#. After 3 seconds go by, the function is executed and it prints out the value of #arr[i]#, which at the end of the loop #i# is at 3 because it cycles through 0, 1, 2, 3 and the loop finally stops at 3. #arr[3]# does not exist, which is why you get undefined.",
+  },
+  {
+    id: 'master-9',
+    codeString: `
+    (function () {
+      try {
+        throw new Error();
+      } catch (x) {
+        var x = 1, y = 2;
+        console.log(x);
+      }
+      console.log(x);
+      console.log(y);
+    })();
+    `,
+    level: 'master',
+    subjects: ['scope'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'master-9-a', value: `1\nundefined\n2`, isCorrect: true },
+      { id: 'master-9-b', value: '1\n1\n2', isCorrect: false },
+      { id: 'master-9-c', value: 'undefined\nundefined\nundefined', isCorrect: false },
+      { id: 'master-9-d', value: '1\nundefined\nundefined', isCorrect: false },
+    ],
+    explanation: "#var# statements are hoisted (without their value initialization) to the top of the global or function scope it belongs to, even when it’s inside a with or catch block. However, the error’s identifier is only visible inside the catch block. It is equivalent to:",
+    explanationCodeString: `
+    (function () {
+      var x, y; // outer and hoisted
+      try {
+        throw new Error();
+      } catch (x /* inner */) {
+        x = 1; // inner x, not the outer one
+        y = 2; // there is only one y, which is in the outer scope
+        console.log(x /* inner */);
+      }
+      console.log(x);
+      console.log(y);
+    })();
+    `,
+  },
+  {
+    id: 'master-10',
+    codeString: `
+    var length = 10;
+    function fn() {
+      console.log(this.length);
+    }
+
+    var obj = {
+      length: 5,
+      method: function(fn) {
+        fn();
+        arguments[0]();
+      }
+    };
+
+    obj.method(fn, 1);
+    `,
+    level: 'master',
+    subjects: ['scope', 'browser', 'objects'],
+    title: 'What does the following code output on the browser?',
+    answers: [
+      { id: 'master-10-a', value: `10\n2`, isCorrect: true },
+      { id: 'master-10-b', value: '10\n5', isCorrect: false },
+      { id: 'master-10-c', value: 'undefined\nundefined', isCorrect: false },
+      { id: 'master-10-d', value: '10\nundefined', isCorrect: false },
+    ],
+    explanation: `Why isn’t it #10# and #5#?
+
+    In the first place, as #fn# is passed as a parameter to the function #method#, the scope (#this#) of the function #fn# is #window#. #var length = 10# is declared at the #window# level. It also can be accessed as #window.length# or #length# or #this.length# (when #this === window#.)
+
+    #method# is bound to #Object obj#, and #obj.method# is called with parameters #fn# and #1#. Though #method# is accepting only one parameter, while invoking it has passed two parameters; the first is a function callback and other is just a number.
+
+    When #fn()# is called inside #method#, which was passed the function as a parameter at the global level, #this.length# will have access to #var length = 10# (declared globally) not #length = 5# as defined in #Object obj#.
+
+    Now, we know that we can access any number of arguments in a JavaScript function using the #arguments[]# array.
+
+    Hence #arguments[0]()# is nothing but calling #fn()#. Inside #fn# now, the scope of this function becomes the #arguments# array, and logging the length of #arguments[]# will return #2#.
+    `,
+  },
+  {
+    id: 'master-11',
+    codeString: `
+    var a={},
+    b={key:'b'},
+    c={key:'c'};
+
+    a[b]=123;
+    a[c]=456;
+
+    console.log(a[b]);
+    `,
+    level: 'master',
+    subjects: ['types', 'objects'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'master-11-a', value: '456', isCorrect: true },
+      { id: 'master-11-b', value: '123', isCorrect: false },
+      { id: 'master-11-c', value: 'undefined', isCorrect: false },
+      { id: 'master-11-d', value: "{key: 'b'}", isCorrect: false },
+    ],
+    explanation: `
+    The output of this code will be #456#, not #123#.
+
+    The reason for this is as follows: when setting an object property, JavaScript will implicitly stringify the parameter value. In this case, since #b# and #c# are both objects, they will both be converted to #'[object Object]'#. As a result, #a[b]# and #a[c]# are both equivalent to #a['[object Object]']# and can be used interchangeably. Therefore, setting or referencing #a[c]# is precisely the same as setting or referencing #a[b]#.
+    `,
   },
 ];

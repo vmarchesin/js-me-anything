@@ -103,7 +103,7 @@ module.exports = [
     id: 'beginner-6',
     codeString: `
     var arr = ['foo', 'bar', 'baz'];
-    arr.length - 0;
+    arr.length = 0;
     arr.push('bin');
     console.log(arr);
     `,
@@ -131,5 +131,75 @@ module.exports = [
       { id: 'beginner-7-d', value: "'object'", isCorrect: false },
     ],
     explanation: "In the global execution context (outside any function), #this# refers to the global object. In web browsers the window object is also the global object.",
+  },
+  {
+    id: 'beginner-7',
+    codeString: `console.log(typeof typeof 1);`,
+    level: 'beginner',
+    subjects: ['types'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-7-a', value: "'string'", isCorrect: true },
+      { id: 'beginner-7-b', value: "'number'", isCorrect: false },
+      { id: 'beginner-7-c', value: "'undefined'", isCorrect: false },
+      { id: 'beginner-7-d', value: "'null'", isCorrect: false },
+    ],
+    explanation: "#typeof 1# will return #'number'# and #typeof 'number'# will return #'string'#.",
+  },
+  {
+    id: 'beginner-7',
+    codeString: `typeof undefined == typeof NULL`,
+    level: 'beginner',
+    subjects: ['types'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-7-a', value: 'true', isCorrect: true },
+      { id: 'beginner-7-b', value: 'false', isCorrect: false },
+      { id: 'beginner-7-c', value: 'undefined', isCorrect: false },
+      { id: 'beginner-7-d', value: 'Error', isCorrect: false },
+    ],
+    explanation: "The expression will be evaluated to #true#, since #NULL# will be treated as any other undefined variable. JavaScript is case-sensitive and here we are using #NULL# instead of #null#.",
+  },
+  {
+    id: 'beginner-8',
+    codeString: `
+    console.log(1 < 2 < 3);
+    console.log(3 > 2 > 1);
+    `,
+    level: 'beginner',
+    subjects: ['operators'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-8-a', value: 'true\nfalse', isCorrect: true },
+      { id: 'beginner-8-b', value: 'true\ntrue', isCorrect: false },
+      { id: 'beginner-8-c', value: 'false\nfalse', isCorrect: false },
+      { id: 'beginner-8-d', value: 'false\ntrue', isCorrect: false },
+    ],
+    explanation: `The first statement returns #true# which is as expected.
+
+    The second returns #false# because of how the engine works regarding operator associativity for < and >. It compares left to right, so for #3 > 2 > 1# JavaScript translates to #true > 1#. #true# has value #1# when cast as a number, so it then compares #1 > 1#, which is #false#.
+
+    Comparatively, the first statement evaluates to #true < 3#, then #1 < 3#, which is #true#.`,
+  },
+  {
+    id: 'beginner-9',
+    codeString: `
+    console.log(false == '0');
+    console.log(false === '0');
+    `,
+    level: 'beginner',
+    subjects: ['operators', 'types'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-9-a', value: 'true\nfalse', isCorrect: true },
+      { id: 'beginner-9-b', value: 'true\ntrue', isCorrect: false },
+      { id: 'beginner-9-c', value: 'false\nfalse', isCorrect: false },
+      { id: 'beginner-9-d', value: 'false\ntrue', isCorrect: false },
+    ],
+    explanation: `
+    In JavaScript, there are two sets of equality operators. The triple-equal operator #===# behaves like any traditional equality operator would: evaluates to true if the two expressions on either of its sides have the same type and the same value.
+
+    The double-equal operator, however, tries to coerce the values before comparing them. It is therefore generally good practice to use the #===# rather than #==#. The same holds true for #!==# vs #!=#.
+    `,
   },
 ];
