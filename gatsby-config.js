@@ -32,22 +32,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
-        root: './src', // <- will be used as a root dir
+        root: './src',
         aliases: {
-          '@apollo': './apollo', // <- will become ./src/apollo
+          '@graphql': './graphql',
           '@components': './components',
           '@layouts': './layouts',
-          '@context': './context',
+          '@redux': './redux',
           '@utils': './utils',
           static: {
-            root: './public', // <- will used as this alias' root dir
-            alias: './static' // <- will become ./public/static
-          }
-        }
-      }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+            root: './public',
+            alias: './static',
+          },
+        },
+      },
+    },
   ],
-}
+};

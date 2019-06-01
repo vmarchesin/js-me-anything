@@ -9,12 +9,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
-import { ApolloProvider } from 'react-apollo';
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-
-import client from '@apollo/client';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -101,11 +98,9 @@ const Layout = ({ children }) => (
             paddingTop: 0,
           }}
         >
-          <ApolloProvider client={client}>
-            <Main>
-              <div>{children}</div>
-            </Main>
-          </ApolloProvider>
+          <Main>
+            <div>{children}</div>
+          </Main>
         </div>
         <Footer />
       </Wrapper>

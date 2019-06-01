@@ -26,8 +26,10 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.5.0",
+    "react-redux": "^7.0.3",
     "react-share": "^2.4.0",
     "react-syntax-highlighter": "^10.2.1",
+    "redux": "^4.0.1",
     "styled-components": "^4.2.0",
     "styled-tools": "^1.7.1"
   },
