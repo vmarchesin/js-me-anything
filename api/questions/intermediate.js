@@ -39,7 +39,7 @@ module.exports = [
       { id: 'intermediate-1-d', value: '0', isCorrect: false },
     ],
     explanation:
-      "The #let# keyword is block scoped. In this case the variable only exists inside the function scope. Trying to access an undeclared variable will result in a #ReferenceError#",
+      'The #let# keyword is block scoped. In this case the variable only exists inside the function scope. Trying to access an undeclared variable will result in a #ReferenceError#',
   },
   {
     id: 'intermediate-2',
@@ -53,7 +53,8 @@ module.exports = [
       { id: 'intermediate-2-c', value: 'Error', isCorrect: false },
       { id: 'intermediate-2-d', value: 'undefined', isCorrect: false },
     ],
-    explanation: "The spread operator enables us to iterate over any iterable object and spread its elements into an array. So here #'...'# represents a String (which is iterable in JavaScript). This means it results in an array like this #['.','.','.']#. The second spread operator does the exact same thing so the length will be #3#.",
+    explanation:
+      "The spread operator enables us to iterate over any iterable object and spread its elements into an array. So here #'...'# represents a String (which is iterable in JavaScript). This means it results in an array like this #['.','.','.']#. The second spread operator does the exact same thing so the length will be #3#.",
   },
   {
     id: 'intermediate-3',
@@ -67,7 +68,8 @@ module.exports = [
       { id: 'intermediate-3-c', value: 'Error', isCorrect: false },
       { id: 'intermediate-3-d', value: '{ x: 1 }', isCorrect: false },
     ],
-    explanation: "The first #let x# defines #x# with the value #2#. #{x: y = 1} = {x}# is a destructuring assignment, it takes the variable #y# from the property #x#. In the end, because #x# is #2#, the default value #1# is ignored and #y# takes the value #2# from #x#.",
+    explanation:
+      'The first #let x# defines #x# with the value #2#. #{x: y = 1} = {x}# is a destructuring assignment, it takes the variable #y# from the property #x#. In the end, because #x# is #2#, the default value #1# is ignored and #y# takes the value #2# from #x#.',
   },
   {
     id: 'intermediate-4',
@@ -84,7 +86,8 @@ module.exports = [
       { id: 'intermediate-4-c', value: "'3'", isCorrect: false },
       { id: 'intermediate-4-d', value: '-3', isCorrect: false },
     ],
-    explanation: "The tilde #~# is a NOT bitwise operator. The double tilde is just shorthand for truncating numbers to integers. It is used as a shorthand to #Math.floor()#, although it has a key difference in that it just removes any numbers after the decimal place. Therefore 3.5 becomes 3.",
+    explanation:
+      'The tilde #~# is a NOT bitwise operator. The double tilde is just shorthand for truncating numbers to integers. It is used as a shorthand to #Math.floor()#, although it has a key difference in that it just removes any numbers after the decimal place. Therefore 3.5 becomes 3.',
   },
   {
     id: 'intermediate-5',
@@ -128,7 +131,8 @@ module.exports = [
       { id: 'intermediate-6-c', value: "'function'", isCorrect: false },
       { id: 'intermediate-6-d', value: 'undefined', isCorrect: false },
     ],
-    explanation: "Since the code above is not in strict mode, and because the value of #this# was not set by the call, #this# will default to the global object, in this case #window#.",
+    explanation:
+      'Since the code above is not in strict mode, and because the value of #this# was not set by the call, #this# will default to the global object, in this case #window#.',
   },
   {
     id: 'intermediate-7',

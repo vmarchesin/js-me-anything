@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -8,12 +9,10 @@ import rootReducer from '@redux/rootReducer';
 
 const store = createStore(rootReducer);
 
-export function wrapRootElement ({ element }) {
+export function wrapRootElement({ element }) {
   return (
     <ApolloProvider client={client}>
-      <ReduxProvider store={store}>
-        {element}
-      </ReduxProvider>
+      <ReduxProvider store={store}>{element}</ReduxProvider>
     </ApolloProvider>
   );
 }

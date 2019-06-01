@@ -7,7 +7,8 @@ module.exports = [
     `,
     level: 'master',
     subjects: ['types'],
-    title: 'For which value of x the results of the following statements are not the same?',
+    title:
+      'For which value of x the results of the following statements are not the same?',
     answers: [
       { id: 'master-0-a', value: 'NaN', isCorrect: true },
       { id: 'master-0-b', value: "'100'", isCorrect: false },
@@ -35,7 +36,7 @@ module.exports = [
     title: 'What does the following code output?',
     answers: [
       { id: 'master-1-a', value: '0', isCorrect: true },
-      { id: 'master-1-b', value: "undefined", isCorrect: false },
+      { id: 'master-1-b', value: 'undefined', isCorrect: false },
       { id: 'master-1-c', value: 'null', isCorrect: false },
       { id: 'master-1-d', value: 'ReferenceError', isCorrect: false },
     ],
@@ -59,7 +60,7 @@ module.exports = [
     title: 'What does the following code output?',
     answers: [
       { id: 'master-2-a', value: 'undefined', isCorrect: true },
-      { id: 'master-2-b', value: "1", isCorrect: false },
+      { id: 'master-2-b', value: '1', isCorrect: false },
       { id: 'master-2-c', value: 'null', isCorrect: false },
       { id: 'master-2-d', value: 'ReferenceError', isCorrect: false },
     ],
@@ -165,7 +166,8 @@ module.exports = [
       { id: 'master-6-c', value: "'object'", isCorrect: false },
       { id: 'master-6-d', value: 'ReferenceError', isCorrect: false },
     ],
-    explanation: "This is an exercise in JavaScript's automatic semicolon insertion. While this code looks correct, JavaScript inserts semicolons where it thinks the user has missed them. Once JS has done this the function changes to the code below, which does not return the object as you would expect, and results in the type of the function being #undefined#, instead of #object# as you might expect.",
+    explanation:
+      "This is an exercise in JavaScript's automatic semicolon insertion. While this code looks correct, JavaScript inserts semicolons where it thinks the user has missed them. Once JS has done this the function changes to the code below, which does not return the object as you would expect, and results in the type of the function being #undefined#, instead of #object# as you might expect.",
     explanationCodeString: `
     function aaa() {
       return;
@@ -194,7 +196,8 @@ module.exports = [
       { id: 'master-7-c', value: "'window'", isCorrect: false },
       { id: 'master-7-d', value: "'foo'", isCorrect: false },
     ],
-    explanation: "When a function is used as a constructor (with the #new# keyword), it is bound to the new object being constructed, changing the value of #this#.",
+    explanation:
+      'When a function is used as a constructor (with the #new# keyword), it is bound to the new object being constructed, changing the value of #this#.',
   },
   {
     id: 'master-8',
@@ -210,12 +213,17 @@ module.exports = [
     subjects: ['scope'],
     title: 'What does the following code output on the browser?',
     answers: [
-      { id: 'master-8-a', value: 'undefined\nundefined\nundefined', isCorrect: true },
+      {
+        id: 'master-8-a',
+        value: 'undefined\nundefined\nundefined',
+        isCorrect: true,
+      },
       { id: 'master-8-b', value: '1\n2\n3', isCorrect: false },
       { id: 'master-8-c', value: '0\n1\n2', isCorrect: false },
       { id: 'master-8-d', value: 'ReferenceError', isCorrect: false },
     ],
-    explanation: "The reason for this is because the #setTimeout# function creates a function (the closure) that has access to its outer scope, which is the loop that contains the index #i#. After 3 seconds go by, the function is executed and it prints out the value of #arr[i]#, which at the end of the loop #i# is at 3 because it cycles through 0, 1, 2, 3 and the loop finally stops at 3. #arr[3]# does not exist, which is why you get undefined.",
+    explanation:
+      'The reason for this is because the #setTimeout# function creates a function (the closure) that has access to its outer scope, which is the loop that contains the index #i#. After 3 seconds go by, the function is executed and it prints out the value of #arr[i]#, which at the end of the loop #i# is at 3 because it cycles through 0, 1, 2, 3 and the loop finally stops at 3. #arr[3]# does not exist, which is why you get undefined.',
   },
   {
     id: 'master-9',
@@ -237,10 +245,15 @@ module.exports = [
     answers: [
       { id: 'master-9-a', value: `1\nundefined\n2`, isCorrect: true },
       { id: 'master-9-b', value: '1\n1\n2', isCorrect: false },
-      { id: 'master-9-c', value: 'undefined\nundefined\nundefined', isCorrect: false },
+      {
+        id: 'master-9-c',
+        value: 'undefined\nundefined\nundefined',
+        isCorrect: false,
+      },
       { id: 'master-9-d', value: '1\nundefined\nundefined', isCorrect: false },
     ],
-    explanation: "#var# statements are hoisted (without their value initialization) to the top of the global or function scope it belongs to, even when it’s inside a with or catch block. However, the error’s identifier is only visible inside the catch block. It is equivalent to:",
+    explanation:
+      '#var# statements are hoisted (without their value initialization) to the top of the global or function scope it belongs to, even when it’s inside a with or catch block. However, the error’s identifier is only visible inside the catch block. It is equivalent to:',
     explanationCodeString: `
     (function () {
       var x, y; // outer and hoisted

@@ -15,7 +15,7 @@ const typeDefs = gql`
     level: String!
     subjects: [String]
     title: String!
-    answers: [Answer]!,
+    answers: [Answer]!
     explanation: String
     explanationCodeString: String
   }
@@ -28,11 +28,14 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    questions: (parent, { level, subject }) => questions
+    questions: (parent, { level, subject }) =>
+      questions
         .filter(q => !level || q.level === level)
         .filter(q => !subject || q.subjects.includes(subject))
         .slice(0, 10),
-    subjects: () => [...new Set(questions.map(q => q.subjects).flatMap(q => q))],
+    subjects: () => [
+      ...new Set(questions.map(q => q.subjects).flatMap(q => q)),
+    ],
   },
 };
 

@@ -191,11 +191,12 @@ class Question extends React.PureComponent {
           {answers.map((answer, index) => (
             <div onClick={() => this.onAnswer(answer)} key={index}>
               <span style={{ verticalAlign: 'middle' }}>
-                {showSolutions && answer.isCorrect ? (
-                  <FaCheckCircle fill={colors.success} />
-                ) : (
-                  <FaTimesCircle fill={colors.error} />
-                )}
+                {showSolutions &&
+                  (answer.isCorrect ? (
+                    <FaCheckCircle fill={colors.success} />
+                  ) : (
+                    <FaTimesCircle fill={colors.error} />
+                  ))}
                 {!showSolutions && <FaRegCircle />}
               </span>
               <div>{parseAnswer(answer.value)}</div>
