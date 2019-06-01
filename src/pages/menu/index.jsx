@@ -25,7 +25,7 @@ const CardRow = styled.div`
   }
 `;
 
-function Menu ({ resetGame }) {
+function Menu({ resetGame }) {
   return (
     <Layout>
       <SEO
@@ -50,11 +50,7 @@ function Menu ({ resetGame }) {
           />
         </Link>
         <Link to="/game" state={{ level: 'master' }}>
-          <Card
-            content="Master"
-            image="avatar-master"
-            onClick={resetGame}
-          />
+          <Card content="Master" image="avatar-master" onClick={resetGame} />
         </Link>
       </CardRow>
 
@@ -70,32 +66,34 @@ function Menu ({ resetGame }) {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
 
-          const subjects = data.subjects;
-          subjects.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+          const { subjects } = data;
+          subjects.sort((a, b) =>
+            a.toLowerCase().localeCompare(b.toLowerCase())
+          );
 
           return (
             <CardRow>
               {subjects.map(subject => (
                 <Link to="/game" state={{ subject }} key={subject}>
-                  <Card
-                    content={capitalize(subject)}
-                    onClick={resetGame}
-                  />
+                  <Card content={capitalize(subject)} onClick={resetGame} />
                 </Link>
               ))}
             </CardRow>
-          )
+          );
         }}
       </Query>
     </Layout>
   );
-};
+}
 
-const dispatchToProps = (dispatch) => ({
+const dispatchToProps = dispatch => ({
   resetGame: () => {
     dispatch(setCurrentQuestion(0));
     dispatch(setScore(0));
-  }
+  },
 });
 
-export default connect(null, dispatchToProps)(Menu);
+export default connect(
+  null,
+  dispatchToProps
+)(Menu);

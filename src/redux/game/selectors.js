@@ -1,4 +1,4 @@
-const getGame = (state) => state.game
+const getGame = state => state.game;
 
-export const getCurrentQuestion = (state) => getGame(state).currentQuestion;
-export const getScore = (state) => getGame(state).score;
+export const getCurrentQuestion = state => getGame(state).currentQuestion;
+export const getScore = state => getGame(state).score;

@@ -34,7 +34,7 @@ export default function() {
           . Feel free to contribute and improve the game.
         </p>
         <Link to="/menu">
-          <Button>LET'S GO</Button>
+          <Button>LET&apos;S GO</Button>
         </Link>
       </Display>
     </Layout>

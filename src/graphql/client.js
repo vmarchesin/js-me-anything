@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
 

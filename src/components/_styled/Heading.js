@@ -10,8 +10,8 @@ const commonCSS = css`
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, 'Roboto', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, 'Roboto', BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   line-height: 1.1;
@@ -42,12 +42,10 @@ export const H4 = styled.h4`
   ${commonCSS}
 `;
 
-
 export const H5 = styled.h5`
   font-size: 0.85028rem;
   ${commonCSS}
 `;
-
 
 export const H6 = styled.h6`
   font-size: 0.78405rem;

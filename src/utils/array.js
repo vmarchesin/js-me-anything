@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // Knuth Shuffle
 export function shuffle(array) {
   if (!Array.isArray(array)) {
@@ -6,8 +7,8 @@ export function shuffle(array) {
 
   let currIdx = array.length;
 
-  while (0 !== currIdx) {
-    let randIdx = Math.floor(Math.random() * currIdx);
+  while (currIdx !== 0) {
+    const randIdx = Math.floor(Math.random() * currIdx);
     currIdx -= 1;
     [array[currIdx], array[randIdx]] = [array[randIdx], array[currIdx]];
   }

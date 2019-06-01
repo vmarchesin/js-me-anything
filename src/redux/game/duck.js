@@ -4,7 +4,7 @@ const initialState = {
 };
 
 const SET_CURRENT_QUESTION = 'game/currentQuestion';
-export function setCurrentQuestion (currentQuestion) {
+export function setCurrentQuestion(currentQuestion) {
   return {
     currentQuestion,
     type: SET_CURRENT_QUESTION,
@@ -12,26 +12,26 @@ export function setCurrentQuestion (currentQuestion) {
 }
 
 const SET_SCORE = 'game/setScore';
-export function setScore (score) {
+export function setScore(score) {
   return {
     score,
     type: SET_SCORE,
   };
 }
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_QUESTION:
       return {
         ...state,
         currentQuestion: action.currentQuestion,
-      }
+      };
     case SET_SCORE:
       return {
         ...state,
         score: action.score,
-      }
+      };
     default:
-      return state
+      return state;
   }
 }

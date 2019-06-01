@@ -1,5 +1,4 @@
 import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Hero } from '@components/_styled/Heading';
@@ -32,10 +31,6 @@ const Header = ({ siteTitle }) => (
     </div>
   </header>
 );
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
 
 Header.defaultProps = {
   siteTitle: ``,

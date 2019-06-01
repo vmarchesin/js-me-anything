@@ -1,5 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-param-reassign */
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Styled from './style';
 
@@ -28,12 +29,6 @@ const Anchor = ({ children, href, link, ...props }) => {
   }
 
   return renderAnchor({ children, href, ...props });
-};
-
-Anchor.propTypes = {
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string,
-  link: PropTypes.bool,
 };
 
 Anchor.defaultProps = {

@@ -27,7 +27,8 @@ const StyledButton = styled.button`
     'variant',
     {
       primary: primaryVariant,
-    }, primaryVariant
+    },
+    primaryVariant
   )}
 `;
 

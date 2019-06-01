@@ -43,18 +43,20 @@ const Countdown = styled.div`
       stroke: ${({ time }) => {
         if (time <= 5) {
           return colors.error;
-        } else if (time > 5 && time < 20) {
-          return colors.warning;
-        } else {
-          return colors.success;
         }
+        if (time > 5 && time < 20) {
+          return colors.warning;
+        }
+
+        return colors.success;
       }};
       fill: none;
       ${ifProp(
         'animate',
         css`
-          animation: countdown ${prop('countdownStartAt')}s linear infinite forwards;
-        `,
+          animation: countdown ${prop('countdownStartAt')}s linear infinite
+            forwards;
+        `
       )}
     }
   }
@@ -68,7 +70,7 @@ const Timer = ({ countdownStartAt, time, timeIsRunning }) => (
   >
     <div>{time <= 0 ? 0 : time}</div>
     <svg>
-      <circle r="18" cx="20" cy="20"></circle>
+      <circle r="18" cx="20" cy="20" />
     </svg>
   </Countdown>
 );

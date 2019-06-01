@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -42,7 +41,7 @@ const StyledQuestion = styled.div`
     }
 
     pre {
-      display: inline!important;
+      display: inline !important;
     }
   }
 
@@ -103,24 +102,31 @@ class Question extends React.PureComponent {
       time: this.countdownStartAt,
       timeIsRunning: true,
       showSolutions: false,
-    }
+    };
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.setState({ time: this.state.time - 1 }), 1000);
+    this.interval = setInterval(this.countdown, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  onAnswer = (answer) => {
+  countdown = () => {
+    const { time } = this.state;
+    this.setState({ time: time - 1 });
+  };
+
+  onAnswer = answer => {
     const { onCorrect } = this.props;
     const { showSolutions, time } = this.state;
 
     if (showSolutions) {
       return;
-    } else if (answer.isCorrect && time > 0) {
+    }
+
+    if (answer.isCorrect && time > 0) {
       onCorrect();
     }
 
@@ -130,14 +136,20 @@ class Question extends React.PureComponent {
 
   onNext = () => {
     const { next } = this.props;
-    this.setState({
-      time: this.countdownStartAt,
-      timeIsRunning: true,
-      showSolutions: false,
-    }, () => {
-      next();
-      this.interval = setInterval(() => this.setState({ time: this.state.time - 1 }), 1000);
-    })
+    this.setState(
+      {
+        time: this.countdownStartAt,
+        timeIsRunning: true,
+        showSolutions: false,
+      },
+      () => {
+        next();
+        this.interval = setInterval(() => {
+          const { time } = this.state;
+          this.setState({ time: time - 1 });
+        }, 1000);
+      }
+    );
   };
 
   render() {
@@ -160,35 +172,31 @@ class Question extends React.PureComponent {
     }
 
     return (
-      <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
+      <StyledQuestion
+        solutionsAreVisible={showSolutions ? 'visible' : undefined}
+      >
         <Timer
           countdownStartAt={this.countdownStartAt}
           time={time}
           timeIsRunning={timeIsRunning}
         />
         <p>{title}</p>
-        {codeString ? (
+        {codeString && (
           <SyntaxHighlighter language="javascript" style={dark}>
             {codeString}
           </SyntaxHighlighter>
-        ) : null}
+        )}
 
         <Answers>
           {answers.map((answer, index) => (
-            <div
-              onClick={() => this.onAnswer(answer)}
-              key={index}
-            >
+            <div onClick={() => this.onAnswer(answer)} key={index}>
               <span style={{ verticalAlign: 'middle' }}>
-                {showSolutions ? (
-                  answer.isCorrect ? (
-                    <FaCheckCircle fill={colors.success} />
-                  ) : (
-                    <FaTimesCircle fill={colors.error} />
-                  )
+                {showSolutions && answer.isCorrect ? (
+                  <FaCheckCircle fill={colors.success} />
                 ) : (
-                  <FaRegCircle />
+                  <FaTimesCircle fill={colors.error} />
                 )}
+                {!showSolutions && <FaRegCircle />}
               </span>
               <div>{parseAnswer(answer.value)}</div>
             </div>
@@ -208,10 +216,7 @@ class Question extends React.PureComponent {
         </div>
 
         <div className="actions">
-          <Button
-            className="hide-solution"
-            onClick={() => this.onNext()}
-          >
+          <Button className="hide-solution" onClick={() => this.onNext()}>
             NEXT
           </Button>
         </div>
@@ -219,13 +224,5 @@ class Question extends React.PureComponent {
     );
   }
 }
-
-Question.propTypes = {
-  codeString: PropTypes.string,
-  title: PropTypes.string,
-  answers: PropTypes.array,
-  next: PropTypes.func,
-  onCorrect: PropTypes.func,
-};
 
 export default Question;
