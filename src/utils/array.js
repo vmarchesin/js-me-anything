@@ -4,15 +4,12 @@ export function shuffle(array) {
     return [];
   }
 
-  let currentIndex = array.length;
+  let currIdx = array.length;
 
-  while (0 !== currentIndex) {
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+  while (0 !== currIdx) {
+    let randIdx = Math.floor(Math.random() * currIdx);
+    currIdx -= 1;
+    [array[currIdx], array[randIdx]] = [array[randIdx], array[currIdx]];
   }
 
   return array;

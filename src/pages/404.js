@@ -4,7 +4,7 @@ import Layout from '@layouts';
 import SEO from '@components/SEO';
 import Anchor from '@components/Anchor';
 
-export default function () {
+export default function() {
   return (
     <Layout>
       <SEO title="404: Not found" />

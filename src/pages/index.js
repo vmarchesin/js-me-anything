@@ -12,7 +12,7 @@ const Display = styled.div`
   text-align: center;
 `;
 
-export default function () {
+export default function() {
   return (
     <Layout>
       <SEO
@@ -27,7 +27,11 @@ export default function () {
           that job interview.
         </p>
         <p>
-          All questions are made by the community and are available at the <Anchor href="https://github.com/vmarchesin/js-me-anything" newTab>Github repository</Anchor>. Feel free to contribute and improve the game.
+          All questions are made by the community and are available at the{' '}
+          <Anchor href="https://github.com/vmarchesin/js-me-anything" newTab>
+            Github repository
+          </Anchor>
+          . Feel free to contribute and improve the game.
         </p>
         <Link to="/menu">
           <Button>LET'S GO</Button>

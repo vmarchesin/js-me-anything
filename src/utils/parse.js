@@ -7,12 +7,13 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 SyntaxHighlighter.registerLanguage('javascript', js);
 
 export function parseAnswer(str) {
-  return str.includes('\n')
-    ? (
-      <React.Fragment>
-        {str.split('\n').reduce((prev, curr, i) => [prev, <br key={i}/>, curr])}
-      </React.Fragment>
-    ) : str;
+  return str.includes('\n') ? (
+    <React.Fragment>
+      {str.split('\n').reduce((prev, curr, i) => [prev, <br key={i} />, curr])}
+    </React.Fragment>
+  ) : (
+    str
+  );
 }
 
 export function parseCode(str) {
@@ -31,7 +32,9 @@ export function parseCode(str) {
         <span key={i}>
           {s.includes('\n') ? (
             <React.Fragment key={`fragment-${i}`}>
-              {s.split('\n').reduce((prev, curr, i) => [prev, <br key={i}/>, curr])}
+              {s
+                .split('\n')
+                .reduce((prev, curr, i) => [prev, <br key={i} />, curr])}
             </React.Fragment>
           ) : (
             s
