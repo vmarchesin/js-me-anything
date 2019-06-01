@@ -62,17 +62,17 @@ const Countdown = styled.div`
   }
 `;
 
-const Timer = ({ countdownStartAt, time, timeIsRunning }) => (
-  <Countdown
-    animate={time !== 0 && timeIsRunning}
-    countdownStartAt={countdownStartAt}
-    time={time}
-  >
-    <div>{time <= 0 ? 0 : time}</div>
-    <svg>
-      <circle r="18" cx="20" cy="20" />
-    </svg>
-  </Countdown>
-);
-
-export default Timer;
+export default function({ countdownStartAt, time, timeIsRunning }) {
+  return (
+    <Countdown
+      animate={time !== 0 && timeIsRunning}
+      countdownStartAt={countdownStartAt}
+      time={time}
+    >
+      <div>{time <= 0 ? 0 : time}</div>
+      <svg>
+        <circle r="18" cx="20" cy="20" />
+      </svg>
+    </Countdown>
+  );
+}

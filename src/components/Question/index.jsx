@@ -7,9 +7,11 @@ import { FaCheckCircle, FaTimesCircle, FaRegCircle } from 'react-icons/fa';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
+import Badge from '@components/Badge';
 import Button from '@components/Button';
 import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
+import { capitalize } from '@utils/string';
 import { parseAnswer, parseCode } from '@utils/parse';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
@@ -54,6 +56,11 @@ const StyledQuestion = styled.div`
       margin: 0 8px;
     }
   }
+`;
+
+const Badges = styled.div`
+  text-align: right;
+  margin-bottom: 16px;
 `;
 
 const Answers = styled.div`
@@ -159,6 +166,7 @@ class Question extends React.PureComponent {
       answers,
       explanation,
       explanationCodeString,
+      subjects,
     } = this.props;
 
     const { showSolutions, time, timeIsRunning } = this.state;
@@ -186,6 +194,11 @@ class Question extends React.PureComponent {
             {codeString}
           </SyntaxHighlighter>
         )}
+        <Badges>
+          {subjects.map(subject => (
+            <Badge>{capitalize(subject)}</Badge>
+          ))}
+        </Badges>
 
         <Answers>
           {answers.map((answer, index) => (
