@@ -45,6 +45,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "gatsby-plugin-eslint": "^2.0.5",
+    "husky": "^2.3.0",
     "now-lambda-runner": "^3.3.0",
     "prettier": "^1.16.4"
   },
@@ -63,6 +64,11 @@
     "lint": "eslint src -c .eslintrc --ext js,jsx",
     "now-lambda": "now-lambda --port 8004",
     "now-build": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "repository": {
     "type": "git",
