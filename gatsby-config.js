@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "/js-me-anything",
+  pathPrefix: '/js-me-anything',
   siteMetadata: {
     title: `JS Me Anything`,
     description: `A place to test your JavaScript skills. Prepare yourself for the next interview.`,
@@ -34,15 +34,28 @@ module.exports = {
       options: {
         root: './src',
         aliases: {
-          '@graphql': './graphql',
           '@components': './components',
           '@layouts': './layouts',
+          '@graphql': './graphql',
+          '@pages': './pages',
           '@redux': './redux',
           '@utils': './utils',
           static: {
             root: './public',
             alias: './static',
           },
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false,
         },
       },
     },

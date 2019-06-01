@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "env": {
+    "browser": true
+  },
+  "plugins": ["react", "prettier"],
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "alias": {
+          "map": [
+          ["@components", "./src/components"],
+          ["@layouts", "./src/layouts"],
+          ["@graphql", "./src/graphql"],
+          ["@pages", "./src/pages"],
+          ["@redux", "./src/redux"],
+          ["@utils", "./src/utils"]
+        ],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-shadow": "off",
+    "react/no-array-index-key": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": "error"
+  }
+}
