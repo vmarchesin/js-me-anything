@@ -4,13 +4,13 @@ import Finish from '@pages/game/finish';
 
 import { connect } from 'react-redux';
 import { getCurrentQuestion, getScore } from '@redux/game/selectors';
-import { setCurrentQuestion, setScore } from '@redux/game/duck';
+import { increaseScore, nextQuestion } from '@redux/game/duck';
 
 const QuestionScreen = ({
   currentQuestion,
-  setCurrentQuestion,
+  nextQuestion,
   score,
-  setScore,
+  increaseScore,
   questions,
 }) => {
   if (!questions) {
@@ -29,11 +29,12 @@ const QuestionScreen = ({
 
       <Question
         {...questions[currentQuestion]}
+        currentQuestion={currentQuestion}
         next={() => {
-          setCurrentQuestion(currentQuestion + 1);
+          nextQuestion();
           window.scrollTo(0, 0);
         }}
-        onCorrect={() => setScore(score + 1)}
+        onCorrect={increaseScore}
       />
     </React.Fragment>
   );
@@ -45,8 +46,8 @@ const stateToProps = state => ({
 });
 
 const dispatchToProps = dispatch => ({
-  setCurrentQuestion: question => dispatch(setCurrentQuestion(question)),
-  setScore: score => dispatch(setScore(score)),
+  nextQuestion: () => dispatch(nextQuestion()),
+  increaseScore: () => dispatch(increaseScore()),
 });
 
 export default connect(

@@ -1,78 +1,90 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { ifProp, prop } from 'styled-tools';
-import { colors } from '@layouts/theme';
 
-const Countdown = styled.div`
-  @keyframes countdown {
-    from {
-      stroke-dashoffset: 0px;
-    }
-    to {
-      stroke-dashoffset: 113px;
-    }
+import { connect } from 'react-redux';
+import { stopTimer } from '@redux/game/duck';
+import { getTimeIsRunning } from '@redux/game/selectors';
+
+import { Countdown } from './style';
+
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.interval = null;
+    this.state = {
+      currentQuestion: props.currentQuestion,
+      time: props.countdownStartsAt,
+    };
   }
 
-  position: absolute;
-  top: 100px;
-  right: 20px;
-  margin: auto;
-  margin-top: 20px;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-
-  > div {
-    display: inline-block;
-    line-height: 40px;
+  componentDidMount() {
+    this.interval = setInterval(this.countdown, 1000);
   }
 
-  > svg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    transform: rotateY(-180deg) rotateZ(-90deg);
+  componentDidUpdate(prevProps) {
+    const { currentQuestion, stopTimer, timeIsRunning } = this.props;
+    const { time } = this.state;
 
-    > circle {
-      stroke-dasharray: 113px;
-      stroke-dashoffset: 0px;
-      stroke-linecap: round;
-      stroke-width: 4px;
-      stroke: ${({ time }) => {
-        if (time <= 5) {
-          return colors.error;
-        }
-        if (time > 5 && time < 20) {
-          return colors.warning;
-        }
+    if (time === 0 && timeIsRunning) {
+      stopTimer();
+    }
 
-        return colors.success;
-      }};
-      fill: none;
-      ${ifProp(
-        'animate',
-        css`
-          animation: countdown ${prop('countdownStartAt')}s linear infinite
-            forwards;
-        `
-      )}
+    if (time === 0 || (this.interval && !timeIsRunning)) {
+      clearInterval(this.interval);
+    }
+
+    if (prevProps.currentQuestion !== currentQuestion) {
+      this.interval = setInterval(this.countdown, 1000);
     }
   }
-`;
 
-export default function({ countdownStartAt, time, timeIsRunning }) {
-  return (
-    <Countdown
-      animate={time !== 0 && timeIsRunning}
-      countdownStartAt={countdownStartAt}
-      time={time}
-    >
-      <div>{time <= 0 ? 0 : time}</div>
-      <svg>
-        <circle r="18" cx="20" cy="20" />
-      </svg>
-    </Countdown>
-  );
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.currentQuestion !== state.currentQuestion) {
+      return {
+        currentQuestion: props.currentQuestion,
+        time: props.countdownStartsAt,
+      };
+    }
+
+    return state;
+  }
+
+  countdown = () => {
+    const { time } = this.state;
+    this.setState({ time: time - 1 });
+  };
+
+  render() {
+    const { countdownStartsAt, timeIsRunning } = this.props;
+    const { time } = this.state;
+    return (
+      <Countdown
+        animate={time !== 0 && timeIsRunning}
+        countdownStartsAt={countdownStartsAt}
+        time={time}
+      >
+        <div>{time}</div>
+        <svg>
+          <circle r="18" cx="20" cy="20" />
+        </svg>
+      </Countdown>
+    );
+  }
 }
+
+const stateToProps = state => ({
+  timeIsRunning: getTimeIsRunning(state),
+});
+
+const dispatchToProps = dispatch => ({
+  stopTimer: () => dispatch(stopTimer()),
+});
+
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Timer);

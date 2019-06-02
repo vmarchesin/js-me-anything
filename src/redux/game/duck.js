@@ -1,35 +1,71 @@
 const initialState = {
-  score: 0,
   currentQuestion: 0,
+  score: 0,
+  timeIsRunning: true,
 };
 
-const SET_CURRENT_QUESTION = 'game/currentQuestion';
-export function setCurrentQuestion(currentQuestion) {
+const INCREASE_SCORE = 'game/increaseScore';
+export function increaseScore() {
   return {
-    currentQuestion,
-    type: SET_CURRENT_QUESTION,
+    type: INCREASE_SCORE,
   };
 }
 
-const SET_SCORE = 'game/setScore';
-export function setScore(score) {
+const NEXT_QUESTION = 'game/nextQuestion';
+export function nextQuestion() {
   return {
-    score,
-    type: SET_SCORE,
+    type: NEXT_QUESTION,
+  };
+}
+
+const RESET_GAME = 'game/resetGame';
+export function resetGame() {
+  return {
+    type: RESET_GAME,
+  };
+}
+
+const START_TIMER = 'game/startTimer';
+export function startTimer() {
+  return {
+    type: START_TIMER,
+  };
+}
+
+const STOP_TIMER = 'game/stopTimer';
+export function stopTimer() {
+  return {
+    type: STOP_TIMER,
   };
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_CURRENT_QUESTION:
+    case NEXT_QUESTION:
       return {
         ...state,
-        currentQuestion: action.currentQuestion,
+        currentQuestion: state.currentQuestion + 1,
       };
-    case SET_SCORE:
+    case INCREASE_SCORE:
       return {
         ...state,
-        score: action.score,
+        score: state.score + 1,
+      };
+    case RESET_GAME:
+      return {
+        ...state,
+        currentQuestion: 0,
+        score: 0,
+      };
+    case START_TIMER:
+      return {
+        ...state,
+        timeIsRunning: true,
+      };
+    case STOP_TIMER:
+      return {
+        ...state,
+        timeIsRunning: false,
       };
     default:
       return state;

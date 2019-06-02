@@ -12,7 +12,7 @@ import { Title } from '@components/_styled/Heading';
 import { capitalize } from '@utils/string';
 
 import { connect } from 'react-redux';
-import { setCurrentQuestion, setScore } from '@redux/game/duck';
+import { resetGame } from '@redux/game/duck';
 
 const CardRow = styled.div`
   display: flex;
@@ -87,10 +87,7 @@ function Menu({ resetGame }) {
 }
 
 const dispatchToProps = dispatch => ({
-  resetGame: () => {
-    dispatch(setCurrentQuestion(0));
-    dispatch(setScore(0));
-  },
+  resetGame: () => dispatch(resetGame()),
 });
 
 export default connect(
