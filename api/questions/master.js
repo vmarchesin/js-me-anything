@@ -1,10 +1,7 @@
 module.exports = [
   {
     id: 'master-0',
-    codeString: `
-    if( x <= 100 ) {...}
-    if( !(x > 100) ) {...}
-    `,
+    codeString: 'if( x <= 100 ) {...}\nif( !(x > 100) ) {...}',
     level: 'master',
     subjects: ['types'],
     title:
@@ -23,14 +20,11 @@ module.exports = [
   },
   {
     id: 'master-1',
-    codeString: `
-    const output = (function(x) {
-      delete x;
-      return x;
-    })(0);
-
-    console.log(output);
-    `,
+    codeString: `const output = (function(x) {
+  delete x;
+  return x;
+})(0);
+console.log(output);`,
     level: 'master',
     subjects: ['operators'],
     title: 'What does the following code output?',
@@ -46,15 +40,12 @@ module.exports = [
   },
   {
     id: 'master-2',
-    codeString: `
-    let x = { foo : 1};
-    let output = (function() {
-      delete x.foo;
-      return x.foo;
-    })();
-
-    console.log(output);
-    `,
+    codeString: `let x = { foo : 1};
+let output = (function() {
+  delete x.foo;
+  return x.foo;
+})();
+console.log(output);`,
     level: 'master',
     subjects: ['operators'],
     title: 'What does the following code output?',
@@ -70,12 +61,8 @@ module.exports = [
   },
   {
     id: 'master-3',
-    codeString: `
-    let trees = ["xyz", "xxxx", "test", "ryan", "apple"];
-    delete trees[3];
-
-    console.log(trees.length);
-    `,
+    codeString:
+      "let trees = ['xyz', 'xxxx', 'test', 'ryan', 'apple'];\ndelete trees[3];\nconsole.log(trees.length);",
     level: 'master',
     subjects: ['arrays', 'operators'],
     title: 'What does the following code output?',
@@ -91,15 +78,13 @@ module.exports = [
   },
   {
     id: 'master-4',
-    codeString: `
-    var salary = "1000$";
+    codeString: `var salary = "1000$";
 
-    (function () {
-      console.log(salary);
-      var salary = "5000$";
-      console.log(salary);
-    })();
-    `,
+(function () {
+  console.log(salary);
+  var salary = "5000$";
+  console.log(salary);
+})();`,
     level: 'master',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -112,27 +97,23 @@ module.exports = [
     explanation: `
     The code above will output: #undefined, 5000$# because of hoisting. You might be expecting #salary# to retain its value from the outer scope until the point that #salary# was redeclared in the inner scope. But due to hoisting, #salary# was #undefined# instead. To better understand it, have a look at the following code. Here #salary# is hoisted and declared at the top inside the function scope. When we print its value using #console.log# the result is #undefined#. Afterwards the variable is redeclared and the new value #"5000$"# is assigned to it.
     `,
-    explanationCodeString: `
-    var salary = "1000$";
+    explanationCodeString: `var salary = "1000$";
 
-    (function () {
-      var salary = undefined;
-      console.log(salary);
-      salary = "5000$";
-      console.log(salary);
-    })();
-    `,
+(function () {
+  var salary = undefined;
+  console.log(salary);
+  salary = "5000$";
+  console.log(salary);
+})();`,
   },
   {
     id: 'master-5',
-    codeString: `
-    (function() {
-      return [
-        (() => this.x).bind({ x: 'inner' })(),
-        (() => this.x)(),
-      ];
-    }).call({ x: 'outer' });
-    `,
+    codeString: `(function() {
+  return [
+    (() => this.x).bind({ x: 'inner' })(),
+    (() => this.x)(),
+  ];
+}).call({ x: 'outer' });`,
     level: 'master',
     subjects: ['scope', 'ES6'],
     title: 'What does the following code output?',
@@ -148,15 +129,13 @@ module.exports = [
   },
   {
     id: 'master-6',
-    codeString: `
-    function aaa() {
-      return
-      {
-        test: 1
-      };
-    }
-    console.log(typeof aaa());
-    `,
+    codeString: `function aaa() {
+  return
+  {
+    test: 1
+  };
+}
+console.log(typeof aaa());`,
     level: 'master',
     subjects: ['conceptual'],
     title: 'What does the following code output?',
@@ -168,25 +147,21 @@ module.exports = [
     ],
     explanation:
       "This is an exercise in JavaScript's automatic semicolon insertion. While this code looks correct, JavaScript inserts semicolons where it thinks the user has missed them. Once JS has done this the function changes to the code below, which does not return the object as you would expect, and results in the type of the function being #undefined#, instead of #object# as you might expect.",
-    explanationCodeString: `
-    function aaa() {
-      return;
-      {
-        test: 1
-      };
-    }
-    console.log(typeof aaa());
-    `,
+    explanationCodeString: `function aaa() {
+  return;
+  {
+    test: 1
+  };
+}
+console.log(typeof aaa());`,
   },
   {
     id: 'master-7',
-    codeString: `
-    function user(name) {
-      this.type = name;
-      console.log(this);
-    }
-    var user1 = new user('foo');
-    `,
+    codeString: `function user(name) {
+  this.type = name;
+  console.log(this);
+}
+var user1 = new user('foo');`,
     level: 'master',
     subjects: ['browser', 'scope'],
     title: 'What does the following code output on the browser?',
@@ -201,14 +176,12 @@ module.exports = [
   },
   {
     id: 'master-8',
-    codeString: `
-    var arr = [1, 2, 3];
-    for(var i = 0; i < arr.length; i++) {
-      setTimeout(function() {
-        console.log(arr[i]);
-      }, 3000);
-    }
-    `,
+    codeString: `var arr = [1, 2, 3];
+for(var i = 0; i < arr.length; i++) {
+  setTimeout(function() {
+    console.log(arr[i]);
+  }, 3000);
+}`,
     level: 'master',
     subjects: ['scope'],
     title: 'What does the following code output on the browser?',
@@ -227,18 +200,16 @@ module.exports = [
   },
   {
     id: 'master-9',
-    codeString: `
-    (function () {
-      try {
-        throw new Error();
-      } catch (x) {
-        var x = 1, y = 2;
-        console.log(x);
-      }
-      console.log(x);
-      console.log(y);
-    })();
-    `,
+    codeString: `(function () {
+  try {
+    throw new Error();
+  } catch (x) {
+    var x = 1, y = 2;
+    console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();`,
     level: 'master',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -254,39 +225,35 @@ module.exports = [
     ],
     explanation:
       '#var# statements are hoisted (without their value initialization) to the top of the global or function scope it belongs to, even when it’s inside a with or catch block. However, the error’s identifier is only visible inside the catch block. It is equivalent to:',
-    explanationCodeString: `
-    (function () {
-      var x, y; // outer and hoisted
-      try {
-        throw new Error();
-      } catch (x /* inner */) {
-        x = 1; // inner x, not the outer one
-        y = 2; // there is only one y, which is in the outer scope
-        console.log(x /* inner */);
-      }
-      console.log(x);
-      console.log(y);
-    })();
-    `,
+    explanationCodeString: `(function () {
+  var x, y; // outer and hoisted
+  try {
+    throw new Error();
+  } catch (x /* inner */) {
+    x = 1; // inner x, not the outer one
+    y = 2; // there is only one y, which is in the outer scope
+    console.log(x /* inner */);
+  }
+  console.log(x);
+  console.log(y);
+})();`,
   },
   {
     id: 'master-10',
-    codeString: `
-    var length = 10;
-    function fn() {
-      console.log(this.length);
-    }
+    codeString: `var length = 10;
+function fn() {
+  console.log(this.length);
+}
 
-    var obj = {
-      length: 5,
-      method: function(fn) {
-        fn();
-        arguments[0]();
-      }
-    };
+var obj = {
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  }
+};
 
-    obj.method(fn, 1);
-    `,
+obj.method(fn, 1);`,
     level: 'master',
     subjects: ['scope', 'browser', 'objects'],
     title: 'What does the following code output on the browser?',
@@ -311,16 +278,8 @@ module.exports = [
   },
   {
     id: 'master-11',
-    codeString: `
-    var a={},
-    b={key:'b'},
-    c={key:'c'};
-
-    a[b]=123;
-    a[c]=456;
-
-    console.log(a[b]);
-    `,
+    codeString:
+      "var a={}, b={key:'b'}, c={key:'c'};\na[b]=123;\na[c]=456;\nconsole.log(a[b]);",
     level: 'master',
     subjects: ['types', 'objects'],
     title: 'What does the following code output?',

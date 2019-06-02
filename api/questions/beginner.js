@@ -1,7 +1,6 @@
 module.exports = [
   {
     id: 'beginner-0',
-    codeString: '',
     level: 'beginner',
     subjects: ['conceptual'],
     title: 'Which of the following is false about JavaScript?',
@@ -31,7 +30,6 @@ module.exports = [
   },
   {
     id: 'beginner-1',
-    codeString: '',
     level: 'beginner',
     subjects: ['browser'],
     title: 'Which of the following is not a browser function?',
@@ -105,14 +103,9 @@ module.exports = [
   },
   {
     id: 'beginner-6',
-    codeString: `
-    var arr = ['foo', 'bar', 'baz'];
-    arr.length = 0;
-    arr.push('bin');
-    console.log(arr);
-    `,
+    codeString: `var arr = ['foo', 'bar', 'baz'];\narr.length = 0;\narr.push('bin');\nconsole.log(arr);`,
     level: 'beginner',
-    subjects: ['arrays'],
+    subjects: ['arrays', 'test'],
     title: 'What does the following code output?',
     answers: [
       { id: 'beginner-6-a', value: "['bin']", isCorrect: true },
@@ -129,7 +122,7 @@ module.exports = [
   },
   {
     id: 'beginner-7',
-    codeString: `console.log(this);`,
+    codeString: 'console.log(this);',
     level: 'beginner',
     subjects: ['browser'],
     title: 'What does the following code output on the browser?',
@@ -144,7 +137,7 @@ module.exports = [
   },
   {
     id: 'beginner-7',
-    codeString: `console.log(typeof typeof 1);`,
+    codeString: 'console.log(typeof typeof 1);',
     level: 'beginner',
     subjects: ['types'],
     title: 'What does the following code output?',
@@ -159,7 +152,7 @@ module.exports = [
   },
   {
     id: 'beginner-7',
-    codeString: `typeof undefined == typeof NULL`,
+    codeString: 'typeof undefined == typeof NULL',
     level: 'beginner',
     subjects: ['types'],
     title: 'What does the following code output?',
@@ -174,10 +167,7 @@ module.exports = [
   },
   {
     id: 'beginner-8',
-    codeString: `
-    console.log(1 < 2 < 3);
-    console.log(3 > 2 > 1);
-    `,
+    codeString: 'console.log(1 < 2 < 3);\nconsole.log(3 > 2 > 1);',
     level: 'beginner',
     subjects: ['operators'],
     title: 'What does the following code output?',
@@ -195,10 +185,7 @@ module.exports = [
   },
   {
     id: 'beginner-9',
-    codeString: `
-    console.log(false == '0');
-    console.log(false === '0');
-    `,
+    codeString: "console.log(false == '0');\nconsole.log(false === '0');",
     level: 'beginner',
     subjects: ['operators', 'types'],
     title: 'What does the following code output?',
@@ -216,10 +203,7 @@ module.exports = [
   },
   {
     id: 'beginner-10',
-    codeString: `
-    const foo = 0;
-    console.log(foo++);
-    `,
+    codeString: 'const foo = 0;\nconsole.log(foo++);',
     level: 'beginner',
     subjects: ['ES6'],
     title: 'What does the following code output?',
@@ -234,10 +218,7 @@ module.exports = [
 
     The #const# declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned. For instance, in the case where the content is an object, this means the object's contents (e.g., its properties) can be altered. For example, the code below is perfectly valid:
     `,
-    explanationCodeString: `
-    const foo = { x: 1 };
-    foo.x = 2;
-    console.log(foo.x); // 2
-    `,
+    explanationCodeString:
+      'const foo = { x: 1 };\nfoo.x = 2;\nconsole.log(foo.x); // 2',
   },
 ];

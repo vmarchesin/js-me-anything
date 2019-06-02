@@ -74,9 +74,9 @@ function Question({
   return (
     <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
       <Timer currentQuestion={currentQuestion} countdownStartsAt={60} />
-      <p className="inline-code">{parseQuestion(title)}</p>
+      <div className="title inline-code">{parseQuestion(title)}</div>
       {codeString && (
-        <SyntaxHighlighter language="javascript" style={dark}>
+        <SyntaxHighlighter language="javascript" style={dark} showLineNumbers>
           {codeString}
         </SyntaxHighlighter>
       )}
@@ -121,7 +121,7 @@ function Question({
 
       <div className="hide-solution" style={{ marginTop: 16 }}>
         {explanationCodeString ? (
-          <SyntaxHighlighter language="javascript" style={dark}>
+          <SyntaxHighlighter language="javascript" style={dark} showLineNumbers>
             {explanationCodeString}
           </SyntaxHighlighter>
         ) : null}

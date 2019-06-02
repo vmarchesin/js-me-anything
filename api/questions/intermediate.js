@@ -1,20 +1,18 @@
 module.exports = [
   {
     id: 'intermediate-0',
-    codeString: `
-    function mul(x) {
-      return function(y) {
-        return function(z) {
-          return function(w) {
-            return function(p) {
-              return x * y * z * w * p;
-            };
-          };
+    codeString: `function mul(x) {
+  return function(y) {
+    return function(z) {
+      return function(w) {
+        return function(p) {
+          return x * y * z * w * p;
         };
       };
-    }
-    console.log(mul(2)(3)(4)(5)(6));
-    `,
+    };
+  };
+}
+console.log(mul(2)(3)(4)(5)(6));`,
     level: 'intermediate',
     subjects: ['currying'],
     title: 'What does the following code output?',
@@ -28,7 +26,7 @@ module.exports = [
   },
   {
     id: 'intermediate-1',
-    codeString: `(function() { let i = 0; })();\nconsole.log(i);`,
+    codeString: '(function() { let i = 0; })();\nconsole.log(i);',
     level: 'intermediate',
     subjects: ['scope', 'ES6'],
     title: 'What does the following code output?',
@@ -58,7 +56,7 @@ module.exports = [
   },
   {
     id: 'intermediate-3',
-    codeString: `let x = 2, { x: y = 1 } = { x }; y;`,
+    codeString: 'let x = 2, { x: y = 1 } = { x }; y;',
     level: 'intermediate',
     subjects: ['ES6'],
     title: 'What does the following code output?',
@@ -73,10 +71,7 @@ module.exports = [
   },
   {
     id: 'intermediate-4',
-    codeString: `
-    var x = 3.5;
-    console.log(~~x);
-    `,
+    codeString: 'var x = 3.5;\nconsole.log(~~x);',
     level: 'intermediate',
     subjects: ['operators'],
     title: 'What does the following code output?',
@@ -91,16 +86,14 @@ module.exports = [
   },
   {
     id: 'intermediate-5',
-    codeString: `
-    function bar() {
-      return foo;
-      foo = 10;
-      function foo() {
-        var foo = '11';
-      }
-    }
-    console.log(typeof bar());
-    `,
+    codeString: `function bar() {
+  return foo;
+  foo = 10;
+  function foo() {
+    var foo = '11';
+  }
+}
+console.log(typeof bar());`,
     level: 'intermediate',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -116,12 +109,10 @@ module.exports = [
   },
   {
     id: 'intermediate-6',
-    codeString: `
-    function f() {
-      console.log(this);
-    }
-    f();
-    `,
+    codeString: `function f() {
+  console.log(this);
+}
+f();`,
     level: 'intermediate',
     subjects: ['browser', 'scope'],
     title: 'What does the following code output on the browser?',
@@ -136,13 +127,11 @@ module.exports = [
   },
   {
     id: 'intermediate-7',
-    codeString: `
-    (function(x) {
-      return (function(y) {
-          console.log(x);
-      })(2)
-    })(1);
-    `,
+    codeString: `(function(x) {
+  return (function(y) {
+      console.log(x);
+  })(2)
+})(1);`,
     level: 'intermediate',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -160,21 +149,19 @@ module.exports = [
   },
   {
     id: 'intermediate-8',
-    codeString: `
-    const myObject = {
-      foo: 'bar',
-      func: function() {
-          var self = this;
+    codeString: `const myObject = {
+  foo: 'bar',
+  func: function() {
+      var self = this;
+      console.log(this.foo);
+      console.log(self.foo);
+      (function() {
           console.log(this.foo);
           console.log(self.foo);
-          (function() {
-              console.log(this.foo);
-              console.log(self.foo);
-          }());
-      }
-    };
-    myObject.func();
-    `,
+      }());
+  }
+};
+myObject.func();`,
     level: 'intermediate',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -249,11 +236,9 @@ module.exports = [
   },
   {
     id: 'intermediate-10',
-    codeString: `
-    (function(x) {
-      console.log(x);
-    })(5);
-    `,
+    codeString: `(function(x) {
+  console.log(x);
+})(5);`,
     level: 'intermediate',
     subjects: ['conceptual'],
     title: "What's the name of the following pattern?",

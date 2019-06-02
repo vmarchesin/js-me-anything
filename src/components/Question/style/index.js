@@ -38,6 +38,11 @@ export const StyledQuestion = styled.div`
     }
   }
 
+  .title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
   .actions {
     display: flex;
     justify-content: center;
