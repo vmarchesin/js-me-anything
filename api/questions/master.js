@@ -62,7 +62,7 @@ console.log(output);`,
   {
     id: 'master-3',
     codeString:
-      "let trees = ['xyz', 'xxxx', 'test', 'ryan', 'apple'];\ndelete trees[3];\nconsole.log(trees.length);",
+      "let trees = ['xyz', 'xxxx', 'foo', 'ryan', 'apple'];\ndelete trees[3];\nconsole.log(trees.length);",
     level: 'master',
     subjects: ['arrays', 'operators'],
     title: 'What does the following code output?',

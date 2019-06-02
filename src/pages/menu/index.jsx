@@ -10,6 +10,7 @@ import Card from '@components/Card';
 import SEO from '@components/SEO';
 import { Title } from '@components/_styled/Heading';
 
+import { sortStrings } from '@utils/array';
 import { capitalize } from '@utils/string';
 
 import { connect } from 'react-redux';
@@ -70,13 +71,10 @@ function Menu({ resetGame }) {
           if (error) return <Contact />;
 
           const { subjects } = data;
-          subjects.sort((a, b) =>
-            a.toLowerCase().localeCompare(b.toLowerCase())
-          );
 
           return (
             <CardRow>
-              {subjects.map(subject => (
+              {sortStrings(subjects).map(subject => (
                 <Link to="/game" state={{ subject }} key={subject}>
                   <Card content={capitalize(subject)} onClick={resetGame} />
                 </Link>

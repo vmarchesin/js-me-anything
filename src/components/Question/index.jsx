@@ -11,6 +11,7 @@ import Badge from '@components/Badge';
 import Button from '@components/Button';
 import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
+import { sortStrings } from '@utils/array';
 import { capitalize } from '@utils/string';
 import { parseAnswer, parseCode, parseQuestion } from '@utils/parse';
 
@@ -81,7 +82,7 @@ function Question({
         </SyntaxHighlighter>
       )}
       <Badges>
-        {subjects.map(subject => (
+        {sortStrings(subjects).map(subject => (
           <Badge key={subject}>{capitalize(subject)}</Badge>
         ))}
       </Badges>

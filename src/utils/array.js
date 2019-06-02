@@ -15,3 +15,8 @@ export function shuffle(array) {
 
   return array;
 }
+
+export function sortStrings(array) {
+  array.sort((a, b) => a.localeCompare(b));
+  return array;
+}
