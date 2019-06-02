@@ -32,6 +32,12 @@ export const StyledQuestion = styled.div`
     }
   }
 
+  .inline-code {
+    pre {
+      display: inline !important;
+    }
+  }
+
   .actions {
     display: flex;
     justify-content: center;

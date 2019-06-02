@@ -214,4 +214,30 @@ module.exports = [
     The double-equal operator, however, tries to coerce the values before comparing them. It is therefore generally good practice to use the #===# rather than #==#. The same holds true for #!==# vs #!=#.
     `,
   },
+  {
+    id: 'beginner-10',
+    codeString: `
+    const foo = 0;
+    console.log(foo++);
+    `,
+    level: 'beginner',
+    subjects: ['ES6'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-10-a', value: 'TypeError', isCorrect: true },
+      { id: 'beginner-10-b', value: '1', isCorrect: false },
+      { id: 'beginner-10-c', value: '0', isCorrect: false },
+      { id: 'beginner-10-d', value: 'undefined', isCorrect: false },
+    ],
+    explanation: `
+    The #const# declaration creates a constant whose scope can be either global or local to the block in which it is declared. Global constants do not become properties of the window object (in browsers), unlike var variables. An initializer for a constant is required; that is, you must specify its value in the same statement in which it's declared (which makes sense, given that it can't be changed later).
+
+    The #const# declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned. For instance, in the case where the content is an object, this means the object's contents (e.g., its properties) can be altered. For example, the code below is perfectly valid:
+    `,
+    explanationCodeString: `
+    const foo = { x: 1 };
+    foo.x = 2;
+    console.log(foo.x); // 2
+    `,
+  },
 ];

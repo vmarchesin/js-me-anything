@@ -158,4 +158,117 @@ module.exports = [
 
     Therefore, in this example, since x is not defined in the inner function, the scope of the outer function is searched for a defined variable #x#, which is found to have a value of #1#.`,
   },
+  {
+    id: 'intermediate-8',
+    codeString: `
+    const myObject = {
+      foo: 'bar',
+      func: function() {
+          var self = this;
+          console.log(this.foo);
+          console.log(self.foo);
+          (function() {
+              console.log(this.foo);
+              console.log(self.foo);
+          }());
+      }
+    };
+    myObject.func();
+    `,
+    level: 'intermediate',
+    subjects: ['scope'],
+    title: 'What does the following code output?',
+    answers: [
+      {
+        id: 'intermediate-8-a',
+        value: "'bar'\n'bar'\nundefined\n'bar'",
+        isCorrect: true,
+      },
+      {
+        id: 'intermediate-8-b',
+        value: "'bar'\n'bar'\n'bar'\n'bar'",
+        isCorrect: false,
+      },
+      {
+        id: 'intermediate-8-c',
+        value: "'bar'\nundefined\n'bar'\nundefined",
+        isCorrect: false,
+      },
+      {
+        id: 'intermediate-8-d',
+        value: "'bar'\n'bar'\nundefined\nundefined",
+        isCorrect: false,
+      },
+    ],
+    explanation: `In the outer function, both #this# and #self# refer to #myObject# and therefore both can properly reference and access #foo#.
+
+    In the inner function, though, #this# no longer refers to #myObject#. As a result, #this.foo# is #undefined# in the inner function, whereas the reference to the local variable #self# remains in scope and is accessible there.`,
+  },
+  {
+    id: 'intermediate-9',
+    level: 'intermediate',
+    subjects: ['conceptual'],
+    title: "Which of the following is false about the usage of #'use strict'#?",
+    answers: [
+      {
+        id: 'intermediate-9-a',
+        value: 'Enforces the usage of semicolons',
+        isCorrect: true,
+      },
+      {
+        id: 'intermediate-9-b',
+        value: 'Eliminates #this# coercion',
+        isCorrect: false,
+      },
+      {
+        id: 'intermediate-9-c',
+        value: 'Disallows duplicate parameter values',
+        isCorrect: false,
+      },
+      {
+        id: 'intermediate-9-d',
+        value: 'Throws error on invalid usage of #delete#',
+        isCorrect: false,
+      },
+    ],
+    explanation: `
+    Some of the key benefits of strict mode include:
+
+    Makes debugging easier: Code errors that would otherwise have been ignored or would have failed silently will now generate errors or throw exceptions, alerting you sooner to problems in your code and directing you more quickly to their source.
+
+    Prevents accidental globals: Without strict mode, assigning a value to an undeclared variable automatically creates a global variable with that name. This is one of the most common errors in JavaScript. In strict mode, attempting to do so throws an error.
+
+    Eliminates #this# coercion: Without strict mode, a reference to a #this# value of null or undefined is automatically coerced to the global. This can cause many headfakes and pull-out-your-hair kind of bugs. In strict mode, referencing #this# value of null or undefined throws an error.
+
+    Disallows duplicate property names or parameter values: Strict mode throws an error when it detects a duplicate named property in an object (e.g., #var object = {foo: "bar", foo: "baz"};#) or a duplicate named argument for a function (e.g., #function foo(val1, val2, val1){}#), thereby catching what is almost certainly a bug in your code that you might otherwise have wasted lots of time tracking down.
+
+    Makes #eval()# safer: There are some differences in the way #eval()# behaves in strict mode and in non-strict mode. Most significantly, in strict mode, variables and functions declared inside of an #eval()# statement are not created in the containing scope (they are created in the containing scope in non-strict mode, which can also be a common source of problems).
+
+    Throws error on invalid usage of #delete#: The #delete# operator (used to remove properties from objects) cannot be used on non-configurable properties of the object. Non-strict code will fail silently when an attempt is made to delete a non-configurable property, whereas strict mode will throw an error in such a case.
+    `,
+  },
+  {
+    id: 'intermediate-10',
+    codeString: `
+    (function(x) {
+      console.log(x);
+    })(5);
+    `,
+    level: 'intermediate',
+    subjects: ['conceptual'],
+    title: "What's the name of the following pattern?",
+    answers: [
+      { id: 'intermediate-10-a', value: 'IIFE', isCorrect: true },
+      { id: 'intermediate-10-b', value: 'AJAX', isCorrect: false },
+      { id: 'intermediate-10-c', value: 'Callback', isCorrect: false },
+      { id: 'intermediate-10-d', value: 'Functional', isCorrect: false },
+    ],
+    explanation: `
+    An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
+
+    It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts. The first is the anonymous function with lexical scope enclosed within the Grouping Operator #()#. This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+
+    The second part creates the immediately executing function expression #()# through which the JavaScript engine will directly interpret the function. You can also pass parameters when invoking the function, as seen in the example above.
+    `,
+  },
 ];

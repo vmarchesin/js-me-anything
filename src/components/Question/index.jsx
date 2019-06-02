@@ -12,7 +12,7 @@ import Button from '@components/Button';
 import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
 import { capitalize } from '@utils/string';
-import { parseAnswer, parseCode } from '@utils/parse';
+import { parseAnswer, parseCode, parseQuestion } from '@utils/parse';
 
 import { startTimer, stopTimer } from '@redux/game/duck';
 import { getTimeIsRunning } from '@redux/game/selectors';
@@ -74,7 +74,7 @@ function Question({
   return (
     <StyledQuestion solutionsAreVisible={showSolutions ? 'visible' : undefined}>
       <Timer currentQuestion={currentQuestion} countdownStartsAt={60} />
-      <p>{title}</p>
+      <p className="inline-code">{parseQuestion(title)}</p>
       {codeString && (
         <SyntaxHighlighter language="javascript" style={dark}>
           {codeString}
