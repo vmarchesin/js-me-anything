@@ -95,6 +95,31 @@ The content inside `##` will be highlited inside a \<pre> tag.
 
 If you wish to provide another block of code to explain the answer, do it here. This will be displayed at the end, after the `explanation`, and shares the same principles of `codeString`.
 
+## Example Question
+
+Here's an example for a new question. Use this format to submit new questions.
+
+```js
+{
+    id: 'beginner-20',
+    codeString: "console.log(1 + '1');",
+    level: 'beginner',
+    subjects: ['operators', 'types'],
+    title: 'What will be the output of the following code?',
+    answers: [
+        { id: 'beginner-20-a', value: "'11'", isCorrect: true },
+        { id: 'beginner-20-b', value: '11', isCorrect: false },
+        { id: 'beginner-20-c', value: 'number', isCorrect: false },
+        { id: 'beginner-20-d', value: '1', isCorrect: false },
+    ],
+    explanation: `
+    Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on).
+
+    The #+# operator will coerce numbers to strings when performing an operation with strings, resulting in #'11'# instead of #11#.
+    `,
+},
+```
+
 ## Features and changes
 
 If you wish to change the behavior of the game or add a new feature, please open an Issue to discuss it first. Pull requests that alter any game behavior will be declined without prior discussion.
