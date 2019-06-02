@@ -61,7 +61,7 @@
     "dev": "gatsby develop NODE_ENV=development",
     "serve": "gatsby serve",
     "format": "prettier --write src/**/*.{js,jsx} api/**/*.js",
-    "lint": "eslint src -c .eslintrc --ext js,jsx .",
+    "lint": "eslint api src ./*.js -c .eslintrc --ext js,jsx",
     "now-lambda": "now-lambda --port 8004",
     "now-build": "npm run build"
   },

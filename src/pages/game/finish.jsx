@@ -58,7 +58,7 @@ const getBucket = (ratio = 0) => {
   return buckets.indexOf(Object.keys(bucket[0])[0]);
 };
 
-const Finish = ({ score, total }) => {
+export default function({ score, total }) {
   if (total === 0) {
     return false;
   }
@@ -123,6 +123,4 @@ const Finish = ({ score, total }) => {
       </Link>
     </React.Fragment>
   );
-};
-
-export default Finish;
+}

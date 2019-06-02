@@ -9,7 +9,7 @@ import { shuffle } from '@utils/array';
 
 import Question from './question';
 
-class Game extends React.Component {
+export default class extends React.Component {
   constructor(props) {
     super(props);
 
@@ -75,5 +75,3 @@ class Game extends React.Component {
     );
   }
 }
-
-export default Game;
