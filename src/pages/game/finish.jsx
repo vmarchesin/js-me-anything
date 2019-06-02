@@ -12,10 +12,14 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from 'react-share';
+import { Link } from 'gatsby';
 
 import { Hero, Title } from '@components/_styled/Heading';
+import Button from '@components/Button';
 
 const ShareRow = styled.div`
+  margin-bottom: 16px;
+
   > div {
     display: flex;
     justify-content: center;
@@ -114,6 +118,9 @@ const Finish = ({ score, total }) => {
           </WhatsappShareButton>
         </div>
       </ShareRow>
+      <Link to="/menu">
+        <Button>PLAY AGAIN</Button>
+      </Link>
     </React.Fragment>
   );
 };
