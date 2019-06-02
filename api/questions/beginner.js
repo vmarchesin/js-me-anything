@@ -105,7 +105,7 @@ module.exports = [
     id: 'beginner-6',
     codeString: `var arr = ['foo', 'bar', 'baz'];\narr.length = 0;\narr.push('bin');\nconsole.log(arr);`,
     level: 'beginner',
-    subjects: ['arrays', 'test'],
+    subjects: ['arrays'],
     title: 'What does the following code output?',
     answers: [
       { id: 'beginner-6-a', value: "['bin']", isCorrect: true },
@@ -220,5 +220,20 @@ module.exports = [
     `,
     explanationCodeString:
       'const foo = { x: 1 };\nfoo.x = 2;\nconsole.log(foo.x); // 2',
+  },
+  {
+    id: 'beginner-11',
+    codeString: "console.log(10 + 20 + '30')",
+    level: 'beginner',
+    subjects: ['types', 'operators'],
+    title: 'What does the following code output?',
+    answers: [
+      { id: 'beginner-11-a', value: "'3030'", isCorrect: true },
+      { id: 'beginner-11-b', value: "'102030", isCorrect: false },
+      { id: 'beginner-11-c', value: '60', isCorrect: false },
+      { id: 'beginner-11-d', value: "'1050'", isCorrect: false },
+    ],
+    explanation:
+      "The first operation #10 + 20# is executed normally, resulting in #30#. However, when adding #30 + '30'# the number is coerced into a string, resulting in #'3030'#.",
   },
 ];
