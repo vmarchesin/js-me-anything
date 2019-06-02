@@ -11,6 +11,8 @@ const Badge = styled.span`
 
   padding: 4px 8px;
   margin: 4px;
+
+  cursor: default;
 `;
 
 export default function({ children }) {

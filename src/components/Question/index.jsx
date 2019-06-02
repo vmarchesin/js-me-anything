@@ -102,6 +102,7 @@ class Question extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    // TODO move logic so the whole component isn't rendered every tick
     this.interval = null;
     this.countdownStartAt = 60;
 
@@ -201,8 +202,8 @@ class Question extends React.PureComponent {
         </Badges>
 
         <Answers>
-          {answers.map((answer, index) => (
-            <div onClick={() => this.onAnswer(answer)} key={index}>
+          {answers.map(answer => (
+            <div onClick={() => this.onAnswer(answer)} key={answer.id}>
               <span style={{ verticalAlign: 'middle' }}>
                 {showSolutions &&
                   (answer.isCorrect ? (
