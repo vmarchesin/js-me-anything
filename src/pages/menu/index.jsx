@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Layout from '@layouts';
+import Loading from '@components/Loading';
 import Card from '@components/Card';
 import SEO from '@components/SEO';
 import { Title } from '@components/_styled/Heading';
@@ -13,6 +14,8 @@ import { capitalize } from '@utils/string';
 
 import { connect } from 'react-redux';
 import { resetGame } from '@redux/game/duck';
+
+import Contact from './contact';
 
 const CardRow = styled.div`
   display: flex;
@@ -63,8 +66,8 @@ function Menu({ resetGame }) {
         `}
       >
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error :(</p>;
+          if (loading) return <Loading />;
+          if (error) return <Contact />;
 
           const { subjects } = data;
           subjects.sort((a, b) =>
