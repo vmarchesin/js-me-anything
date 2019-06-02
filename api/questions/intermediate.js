@@ -256,4 +256,27 @@ myObject.func();`,
     The second part creates the immediately executing function expression #()# through which the JavaScript engine will directly interpret the function. You can also pass parameters when invoking the function, as seen in the example above.
     `,
   },
+  {
+    id: 'intermediate-11',
+    codeString: `foo();
+var foo = function () {
+  console.log('Hello');
+}`,
+    level: 'intermediate',
+    subjects: ['scope'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'intermediate-11-a', value: 'TypeError', isCorrect: true },
+      { id: 'intermediate-11-b', value: "'Hello'", isCorrect: false },
+      { id: 'intermediate-11-c', value: 'ReferenceError', isCorrect: false },
+      { id: 'intermediate-11-d', value: 'undefined', isCorrect: false },
+    ],
+    explanation: `You'll be met with the error #TypeError: foo is not a function#, because in line 1 #foo# is #undefined#.
+
+    When assigning a function to a variable (this is called a function expression), it will be defined at run-time (instead of parse/compile-time). This means you can't invoke it before the declaration. If you declare it without assigning it to a variable, you can use it anywhere in your code (even before the declaration).`,
+    explanationCodeString: `foo(); // 'Hello'
+function foo () {
+  console.log('Hello');
+}`,
+  },
 ];

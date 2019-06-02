@@ -229,11 +229,29 @@ module.exports = [
     title: 'What does the following code output?',
     answers: [
       { id: 'beginner-11-a', value: "'3030'", isCorrect: true },
-      { id: 'beginner-11-b', value: "'102030", isCorrect: false },
+      { id: 'beginner-11-b', value: "'102030'", isCorrect: false },
       { id: 'beginner-11-c', value: '60', isCorrect: false },
       { id: 'beginner-11-d', value: "'1050'", isCorrect: false },
     ],
     explanation:
       "The first operation #10 + 20# is executed normally, resulting in #30#. However, when adding #30 + '30'# the number is coerced into a string, resulting in #'3030'#.",
+  },
+  {
+    id: 'beginner-12',
+    level: 'beginner',
+    subjects: ['conceptual', 'arrays'],
+    title: 'How do you check if the variable #foo# is an array?',
+    answers: [
+      { id: 'beginner-12-a', value: 'Array.isArray(foo)', isCorrect: true },
+      { id: 'beginner-12-b', value: 'foo.length > 0', isCorrect: false },
+      {
+        id: 'beginner-12-c',
+        value: "typeof foo === 'array'",
+        isCorrect: false,
+      },
+      { id: 'beginner-12-d', value: "foo.type === 'array'", isCorrect: false },
+    ],
+    explanation:
+      "An array is an object, so the value of #typeof []# is equal to #'object'#. The easiest way to check if a variable is an array is by using the helper method #Array.isArray()#.",
   },
 ];
