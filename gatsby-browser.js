@@ -10,6 +10,11 @@ import rootReducer from '@redux/rootReducer';
 const store = createStore(rootReducer);
 
 export function wrapRootElement({ element }) {
+  document.addEventListener('copy', e => {
+    e.clipboardData.setData('text/plain', "'No cheating ;)'");
+    e.preventDefault();
+  });
+
   return (
     <ApolloProvider client={client}>
       <ReduxProvider store={store}>{element}</ReduxProvider>
