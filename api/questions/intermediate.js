@@ -279,4 +279,27 @@ function foo () {
   console.log('Hello');
 }`,
   },
+  {
+    id: 'intermediate-12',
+    codeString: `let y = 1;
+
+ if (function f(){}) {
+   y += typeof f;
+ }
+ console.log(y);`,
+    level: 'intermediate',
+    subjects: ['scope', 'types'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'intermediate-12-a', value: "'1undefined'", isCorrect: true },
+      { id: 'intermediate-12-b', value: 'undefined', isCorrect: false },
+      { id: 'intermediate-12-c', value: "'undefined'", isCorrect: false },
+      { id: 'intermediate-12-d', value: "'1function'", isCorrect: false },
+    ],
+    explanation: `
+    The scope of the function #f()# is restricted inside of the #if# condition in this case. Even though the statement will evaluate to true #Boolean(function f(){}) === true#, the function will not be defined aftwerwards.
+
+    #typeof f# will result in #undefined#, and #1 + undefined# will result in #'1undefined'# after a type coercion to string.
+    `,
+  },
 ];

@@ -295,4 +295,68 @@ obj.method(fn, 1);`,
     The reason for this is as follows: when setting an object property, JavaScript will implicitly stringify the parameter value. In this case, since #b# and #c# are both objects, they will both be converted to #'[object Object]'#. As a result, #a[b]# and #a[c]# are both equivalent to #a['[object Object]']# and can be used interchangeably. Therefore, setting or referencing #a[c]# is precisely the same as setting or referencing #a[b]#.
     `,
   },
+  {
+    id: 'master-12',
+    codeString: '018 - 017',
+    level: 'master',
+    subjects: ['types', 'operators'],
+    title: 'What is the result of the following operation?',
+    answers: [
+      { id: 'master-12-a', value: '3', isCorrect: true },
+      { id: 'master-12-b', value: '1', isCorrect: false },
+      { id: 'master-12-c', value: '001', isCorrect: false },
+      { id: 'master-12-d', value: "'001'", isCorrect: false },
+    ],
+    explanation: `
+    The fact that #018 - 017# returns #3# is a result of silent type conversion. In this case, we’re talking about octal (base 8) numbers.
+
+    In JavaScript, the prefix #0# will convert any number to octal. However, #8# is not used in octal and any number containing an #8# will be silently converted to a regular decimal number.
+
+    Therefore, #018 - 017# is in fact equivalent to the decimal expression #18 - 15#, because #017# is octal but #018# is decimal.`,
+  },
+  {
+    id: 'master-13',
+    codeString: '0.1 + 0.2',
+    level: 'master',
+    subjects: ['conceptual'],
+    title: 'What is the result of the following operation?',
+    answers: [
+      { id: 'master-13-a', value: '0.30000000000000004', isCorrect: true },
+      { id: 'master-13-b', value: '0.3', isCorrect: false },
+      { id: 'master-13-c', value: '0.30001', isCorrect: false },
+      { id: 'master-13-d', value: '0.30000000000000001', isCorrect: false },
+    ],
+    explanation: `
+    Because JavaScript uses the IEEE 754 standard for Math, it makes use of 64-bit floating numbers. This causes precision errors when doing floating point (decimal) calculations, in short, due to computers working in Base 2 while decimal is Base 10.
+
+    A simple solution to this problem is found below.
+
+    Here the numbers are added together, returning the erroneous floating number, it is then set using #toFixed# as a string #'0.3'#. Finally the #+# symbol casts the string back to a valid #Number# so that it can be worked with again.
+    `,
+    explanationCodeString: `let x = 0.1,\ny = 0.2;\nlet z = +(x + y).toFixed(1); // z === 0.3`,
+  },
+  {
+    id: 'master-14',
+    codeString: 'Math.max() > Math.min()',
+    level: 'master',
+    subjects: ['conceptual'],
+    title: 'What is the result of the following comparison?',
+    answers: [
+      { id: 'master-14-a', value: 'false', isCorrect: true },
+      { id: 'master-14-b', value: 'true', isCorrect: false },
+      { id: 'master-14-c', value: 'NaN', isCorrect: false },
+      { id: 'master-14-d', value: 'TypeError', isCorrect: false },
+    ],
+    explanation: `
+    The fact that #Math.max() > Math.min()# returns false sounds wrong, but it actually makes a lot of sense.
+
+    If no arguments are given, #Math.min()# returns #infinity# and #Math.max()# returns #-infinity#. This is simply part of the specification for the #max()# and #min()# methods, but there is good logic behind the choice.
+
+    If #-infinity# was considered the default argument of #Math.min()#, then every result would be #-infinity#, which would be useless. Whereas, if the default argument is #infinity#, the addition of any other argument would return that number, and that’s the behaviour we want.
+
+    To understand this, take a look at the following code:
+    `,
+    explanationCodeString:
+      'Math.min(1) // 1\nMath.min(1, infinity) // 1\nMath.min(1, -infinity) // -infinity',
+  },
 ];
