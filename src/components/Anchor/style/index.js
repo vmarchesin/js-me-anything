@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 import { colors } from '@layouts/theme';
 
-const StyledAnchor = styled.a`
+const StyledAnchor = styled(OutboundLink)`
   color: ${colors.primary};
   font-weight: 600;
 
@@ -12,9 +12,6 @@ const StyledAnchor = styled.a`
   text-decoration: none;
 `;
 
-const StyledLink = StyledAnchor.withComponent(Link);
-
 export default {
   Anchor: StyledAnchor,
-  Link: StyledLink,
 };

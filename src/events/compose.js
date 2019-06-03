@@ -1,23 +1,44 @@
-function composeEvent(src, data) {
+/* eslint-disable camelcase */
+function composeEvent({
+  callback = () => undefined,
+  category = 'game',
+  data = {},
+  label = '',
+  transport = '',
+  ...rest
+}) {
   return {
+    event_callback: callback,
+    event_category: category,
+    event_data: data,
+    event_label: label,
+    transport_type: transport,
+    ...rest,
+  };
+}
+export function composeClickEvent({ category, data, label, ...rest }) {
+  return {
+    type: 'click',
     payload: {
-      src,
-      data: {
-        ...data,
-      },
+      ...composeEvent({ category, data, label, ...rest }),
     },
   };
 }
-export function composeClickEvent(src, data) {
+
+export function composeErrorEvent({ label, data, ...rest }) {
   return {
-    type: 'click',
-    ...composeEvent(src, data),
+    type: 'error',
+    payload: {
+      ...composeEvent({ category: 'error', data, label, ...rest }),
+    },
   };
 }
 
-export function composePassiveEvent(src, data) {
+export function composeTriggerEvent({ category, data, label, ...rest }) {
   return {
     type: 'trigger',
-    ...composeEvent(src, data),
+    payload: {
+      ...composeEvent({ category, data, label, ...rest }),
+    },
   };
 }

@@ -7,6 +7,7 @@ import Layout from '@layouts';
 import Loading from '@components/Loading';
 import SEO from '@components/SEO';
 import { shuffle } from '@utils/array';
+import { errorEvent } from '@events/eventList';
 
 import Contact from './contact';
 import Question from './question';
@@ -65,7 +66,10 @@ export default class extends React.Component {
         >
           {({ loading, error, data }) => {
             if (loading) return <Loading />;
-            if (error) return <Contact />;
+            if (error) {
+              errorEvent('question_loading', error);
+              return <Contact />;
+            }
 
             const questions = shuffle(
               data.questions.map(q => ({ ...q, answers: shuffle(q.answers) }))

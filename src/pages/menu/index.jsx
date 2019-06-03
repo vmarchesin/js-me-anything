@@ -16,7 +16,7 @@ import { capitalize } from '@utils/string';
 import { connect } from 'react-redux';
 import { resetGame } from '@redux/game/duck';
 
-import { levelSelectEvent } from '@events/eventList';
+import { errorEvent, levelSelectEvent } from '@events/eventList';
 
 import Contact from './contact';
 
@@ -77,7 +77,10 @@ function Menu({ startGame }) {
       >
         {({ loading, error, data }) => {
           if (loading) return <Loading />;
-          if (error) return <Contact />;
+          if (error) {
+            errorEvent('level_selector_loading', error);
+            return <Contact />;
+          }
 
           const { subjects } = data;
 
