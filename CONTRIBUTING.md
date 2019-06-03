@@ -129,3 +129,11 @@ Pull requests that fix bugs or errors in questions will be accepted, as long as 
 ## Issues
 
 If you have any questions about how to contribute, or want to discuss existing questions, feel free to open an Issue.
+
+## References
+
+The following pages and repositories have been used as sources and/or inspiration for questions. If you feel your work has not been credited, or does not belong here, please contact [@devmarchesin](https://twitter.com/devmarchesin) for inquiries.
+
+* https://www.geeksforgeeks.org/commonly-asked-javascript-interview-questions-set-1/
+* https://www.guru99.com/javascript-interview-questions-answers.html
+* https://github.com/ganqqwerty/123-Essential-JavaScript-Interview-Questions
