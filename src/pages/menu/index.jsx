@@ -16,6 +16,8 @@ import { capitalize } from '@utils/string';
 import { connect } from 'react-redux';
 import { resetGame } from '@redux/game/duck';
 
+import { levelSelectEvent } from '@events/eventList';
+
 import Contact from './contact';
 
 const CardRow = styled.div`
@@ -29,7 +31,7 @@ const CardRow = styled.div`
   }
 `;
 
-function Menu({ resetGame }) {
+function Menu({ startGame }) {
   return (
     <Layout>
       <SEO
@@ -41,20 +43,27 @@ function Menu({ resetGame }) {
       <CardRow>
         <Link to="/game" state={{ level: 'beginner' }}>
           <Card
+            data-level="beginner"
             content="Beginner"
             image="avatar-beginner"
-            onClick={resetGame}
+            onClick={startGame}
           />
         </Link>
         <Link to="/game" state={{ level: 'intermediate' }}>
           <Card
+            data-level="intermediate"
             content="Intermediate"
             image="avatar-intermediate"
-            onClick={resetGame}
+            onClick={startGame}
           />
         </Link>
         <Link to="/game" state={{ level: 'master' }}>
-          <Card content="Master" image="avatar-master" onClick={resetGame} />
+          <Card
+            data-level="master"
+            content="Master"
+            image="avatar-master"
+            onClick={startGame}
+          />
         </Link>
       </CardRow>
 
@@ -76,7 +85,11 @@ function Menu({ resetGame }) {
             <CardRow>
               {sortStrings(subjects).map(subject => (
                 <Link to="/game" state={{ subject }} key={subject}>
-                  <Card content={capitalize(subject)} onClick={resetGame} />
+                  <Card
+                    data-level={subject}
+                    content={capitalize(subject)}
+                    onClick={startGame}
+                  />
                 </Link>
               ))}
             </CardRow>
@@ -88,7 +101,10 @@ function Menu({ resetGame }) {
 }
 
 const dispatchToProps = dispatch => ({
-  resetGame: () => dispatch(resetGame()),
+  startGame: e => {
+    levelSelectEvent(e.currentTarget.dataset.level);
+    dispatch(resetGame());
+  },
 });
 
 export default connect(

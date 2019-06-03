@@ -47,6 +47,7 @@ export default class extends React.Component {
           query={gql`
             query Question($level: String, $subject: String) {
               questions(level: $level, subject: $subject) {
+                id
                 codeString
                 title
                 level

@@ -16,6 +16,11 @@ import { Link } from 'gatsby';
 
 import { Hero, Title } from '@components/_styled/Heading';
 import Button from '@components/Button';
+import {
+  finishGameEvent,
+  finishShareClickEvent,
+  playAgainClickEvent,
+} from '@events/eventList';
 
 const ShareRow = styled.div`
   margin-bottom: 16px;
@@ -36,7 +41,7 @@ const ShareRow = styled.div`
   }
 `;
 
-const getBucket = (ratio = 0) => {
+function getBucket(ratio = 0) {
   const range = [
     { poor: [0, 0.2] },
     { belowAverage: [0.2, 0.4] },
@@ -56,7 +61,7 @@ const getBucket = (ratio = 0) => {
   }
 
   return buckets.indexOf(Object.keys(bucket[0])[0]);
-};
+}
 
 export default function({ score, total }) {
   if (total === 0) {
@@ -64,6 +69,7 @@ export default function({ score, total }) {
   }
 
   const shareString = `I just scored ${score}/${total} on my JavaScript test. What about you?`;
+  const shareUrl = 'https://jsmeanything.now.sh';
 
   const greetings = [
     "You'll do better next time :)",
@@ -73,6 +79,7 @@ export default function({ score, total }) {
     "Wow, you're a pro!",
   ];
   const bucket = getBucket(score / total);
+  finishGameEvent(score, total);
 
   return (
     <React.Fragment>
@@ -84,42 +91,47 @@ export default function({ score, total }) {
         <Title>Share your results</Title>
         <div>
           <TwitterShareButton
-            url="https://jsmeanything.now.sh"
+            url={shareUrl}
             title={shareString}
             hashtags={['JSMeAnything', 'JavaScript', 'Developer']}
+            beforeOnClick={() => finishShareClickEvent('twitter')}
           >
             <TwitterIcon size={32} />
           </TwitterShareButton>
           <FacebookShareButton
-            url="https://jsmeanything.now.sh"
+            url={shareUrl}
             quote={shareString}
             hashtag="#JSMeAnything"
+            beforeOnClick={() => finishShareClickEvent('facebook')}
           >
             <FacebookIcon size={32} />
           </FacebookShareButton>
           <LinkedinShareButton
-            url="https://jsmeanything.now.sh"
+            url={shareUrl}
             title={shareString}
             description="#JSMeAnything"
+            beforeOnClick={() => finishShareClickEvent('linkedin')}
           >
             <LinkedinIcon size={32} />
           </LinkedinShareButton>
           <TelegramShareButton
-            url="https://jsmeanything.now.sh"
+            url={shareUrl}
             title={shareString}
+            beforeOnClick={() => finishShareClickEvent('telegram')}
           >
             <TelegramIcon size={32} />
           </TelegramShareButton>
           <WhatsappShareButton
-            url="https://jsmeanything.now.sh"
+            url={shareUrl}
             title={shareString}
+            beforeOnClick={() => finishShareClickEvent('whatsapp')}
           >
             <WhatsappIcon size={32} />
           </WhatsappShareButton>
         </div>
       </ShareRow>
       <Link to="/menu">
-        <Button>PLAY AGAIN</Button>
+        <Button onClick={playAgainClickEvent}>PLAY AGAIN</Button>
       </Link>
     </React.Fragment>
   );

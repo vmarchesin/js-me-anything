@@ -8,6 +8,8 @@ import Button from '@components/Button';
 import SEO from '@components/SEO';
 import { Hero } from '@components/_styled/Heading';
 
+import { startGameClickEvent } from '@events/eventList';
+
 const Display = styled.div`
   text-align: center;
 `;
@@ -34,7 +36,7 @@ export default function() {
           . Feel free to contribute and improve the game.
         </p>
         <Link to="/menu">
-          <Button>LET&apos;S GO</Button>
+          <Button onClick={startGameClickEvent}>LET&apos;S GO</Button>
         </Link>
       </Display>
     </Layout>

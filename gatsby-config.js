@@ -53,6 +53,7 @@ module.exports = {
         root: './src',
         aliases: {
           '@components': './components',
+          '@events': './events',
           '@layouts': './layouts',
           '@graphql': './graphql',
           '@pages': './pages',

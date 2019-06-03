@@ -14,6 +14,7 @@ import { colors } from '@layouts/theme';
 import { sortStrings } from '@utils/array';
 import { capitalize } from '@utils/string';
 import { parseAnswer, parseCode, parseQuestion } from '@utils/parse';
+import { answerClickEvent } from '@events/eventList';
 
 import { startTimer, stopTimer } from '@redux/game/duck';
 import { getTimeIsRunning } from '@redux/game/selectors';
@@ -22,28 +23,22 @@ import { StyledQuestion, Answers, Badges } from './style';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
-const onAnswer = (
+function onAnswer(
   answer,
   showSolutions,
   timeIsRunning,
   onCorrect,
   toggleSolutions,
-  stopTimer
-) => {
-  if (timeIsRunning) {
-    stopTimer();
-  }
+  stopTimer,
+  questionId
+) {
+  if (timeIsRunning) stopTimer();
+  if (showSolutions) return;
+  if (answer.isCorrect && timeIsRunning) onCorrect();
 
-  if (showSolutions) {
-    return;
-  }
-
-  if (answer.isCorrect && timeIsRunning) {
-    onCorrect();
-  }
-
+  answerClickEvent(questionId, answer, timeIsRunning);
   toggleSolutions(true);
-};
+}
 
 const onNext = (toggleSolutions, next, startTimer) => {
   toggleSolutions(false);
@@ -60,6 +55,7 @@ function Question({
   codeString,
   currentQuestion,
   title,
+  id,
   answers,
   explanation,
   explanationCodeString,
@@ -97,7 +93,8 @@ function Question({
                 timeIsRunning,
                 onCorrect,
                 toggleSolutions,
-                stopTimer
+                stopTimer,
+                id
               )
             }
             key={answer.id}
