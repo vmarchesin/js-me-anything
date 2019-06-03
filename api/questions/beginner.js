@@ -254,4 +254,27 @@ module.exports = [
     explanation:
       "An array is an object, so the value of #typeof []# is equal to #'object'#. The easiest way to check if a variable is an array is by using the helper method #Array.isArray()#.",
   },
+  {
+    id: 'beginner-13',
+    codeString: `function composeName({ firstName = 'John', lastName = 'Doe' }) {
+  return firstName + ' ' + lastName;
+}
+
+const user = { firstName: 'Bruce' };
+console.log(composeName(user));`,
+    level: 'beginner',
+    subjects: ['operators', 'ES6', 'objects'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'beginner-13-a', value: "'Bruce Doe'", isCorrect: true },
+      { id: 'beginner-13-b', value: "'John Doe'", isCorrect: false },
+      { id: 'beginner-13-c', value: "'Bruce'", isCorrect: false },
+      { id: 'beginner-13-d', value: "'Bruce undefined'", isCorrect: false },
+    ],
+    explanation: `The #composeName# function takes an object with first and last name properties as the argument, and returns a string combining both. The function uses the destructuring assignment to unpack the #firstName# and #lastName# from the receiving argument.
+
+    Both #firstName# and #lastName# have default values assigned to them, #'John'# and #'Doe'# respectively (using the #=# operator when defining the function arguments). However, only #firstName# is passed when calling the function on line 6. The default value is still used for #lastName# since it was not defined when calling the function.
+
+    This results in #'Bruce Doe'#.`,
+  },
 ];

@@ -359,4 +359,73 @@ obj.method(fn, 1);`,
     explanationCodeString:
       'Math.min(1) // 1\nMath.min(1, infinity) // 1\nMath.min(1, -infinity) // -infinity',
   },
+  {
+    id: 'master-15',
+    codeString: `const person = {
+  name: 'John',
+};
+person.salary = '10000';
+person['country'] = 'USA';
+
+Object.defineProperty(person, 'phone',{
+  value : '555 555 5555',
+  enumerable: false,
+});
+
+console.log(Object.keys(person));`,
+    level: 'master',
+    subjects: ['objects', 'ES6'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      {
+        id: 'master-15-a',
+        value: "['name', 'salary', 'country']",
+        isCorrect: true,
+      },
+      {
+        id: 'master-15-b',
+        value: "['name', 'salary', 'country', 'phone']",
+        isCorrect: false,
+      },
+      { id: 'master-15-c', value: "['name']", isCorrect: false },
+      { id: 'master-15-d', value: 'ReferenceError', isCorrect: false },
+    ],
+    explanation: `The method #Object.defineProperty()# can be used to assign properties with special values to objects. One of these values is #enumerable#, which can be used to define if a property is enumerable, that is, if it will be displayed when listing the object properties.
+
+    If a property is not enumerable it still can be accessed normally, but it won't be shown when iterating over keys or listing (for example, by using #Object.keys()#). So #'phone'# will not be displayed in the code above.
+
+    As for the variable #person#, the #const# declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned. In this case, where #person# is an object, this means the object's contents (e.g., its properties) can be altered.`,
+  },
+  {
+    id: 'master-16',
+    codeString: `const dog = {
+  say: function(animal) {
+    console.log(animal + ' says woof');
+  },
+};
+
+const cat = {
+  say: function(animal) {
+    console.log(animal + ' says meow');
+  },
+};
+
+function pet(animal) {
+  this.say(animal);
+}
+
+pet.call(cat, 'dog');`,
+    level: 'master',
+    subjects: ['scope'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'master-16-a', value: "'dog says meow'", isCorrect: true },
+      { id: 'master-16-b', value: "'dog says woof'", isCorrect: false },
+      { id: 'master-16-c', value: "'cat says woof'", isCorrect: false },
+      { id: 'master-16-d', value: "'cat says meow'", isCorrect: false },
+    ],
+    explanation: `The #call()# method calls a function with a given #this# value and arguments provided individually. In the scenario above we are calling the #pet# function while provinding the scope of #cat#. This basically binds the #this# of the function to the #this# of the object #cat#. Since #cat# contains the property #say#, #cat.say# will be called passing #animal# as an argument.
+
+    We pass #'dog'# as the second argument to the #call# method. Any arguments after the first will be passed down to the function being called. This effectively passes #'dog'# to the #cat.say# method, resulting in #'dog says meow'#.`,
+  },
 ];

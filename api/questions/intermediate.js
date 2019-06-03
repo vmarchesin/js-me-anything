@@ -302,4 +302,77 @@ function foo () {
     #typeof f# will result in #undefined#, and #1 + undefined# will result in #'1undefined'# after a type coercion to string.
     `,
   },
+  {
+    id: 'intermediate-13',
+    codeString: `const a = {
+  x: 1,
+  y: 2,
+};
+
+const b = {
+  a: 0,
+  b: 1,
+  x: 3,
+};
+
+const c = { ...a, ...b };
+console.log(c);`,
+    level: 'intermediate',
+    subjects: ['operators', 'objects'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      {
+        id: 'intermediate-13-a',
+        value: '{ a: 0, b: 1, x: 3, y: 2 }',
+        isCorrect: true,
+      },
+      {
+        id: 'intermediate-13-b',
+        value: '{ a: 0, b: 1, x: 1, y: 2 }',
+        isCorrect: false,
+      },
+      {
+        id: 'intermediate-13-c',
+        value: '{ a: 0, b: 1, x: 1, x: 3, y: 2 }',
+        isCorrect: false,
+      },
+      { id: 'intermediate-13-d', value: 'SyntaxError', isCorrect: false },
+    ],
+    explanation: `The spread syntax #...# copies own enumerable properties from a provided object onto a new object. In this case we are copying properties from #a# and #b# into #c#.
+
+    However, since both #a# and #b# have the same property #x#, it will be overwritten when we spread #b# after #a# (an object cannot have two properties with the same key). The property #x# will end up having the value of the last assignment, in this case #x: 3#, inherited from #b#.`,
+  },
+  {
+    id: 'intermediate-14',
+    codeString: `let objA = { x: 42 };\nlet objB = objA;\nobjB.x = 0;\nconsole.log(objA.x);`,
+    level: 'intermediate',
+    subjects: ['objects'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'intermediate-14-a', value: '0', isCorrect: true },
+      { id: 'intermediate-14-b', value: '42', isCorrect: false },
+      { id: 'intermediate-14-c', value: 'undefined', isCorrect: false },
+      { id: 'intermediate-14-d', value: 'ReferenceError', isCorrect: false },
+    ],
+    explanation:
+      "The output will be #0# because we're dealing with objects here. Objects are passed by reference, that is, #objA# and #objB# point to the same object in memory.",
+  },
+  {
+    id: 'intermediate-14',
+    codeString: `let objA = { x: 42 };\nlet objB = objA;\nobjB = {};\nconsole.log(objA.x);`,
+    level: 'intermediate',
+    subjects: ['objects'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'intermediate-14-a', value: '42', isCorrect: true },
+      { id: 'intermediate-14-b', value: 'null', isCorrect: false },
+      { id: 'intermediate-14-c', value: 'undefined', isCorrect: false },
+      { id: 'intermediate-14-d', value: 'ReferenceError', isCorrect: false },
+    ],
+    explanation: `The output will #42#.
+
+    When we assign #objA# to #objB#, the #objB# variable will point to the same object in memory as the #objA# variable.
+
+    However, when we reassign #objB# to an empty object we simply change the #objB# reference. This doesn't affect #objA#.`,
+  },
 ];
