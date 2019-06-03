@@ -428,4 +428,21 @@ pet.call(cat, 'dog');`,
 
     We pass #'dog'# as the second argument to the #call# method. Any arguments after the first will be passed down to the function being called. This effectively passes #'dog'# to the #cat.say# method, resulting in #'dog says meow'#.`,
   },
+  {
+    id: 'master-17',
+    codeString: `bar();
+(function foo(){console.log('foo')})();
+function bar(){console.log('bar')};`,
+    level: 'master',
+    subjects: ['scope'],
+    title: 'What will be the output of the following code?',
+    answers: [
+      { id: 'master-17-a', value: "'bar'\n'foo'", isCorrect: true },
+      { id: 'master-17-b', value: "'foo'\n'bar'", isCorrect: false },
+      { id: 'master-17-c', value: "'bar'", isCorrect: false },
+      { id: 'master-17-d', value: "'foo'", isCorrect: false },
+    ],
+    explanation:
+      "The function #bar# is hoisted before the code execution, meaning it will be available even if it's been declared after being called. This makes it run before #foo#.",
+  },
 ];
