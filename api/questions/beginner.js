@@ -30,7 +30,12 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation: 'JavaScript supports asynchronous code by default.',
+    explanation: [
+      {
+        content: 'JavaScript supports asynchronous code by default.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-1',
@@ -63,7 +68,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation: `To open a url in a new tab you should use #window.open(url, '_blank');#`,
+    explanation: [
+      {
+        content:
+          "To open a url in a new tab you should use #window.open(url, '_blank');#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-2',
@@ -97,8 +108,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "This simply creates a new array with 5 empty items. The string representation of this is #',,,,,'#.",
+    explanation: [
+      {
+        content:
+          "This simply creates a new array with 5 empty items. The string representation of this is #',,,,,'#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-3',
@@ -132,8 +148,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      'Booleans can be operands to the #+# operator in JavaScript. JS evaluates this by casting the booleans to integers and then adding them. #true# converts to 1 and #false# converts to 0. The lefthand side of the inequality is equivalent to #1 + 0 = 1# and the right hand side is #1 + 1 - 2#. The whole becomes #1 > 2# which is false.',
+    explanation: [
+      {
+        content:
+          'Booleans can be operands to the #+# operator in JavaScript. JS evaluates this by casting the booleans to integers and then adding them. #true# converts to 1 and #false# converts to 0. The lefthand side of the inequality is equivalent to #1 + 0 = 1# and the right hand side is #1 + 1 - 2#. The whole becomes #1 > 2# which is false.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-4',
@@ -167,8 +188,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      'This is true because we are casting a string to a number, and then taking away that exact number from it.',
+    explanation: [
+      {
+        content:
+          'This is true because we are casting a string to a number, and then taking away that exact number from it.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-5',
@@ -202,8 +228,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "Two arrays added together equal the empty string. This is because arrays are objects, not primitive data types. During evaluation JavaScript first tries to convert the array into a primitive, but this just results in the array, so it is converted to a string. Since the arrays are empty they both convert to the empty string #''#, which when added to #'f,o,o'# doesn't change anything.",
+    explanation: [
+      {
+        content:
+          "Two arrays added together equal the empty string. This is because arrays are objects, not primitive data types. During evaluation JavaScript first tries to convert the array into a primitive, but this just results in the array, so it is converted to a string. Since the arrays are empty they both convert to the empty string #''#, which when added to #'f,o,o'# doesn't change anything.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-6',
@@ -237,8 +268,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "Setting the length to an array to anything lower than its current length truncates it. When we set the length to 0 this effectively erases all its content. Therefore, when we push #'bin'# into the array it will be the sole element in it, resulting in #['bin']#.",
+    explanation: [
+      {
+        content:
+          "Setting the length to an array to anything lower than its current length truncates it. When we set the length to 0 this effectively erases all its content. Therefore, when we push #'bin'# into the array it will be the sole element in it, resulting in #['bin']#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-7',
@@ -272,8 +308,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      'In the global execution context (outside any function), #this# refers to the global object. In web browsers the window object is also the global object.',
+    explanation: [
+      {
+        content:
+          'In the global execution context (outside any function), #this# refers to the global object. In web browsers the window object is also the global object.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-7',
@@ -307,8 +348,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "#typeof 1# will return #'number'# and #typeof 'number'# will return #'string'#.",
+    explanation: [
+      {
+        content:
+          "#typeof 1# will return #'number'# and #typeof 'number'# will return #'string'#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-7',
@@ -342,8 +388,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      'The expression will be evaluated to #true#, since #NULL# will be treated as any other undefined variable. JavaScript is case-sensitive and here we are using #NULL# instead of #null#.',
+    explanation: [
+      {
+        content:
+          'The expression will be evaluated to #true#, since #NULL# will be treated as any other undefined variable. JavaScript is case-sensitive and here we are using #NULL# instead of #null#.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-8',
@@ -377,11 +428,16 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation: `The first statement returns #true# which is as expected.
+    explanation: [
+      {
+        content: `The first statement returns #true# which is as expected.
 
-    The second returns #false# because of how the engine works regarding operator associativity for < and >. It compares left to right, so for #3 > 2 > 1# JavaScript translates to #true > 1#. #true# has value #1# when cast as a number, so it then compares #1 > 1#, which is #false#.
+        The second returns #false# because of how the engine works regarding operator associativity for < and >. It compares left to right, so for #3 > 2 > 1# JavaScript translates to #true > 1#. #true# has value #1# when cast as a number, so it then compares #1 > 1#, which is #false#.
 
-    Comparatively, the first statement evaluates to #true < 3#, then #1 < 3#, which is #true#.`,
+        Comparatively, the first statement evaluates to #true < 3#, then #1 < 3#, which is #true#.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-9',
@@ -415,11 +471,14 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation: `
-    In JavaScript, there are two sets of equality operators. The triple-equal operator #===# behaves like any traditional equality operator would: evaluates to true if the two expressions on either of its sides have the same type and the same value.
+    explanation: [
+      {
+        content: `In JavaScript, there are two sets of equality operators. The triple-equal operator #===# behaves like any traditional equality operator would: evaluates to true if the two expressions on either of its sides have the same type and the same value.
 
-    The double-equal operator, however, tries to coerce the values before comparing them. It is therefore generally good practice to use the #===# rather than #==#. The same holds true for #!==# vs #!=#.
-    `,
+        The double-equal operator, however, tries to coerce the values before comparing them. It is therefore generally good practice to use the #===# rather than #==#. The same holds true for #!==# vs #!=#.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-10',
@@ -453,13 +512,18 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation: `
-    The #const# declaration creates a constant whose scope can be either global or local to the block in which it is declared. Global constants do not become properties of the window object (in browsers), unlike var variables. An initializer for a constant is required; that is, you must specify its value in the same statement in which it's declared (which makes sense, given that it can't be changed later).
+    explanation: [
+      {
+        content: `The #const# declaration creates a constant whose scope can be either global or local to the block in which it is declared. Global constants do not become properties of the window object (in browsers), unlike var variables. An initializer for a constant is required; that is, you must specify its value in the same statement in which it's declared (which makes sense, given that it can't be changed later).
 
-    The #const# declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned. For instance, in the case where the content is an object, this means the object's contents (e.g., its properties) can be altered. For example, the code below is perfectly valid:
-    `,
-    explanationCodeString:
-      'const foo = { x: 1 };\nfoo.x = 2;\nconsole.log(foo.x); // 2',
+        The #const# declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned. For instance, in the case where the content is an object, this means the object's contents (e.g., its properties) can be altered. For example, the code below is perfectly valid:`,
+        isCodeSection: false,
+      },
+      {
+        content: 'const foo = { x: 1 };\nfoo.x = 2;\nconsole.log(foo.x); // 2',
+        isCodeSection: true,
+      },
+    ],
   },
   {
     id: 'beginner-11',
@@ -493,8 +557,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "The first operation #10 + 20# is executed normally, resulting in #30#. However, when adding #30 + '30'# the number is coerced into a string, resulting in #'3030'#.",
+    explanation: [
+      {
+        content:
+          "The first operation #10 + 20# is executed normally, resulting in #30#. However, when adding #30 + '30'# the number is coerced into a string, resulting in #'3030'#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-12',
@@ -527,8 +596,13 @@ module.exports = [
         isCorrect: false,
       },
     ],
-    explanation:
-      "An array is an object, so the value of #typeof []# is equal to #'object'#. The easiest way to check if a variable is an array is by using the helper method #Array.isArray()#.",
+    explanation: [
+      {
+        content:
+          "An array is an object, so the value of #typeof []# is equal to #'object'#. The easiest way to check if a variable is an array is by using the helper method #Array.isArray()#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'beginner-13',
@@ -567,10 +641,15 @@ console.log(composeName(user));`,
         isCorrect: false,
       },
     ],
-    explanation: `The #composeName# function takes an object with first and last name properties as the argument, and returns a string combining both. The function uses the destructuring assignment to unpack the #firstName# and #lastName# from the receiving argument.
+    explanation: [
+      {
+        content: `The #composeName# function takes an object with first and last name properties as the argument, and returns a string combining both. The function uses the destructuring assignment to unpack the #firstName# and #lastName# from the receiving argument.
 
-    Both #firstName# and #lastName# have default values assigned to them, #'John'# and #'Doe'# respectively (using the #=# operator when defining the function arguments). However, only #firstName# is passed when calling the function on line 6. The default value is still used for #lastName# since it was not defined when calling the function.
+        Both #firstName# and #lastName# have default values assigned to them, #'John'# and #'Doe'# respectively (using the #=# operator when defining the function arguments). However, only #firstName# is passed when calling the function on line 6. The default value is still used for #lastName# since it was not defined when calling the function.
 
-    This results in #'Bruce Doe'#.`,
+        This results in #'Bruce Doe'#.`,
+        isCodeSection: false,
+      },
+    ],
   },
 ];
