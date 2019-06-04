@@ -9,11 +9,6 @@ export const StyledQuestion = styled.div`
     text-align: center;
   }
 
-  pre {
-    max-width: 600px;
-    margin: 0 auto 1.45rem auto;
-  }
-
   .hide-solution {
     visibility: ${ifProp('solutionsAreVisible', 'visible', 'hidden')};
   }
@@ -65,6 +60,10 @@ export const Answers = styled.div`
   align-items: center;
   max-width: 800px;
 
+  pre {
+    margin: auto !important;
+  }
+
   > div {
     min-width: 50%;
     margin: 8px;
@@ -82,14 +81,24 @@ export const Answers = styled.div`
     }
 
     > div {
-      display: inline-block;
-      padding: 4px;
-      background-color: #f3f3f3;
-      border: 2px solid #bebebe;
       margin-left: 8px;
 
-      border-radius: 8px;
-      cursor: pointer;
+      &:not(.applySyntaxHighlight) {
+        pre {
+          display: inline !important;
+          padding: 0.3em !important;
+        }
+
+        > div {
+          display: inline-block;
+          padding: 4px;
+          background-color: #f3f3f3;
+          border: 2px solid #bebebe;
+
+          border-radius: 8px;
+          cursor: pointer;
+        }
+      }
     }
   }
 `;

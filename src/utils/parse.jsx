@@ -7,12 +7,29 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
-export function parseAnswer(str) {
+export function parseAnswer(str, applySyntaxHighlight) {
+  if (applySyntaxHighlight) {
+    return (
+      <SyntaxHighlighter
+        language="javascript"
+        style={{ ...dark, display: 'inline' }}
+      >
+        {str}
+      </SyntaxHighlighter>
+    );
+  }
+
   const content = str
     .split(/(#[^#]*#)/)
     .map((s, i) =>
       s.match(/#([^#]*)#/) ? (
-        <strong key={i}>{s.match(/#([^#]*)#/)[1]}</strong>
+        <SyntaxHighlighter
+          language="javascript"
+          style={{ ...dark, display: 'inline' }}
+          key={i}
+        >
+          {s.match(/#([^#]*)#/)[1]}
+        </SyntaxHighlighter>
       ) : (
         <span key={i}>
           {s.includes('\n') ? (

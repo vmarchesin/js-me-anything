@@ -8,21 +8,25 @@ module.exports = [
       {
         id: 'beginner-0-a',
         value: 'JavaScript does not support asynchronous code.',
+        applySyntaxHighlight: false,
         isCorrect: true,
       },
       {
         id: 'beginner-0-b',
         value: 'JavaScript does not have type definitions.',
+        applySyntaxHighlight: false,
         isCorrect: false,
       },
       {
         id: 'beginner-0-c',
         value: 'JavaScript was created in 10 days.',
+        applySyntaxHighlight: false,
         isCorrect: false,
       },
       {
         id: 'beginner-0-d',
         value: 'JavaScript can be used as a server language.',
+        applySyntaxHighlight: false,
         isCorrect: false,
       },
     ],
@@ -34,10 +38,30 @@ module.exports = [
     subjects: ['browser'],
     title: 'Which of the following is not a browser function?',
     answers: [
-      { id: 'beginner-1-a', value: 'openTab()', isCorrect: true },
-      { id: 'beginner-1-b', value: 'alert()', isCorrect: false },
-      { id: 'beginner-1-c', value: 'setTimeout()', isCorrect: false },
-      { id: 'beginner-1-d', value: 'setInterval()', isCorrect: false },
+      {
+        id: 'beginner-1-a',
+        value: 'openTab()',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-1-b',
+        value: 'alert()',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-1-c',
+        value: 'setTimeout()',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-1-d',
+        value: 'setInterval()',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation: `To open a url in a new tab you should use #window.open(url, '_blank');#`,
   },
@@ -48,10 +72,30 @@ module.exports = [
     subjects: ['arrays'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-2-a', value: "',,,,,'", isCorrect: true },
-      { id: 'beginner-2-b', value: "'[ ]'", isCorrect: false },
-      { id: 'beginner-2-c', value: 'Array', isCorrect: false },
-      { id: 'beginner-2-d', value: '[ ]', isCorrect: false },
+      {
+        id: 'beginner-2-a',
+        value: "',,,,,'",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-2-b',
+        value: "'[]'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-2-c',
+        value: 'Array',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-2-d',
+        value: '[]',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       "This simply creates a new array with 5 empty items. The string representation of this is #',,,,,'#.",
@@ -63,10 +107,30 @@ module.exports = [
     subjects: ['operators'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-3-a', value: 'false', isCorrect: true },
-      { id: 'beginner-3-b', value: 'true', isCorrect: false },
-      { id: 'beginner-3-c', value: 'NaN', isCorrect: false },
-      { id: 'beginner-3-d', value: 'Boolean', isCorrect: false },
+      {
+        id: 'beginner-3-a',
+        value: 'false',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-3-b',
+        value: 'true',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-3-c',
+        value: 'NaN',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-3-d',
+        value: 'Boolean',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       'Booleans can be operands to the #+# operator in JavaScript. JS evaluates this by casting the booleans to integers and then adding them. #true# converts to 1 and #false# converts to 0. The lefthand side of the inequality is equivalent to #1 + 0 = 1# and the right hand side is #1 + 1 - 2#. The whole becomes #1 > 2# which is false.',
@@ -78,10 +142,30 @@ module.exports = [
     subjects: ['operators'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-4-a', value: 'true', isCorrect: true },
-      { id: 'beginner-4-b', value: 'false', isCorrect: false },
-      { id: 'beginner-4-c', value: 'NaN', isCorrect: false },
-      { id: 'beginner-4-d', value: 'TypeError', isCorrect: false },
+      {
+        id: 'beginner-4-a',
+        value: 'true',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-4-b',
+        value: 'false',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-4-c',
+        value: 'NaN',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-4-d',
+        value: 'TypeError',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       'This is true because we are casting a string to a number, and then taking away that exact number from it.',
@@ -93,10 +177,30 @@ module.exports = [
     subjects: ['operators', 'arrays'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-5-a', value: "'f,o,o'", isCorrect: true },
-      { id: 'beginner-5-b', value: "['f', 'o', 'o']", isCorrect: false },
-      { id: 'beginner-5-c', value: "[ ]'f,o,o'", isCorrect: false },
-      { id: 'beginner-5-d', value: "['f']['o']['o']", isCorrect: false },
+      {
+        id: 'beginner-5-a',
+        value: "'f,o,o'",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-5-b',
+        value: "['f', 'o', 'o']",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-5-c',
+        value: "[]'f,o,o'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-5-d',
+        value: "['f']['o']['o']",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       "Two arrays added together equal the empty string. This is because arrays are objects, not primitive data types. During evaluation JavaScript first tries to convert the array into a primitive, but this just results in the array, so it is converted to a string. Since the arrays are empty they both convert to the empty string #''#, which when added to #'f,o,o'# doesn't change anything.",
@@ -108,12 +212,28 @@ module.exports = [
     subjects: ['arrays'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-6-a', value: "['bin']", isCorrect: true },
-      { id: 'beginner-6-b', value: "['foo', 'bar', 'baz']", isCorrect: false },
-      { id: 'beginner-6-c', value: "['bin', 'bar', 'baz']", isCorrect: false },
+      {
+        id: 'beginner-6-a',
+        value: "['bin']",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-6-b',
+        value: "['foo', 'bar', 'baz']",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-6-c',
+        value: "['bin', 'bar', 'baz']",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
       {
         id: 'beginner-6-d',
         value: "['foo', 'bar', 'baz', 'bin']",
+        applySyntaxHighlight: true,
         isCorrect: false,
       },
     ],
@@ -127,10 +247,30 @@ module.exports = [
     subjects: ['browser'],
     title: 'What does the following code output on the browser?',
     answers: [
-      { id: 'beginner-7-a', value: 'window', isCorrect: true },
-      { id: 'beginner-7-b', value: 'console', isCorrect: false },
-      { id: 'beginner-7-c', value: 'undefined', isCorrect: false },
-      { id: 'beginner-7-d', value: "'object'", isCorrect: false },
+      {
+        id: 'beginner-7-a',
+        value: 'window',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-7-b',
+        value: 'console',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-c',
+        value: 'undefined',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-d',
+        value: "'object'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       'In the global execution context (outside any function), #this# refers to the global object. In web browsers the window object is also the global object.',
@@ -142,10 +282,30 @@ module.exports = [
     subjects: ['types'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-7-a', value: "'string'", isCorrect: true },
-      { id: 'beginner-7-b', value: "'number'", isCorrect: false },
-      { id: 'beginner-7-c', value: "'undefined'", isCorrect: false },
-      { id: 'beginner-7-d', value: "'null'", isCorrect: false },
+      {
+        id: 'beginner-7-a',
+        value: "'string'",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-7-b',
+        value: "'number'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-c',
+        value: "'undefined'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-d',
+        value: "'null'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       "#typeof 1# will return #'number'# and #typeof 'number'# will return #'string'#.",
@@ -157,10 +317,30 @@ module.exports = [
     subjects: ['types'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-7-a', value: 'true', isCorrect: true },
-      { id: 'beginner-7-b', value: 'false', isCorrect: false },
-      { id: 'beginner-7-c', value: 'undefined', isCorrect: false },
-      { id: 'beginner-7-d', value: 'Error', isCorrect: false },
+      {
+        id: 'beginner-7-a',
+        value: 'true',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-7-b',
+        value: 'false',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-c',
+        value: 'undefined',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-7-d',
+        value: 'Error',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       'The expression will be evaluated to #true#, since #NULL# will be treated as any other undefined variable. JavaScript is case-sensitive and here we are using #NULL# instead of #null#.',
@@ -172,10 +352,30 @@ module.exports = [
     subjects: ['operators'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-8-a', value: 'true\nfalse', isCorrect: true },
-      { id: 'beginner-8-b', value: 'true\ntrue', isCorrect: false },
-      { id: 'beginner-8-c', value: 'false\nfalse', isCorrect: false },
-      { id: 'beginner-8-d', value: 'false\ntrue', isCorrect: false },
+      {
+        id: 'beginner-8-a',
+        value: 'true\nfalse',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-8-b',
+        value: 'true\ntrue',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-8-c',
+        value: 'false\nfalse',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-8-d',
+        value: 'false\ntrue',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation: `The first statement returns #true# which is as expected.
 
@@ -190,10 +390,30 @@ module.exports = [
     subjects: ['operators', 'types'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-9-a', value: 'true\nfalse', isCorrect: true },
-      { id: 'beginner-9-b', value: 'true\ntrue', isCorrect: false },
-      { id: 'beginner-9-c', value: 'false\nfalse', isCorrect: false },
-      { id: 'beginner-9-d', value: 'false\ntrue', isCorrect: false },
+      {
+        id: 'beginner-9-a',
+        value: 'true\nfalse',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-9-b',
+        value: 'true\ntrue',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-9-c',
+        value: 'false\nfalse',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-9-d',
+        value: 'false\ntrue',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation: `
     In JavaScript, there are two sets of equality operators. The triple-equal operator #===# behaves like any traditional equality operator would: evaluates to true if the two expressions on either of its sides have the same type and the same value.
@@ -208,10 +428,30 @@ module.exports = [
     subjects: ['ES6'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-10-a', value: 'TypeError', isCorrect: true },
-      { id: 'beginner-10-b', value: '1', isCorrect: false },
-      { id: 'beginner-10-c', value: '0', isCorrect: false },
-      { id: 'beginner-10-d', value: 'undefined', isCorrect: false },
+      {
+        id: 'beginner-10-a',
+        value: 'TypeError',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-10-b',
+        value: '1',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-10-c',
+        value: '0',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-10-d',
+        value: 'undefined',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation: `
     The #const# declaration creates a constant whose scope can be either global or local to the block in which it is declared. Global constants do not become properties of the window object (in browsers), unlike var variables. An initializer for a constant is required; that is, you must specify its value in the same statement in which it's declared (which makes sense, given that it can't be changed later).
@@ -228,10 +468,30 @@ module.exports = [
     subjects: ['types', 'operators'],
     title: 'What does the following code output?',
     answers: [
-      { id: 'beginner-11-a', value: "'3030'", isCorrect: true },
-      { id: 'beginner-11-b', value: "'102030'", isCorrect: false },
-      { id: 'beginner-11-c', value: '60', isCorrect: false },
-      { id: 'beginner-11-d', value: "'1050'", isCorrect: false },
+      {
+        id: 'beginner-11-a',
+        value: "'3030'",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-11-b',
+        value: "'102030'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-11-c',
+        value: '60',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-11-d',
+        value: "'1050'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       "The first operation #10 + 20# is executed normally, resulting in #30#. However, when adding #30 + '30'# the number is coerced into a string, resulting in #'3030'#.",
@@ -242,14 +502,30 @@ module.exports = [
     subjects: ['conceptual', 'arrays'],
     title: 'How do you check if the variable #foo# is an array?',
     answers: [
-      { id: 'beginner-12-a', value: 'Array.isArray(foo)', isCorrect: true },
-      { id: 'beginner-12-b', value: 'foo.length > 0', isCorrect: false },
+      {
+        id: 'beginner-12-a',
+        value: 'Array.isArray(foo)',
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-12-b',
+        value: 'foo.length > 0',
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
       {
         id: 'beginner-12-c',
         value: "typeof foo === 'array'",
+        applySyntaxHighlight: true,
         isCorrect: false,
       },
-      { id: 'beginner-12-d', value: "foo.type === 'array'", isCorrect: false },
+      {
+        id: 'beginner-12-d',
+        value: "foo.type === 'array'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation:
       "An array is an object, so the value of #typeof []# is equal to #'object'#. The easiest way to check if a variable is an array is by using the helper method #Array.isArray()#.",
@@ -266,10 +542,30 @@ console.log(composeName(user));`,
     subjects: ['operators', 'ES6', 'objects'],
     title: 'What will be the output of the following code?',
     answers: [
-      { id: 'beginner-13-a', value: "'Bruce Doe'", isCorrect: true },
-      { id: 'beginner-13-b', value: "'John Doe'", isCorrect: false },
-      { id: 'beginner-13-c', value: "'Bruce'", isCorrect: false },
-      { id: 'beginner-13-d', value: "'Bruce undefined'", isCorrect: false },
+      {
+        id: 'beginner-13-a',
+        value: "'Bruce Doe'",
+        applySyntaxHighlight: true,
+        isCorrect: true,
+      },
+      {
+        id: 'beginner-13-b',
+        value: "'John Doe'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-13-c',
+        value: "'Bruce'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
+      {
+        id: 'beginner-13-d',
+        value: "'Bruce undefined'",
+        applySyntaxHighlight: true,
+        isCorrect: false,
+      },
     ],
     explanation: `The #composeName# function takes an object with first and last name properties as the argument, and returns a string combining both. The function uses the destructuring assignment to unpack the #firstName# and #lastName# from the receiving argument.
 

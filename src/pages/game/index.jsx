@@ -58,6 +58,7 @@ export default class extends React.Component {
                 answers {
                   id
                   value
+                  applySyntaxHighlight
                   isCorrect
                 }
               }

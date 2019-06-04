@@ -30,7 +30,7 @@ Any submitted question must follow the question schema presented below. Any chan
   level: String,
   subjects: Array<String>,
   title: String,
-  answers: Array<{ id: String, value: String, isCorrect: Boolean}>,
+  answers: Array<{ id: String, value: String, applySyntaxHighlight: Boolean, isCorrect: Boolean }>,
   explanation: String,
   explanationCodeString: String,
 }
@@ -38,7 +38,7 @@ Any submitted question must follow the question schema presented below. Any chan
 
 - **id**
 
-The id must be unique across all questions. To keep things simple please follow the pattern `difficulty-number`. For example `beginner-3` or `master-7`. Find the last question pertaining your difficulty and use the next available number. So if the last question with the master difficulty is `master-10` use the id `master-11` for your question when creating a pull request.
+The id must be unique across all questions. You must follow the pattern `difficulty-number`. For example `beginner-3` or `master-7`. Find the last question pertaining your difficulty and use the next available number. So if the last question with the master difficulty is `master-10` use the id `master-11` for your question when creating a pull request. You don't need to check every previous question. If a question is replaced or deleted its `id` will never be used again.
 
 - **codeString**
 
@@ -58,26 +58,30 @@ When adding a new question look for existing subjects and avoid creating new one
 
 - **title**
 
-The question itself. Ask your question and provide any needed information here.
+The question itself. Ask your question and provide any needed information here. You can highlight syntax by wrapping any part of the text between `##`.
 
 - **answers** (must have at least 4)
   - **id**
 
-  The id of the answer. Must be unique across all answers inside the same question. To make things easy use `difficulty-number-option` as a pattern. For example, the question `intermediate-9` should have the answers `intermediate-9-a`, `intermediate-9-b`, etc.
+  The id of the answer. You must use `difficulty-number-option` as a pattern. For example, the question `intermediate-9` should have the answers `intermediate-9-a`, `intermediate-9-b`, etc.
 
   - **value**
 
-  The answer that is displayed on screen. Since answers may depend on the primitive type, use the following convention:
+  The answer that is displayed on screen. Since answers may depend on the primitive type, and syntax highligh, use the following convention:
 
   `Number`: for number types simply put the value. Example: `3`.
 
-  `String`: If you want to imply the output is a string, wrap it around single quotes. Example: `'3'`.
-
-  `Array|Object`: Always put spaces if touching brackets to avoid bad formatting. Avoid `[]` and use `[ ]` for example.
+  `String`: If you want to highlight the output as a string, wrap it around single quotes. Example: `'3'`.
 
   `Primitives`: `null`, `undefined`, `function`, `Error`, `true`, etc, can be simply displayed as is. If it's not a string, simply don't put quotes around it.
 
-  Avoid mixing text answers and code output answers in the same question to prevent confusion.
+  Remember that every value should be stored as string. So `value: '3'` will be displayed as a `Number` (after dropping the string quotes) and `value: "'3'"` will be displayed as `String` (after dropping the string quotes, the remaining quotes will highlight it as `String`).
+
+  Avoid mixing text answers and code output answers in the same question without syntax highlight to prevent confusion.
+
+  - **applySyntaxHighlight**
+
+  If `true` the answer will be encapsulated in a syntax highlight \<pre> block for JS. Even if it's `false` you can apply syntax highlight to specific parts of the answer by wrapping the content inside `##`, same as other fields.
 
   - **isCorrect**
 
@@ -85,7 +89,7 @@ The question itself. Ask your question and provide any needed information here.
 
 - **explanation**
 
-A string to explain the answer. It will be shown only after an answer has been selected. This is parsed before displaying, so you can put formatted code inside. To highlight code on this string just wrap it around two `#` characters. Example:
+A string to explain the answer. It will be shown only after an answer has been selected. This is parsed before displaying, so you can put formatted code inside. To highlight code on this string just wrap it around `##` characters. Example:
 
 `The length of the #[1, 2, 3]# array is #3#`
 
@@ -107,10 +111,10 @@ Here's an example for a new question. Use this format to submit new questions.
     subjects: ['operators', 'types'],
     title: 'What will be the output of the following code?',
     answers: [
-        { id: 'beginner-20-a', value: "'11'", isCorrect: true },
-        { id: 'beginner-20-b', value: '11', isCorrect: false },
-        { id: 'beginner-20-c', value: 'number', isCorrect: false },
-        { id: 'beginner-20-d', value: '1', isCorrect: false },
+        { id: 'beginner-20-a', value: "'11'", applySyntaxHighlight: true, isCorrect: true },
+        { id: 'beginner-20-b', value: '11', applySyntaxHighlight: true, isCorrect: false },
+        { id: 'beginner-20-c', value: 'number', applySyntaxHighlight: true, isCorrect: false },
+        { id: 'beginner-20-d', value: '1', applySyntaxHighlight: true, isCorrect: false },
     ],
     explanation: `
     Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on).

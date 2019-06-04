@@ -108,7 +108,13 @@ function Question({
                 ))}
               {!showSolutions && <FaRegCircle />}
             </span>
-            <div>{parseAnswer(answer.value)}</div>
+            <div
+              className={
+                answer.applySyntaxHighlight ? 'applySyntaxHighlight' : ''
+              }
+            >
+              {parseAnswer(answer.value, answer.applySyntaxHighlight)}
+            </div>
           </div>
         ))}
       </Answers>

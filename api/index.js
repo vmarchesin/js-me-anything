@@ -6,6 +6,7 @@ const typeDefs = gql`
   type Answer {
     id: ID!
     value: String
+    applySyntaxHighlight: Boolean
     isCorrect: Boolean
   }
 
