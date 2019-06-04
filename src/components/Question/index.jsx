@@ -36,7 +36,7 @@ function onAnswer(
   if (showSolutions) return;
   if (answer.isCorrect && timeIsRunning) onCorrect();
 
-  answerClickEvent(questionId, answer, timeIsRunning);
+  answerClickEvent(questionId, answer);
   toggleSolutions(true);
 }
 

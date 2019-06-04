@@ -78,7 +78,7 @@ function Menu({ startGame }) {
         {({ loading, error, data }) => {
           if (loading) return <Loading />;
           if (error) {
-            errorEvent('level_selector_loading', error);
+            errorEvent('level_selector');
             return <Contact />;
           }
 

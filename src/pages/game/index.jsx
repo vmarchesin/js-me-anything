@@ -67,7 +67,7 @@ export default class extends React.Component {
           {({ loading, error, data }) => {
             if (loading) return <Loading />;
             if (error) {
-              errorEvent('question_loading', error);
+              errorEvent('question');
               return <Contact />;
             }
 

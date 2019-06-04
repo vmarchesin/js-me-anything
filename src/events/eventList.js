@@ -2,34 +2,28 @@ import pushEvent from './push';
 import {
   composeClickEvent,
   composeErrorEvent,
-  composeTriggerEvent,
+  composeNonInteractiveEvent,
 } from './compose';
 
-export function answerClickEvent(questionId, answer, timeIsRunning) {
+export function answerClickEvent(questionId, answer) {
   pushEvent(
     composeClickEvent({
-      data: {
-        questionId,
-        answer: {
-          id: answer.id,
-          isCorrect: answer.isCorrect,
-        },
-        timeIsRunning,
-      },
-      label: 'answer',
+      action: 'answer',
+      value: Number(answer.isCorrect),
+      label: questionId,
     })
   );
 }
 
-export function errorEvent(label, data = {}) {
-  pushEvent(composeErrorEvent({ label, data }));
+export function errorEvent(label, action = 'loading') {
+  pushEvent(composeErrorEvent({ action, label }));
 }
 
 export function finishGameEvent(score, total) {
   pushEvent(
-    composeTriggerEvent({
-      data: { score, total },
-      label: 'finish',
+    composeNonInteractiveEvent({
+      action: 'finish',
+      value: Number(((score / total) * 100).toFixed(0)),
     })
   );
 }
@@ -37,8 +31,8 @@ export function finishGameEvent(score, total) {
 export function finishShareClickEvent(shareTo) {
   pushEvent(
     composeClickEvent({
-      data: { shareTo },
-      label: 'share',
+      action: 'share',
+      label: shareTo,
     })
   );
 }
@@ -47,7 +41,8 @@ export function headerClickEvent() {
   pushEvent(
     composeClickEvent({
       category: 'navigation',
-      label: 'header',
+      action: 'navigate',
+      label: 'Header',
     })
   );
 }
@@ -55,8 +50,8 @@ export function headerClickEvent() {
 export function levelSelectEvent(level) {
   pushEvent(
     composeClickEvent({
-      data: { level },
-      label: 'level_select',
+      action: 'level_select',
+      label: level,
     })
   );
 }
@@ -65,7 +60,7 @@ export function playAgainClickEvent() {
   pushEvent(
     composeClickEvent({
       category: 'navigation',
-      label: 'play_again',
+      action: 'play_again',
     })
   );
 }
@@ -74,7 +69,7 @@ export function startGameClickEvent() {
   pushEvent(
     composeClickEvent({
       category: 'navigation',
-      label: 'game_start',
+      action: 'game_start',
     })
   );
 }
