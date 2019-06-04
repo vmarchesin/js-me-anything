@@ -472,8 +472,7 @@ myObject.func();`,
     ],
     explanation: [
       {
-        content: `
-        An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
+        content: `An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
 
         It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts. The first is the anonymous function with lexical scope enclosed within the Grouping Operator #()#. This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
 
@@ -561,8 +560,7 @@ myObject.func();`,
     ],
     explanation: [
       {
-        content: `
-        The scope of the function #f()# is restricted inside of the #if# condition in this case. Even though the statement will evaluate to true #Boolean(function f(){}) === true#, the function will not be defined aftwerwards.
+        content: `The scope of the function #f()# is restricted inside of the #if# condition in this case. Even though the statement will evaluate to true #Boolean(function f(){}) === true#, the function will not be defined aftwerwards.
 
         #typeof f# will result in #undefined#, and #1 + undefined# will result in #'1undefined'# after a type coercion to string.
         `,

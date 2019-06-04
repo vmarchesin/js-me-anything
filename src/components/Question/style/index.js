@@ -24,12 +24,14 @@ export const StyledQuestion = styled.div`
 
     > div pre {
       display: inline !important;
+      padding: 0.2em 0.5em !important;
     }
   }
 
   .inline-code {
     pre {
       display: inline !important;
+      padding: 0.2em 0.5em !important;
     }
   }
 
@@ -62,6 +64,7 @@ export const Answers = styled.div`
 
   pre {
     margin: auto !important;
+    padding: 0.2em 0.5em !important;
   }
 
   > div {
