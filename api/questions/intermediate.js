@@ -2,15 +2,15 @@ module.exports = [
   {
     id: 'intermediate-0',
     codeString: `function mul(x) {
-  return function(y) {
-    return function(z) {
-      return function(w) {
-        return function(p) {
-          return x * y * z * w * p;
-        };
+return function(y) {
+  return function(z) {
+    return function(w) {
+      return function(p) {
+        return x * y * z * w * p;
       };
     };
   };
+};
 }
 console.log(mul(2)(3)(4)(5)(6));`,
     level: 'intermediate',
@@ -42,7 +42,6 @@ console.log(mul(2)(3)(4)(5)(6));`,
         isCorrect: false,
       },
     ],
-    explanation: '',
   },
   {
     id: 'intermediate-1',
@@ -76,8 +75,13 @@ console.log(mul(2)(3)(4)(5)(6));`,
         isCorrect: false,
       },
     ],
-    explanation:
-      'The #let# keyword is block scoped. In this case the variable only exists inside the function scope. Trying to access an undeclared variable will result in a #ReferenceError#',
+    explanation: [
+      {
+        content:
+          'The #let# keyword is block scoped. In this case the variable only exists inside the function scope. Trying to access an undeclared variable will result in a #ReferenceError#.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-2',
@@ -111,8 +115,13 @@ console.log(mul(2)(3)(4)(5)(6));`,
         isCorrect: false,
       },
     ],
-    explanation:
-      "The spread operator enables us to iterate over any iterable object and spread its elements into an array. So here #'...'# represents a String (which is iterable in JavaScript). This means it results in an array like this #['.','.','.']#. The second spread operator does the exact same thing so the length will be #3#.",
+    explanation: [
+      {
+        content:
+          "The spread operator enables us to iterate over any iterable object and spread its elements into an array. So here #'...'# represents a String (which is iterable in JavaScript). This means it results in an array like this #['.','.','.']#. The second spread operator does the exact same thing so the length will be #3#.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-3',
@@ -146,8 +155,13 @@ console.log(mul(2)(3)(4)(5)(6));`,
         isCorrect: false,
       },
     ],
-    explanation:
-      'The first #let x# defines #x# with the value #2#. #{x: y = 1} = {x}# is a destructuring assignment, it takes the variable #y# from the property #x#. In the end, because #x# is #2#, the default value #1# is ignored and #y# takes the value #2# from #x#.',
+    explanation: [
+      {
+        content:
+          'The first #let x# defines #x# with the value #2#. #{x: y = 1} = {x}# is a destructuring assignment, it takes the variable #y# from the property #x#. In the end, because #x# is #2#, the default value #1# is ignored and #y# takes the value #2# from #x#.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-4',
@@ -181,17 +195,22 @@ console.log(mul(2)(3)(4)(5)(6));`,
         isCorrect: false,
       },
     ],
-    explanation:
-      'The tilde #~# is a NOT bitwise operator. The double tilde is just shorthand for truncating numbers to integers. It is used as a shorthand to #Math.floor()#, although it has a key difference in that it just removes any numbers after the decimal place. Therefore 3.5 becomes 3.',
+    explanation: [
+      {
+        content:
+          'The tilde #~# is a NOT bitwise operator. The double tilde is just shorthand for truncating numbers to integers. It is used as a shorthand to #Math.floor()#, although it has a key difference in that it just removes any numbers after the decimal place. Therefore 3.5 becomes 3.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-5',
     codeString: `function bar() {
-  return foo;
-  foo = 10;
-  function foo() {
-    var foo = '11';
-  }
+return foo;
+foo = 10;
+function foo() {
+  var foo = '11';
+}
 }
 console.log(typeof bar());`,
     level: 'intermediate',
@@ -223,16 +242,18 @@ console.log(typeof bar());`,
         isCorrect: false,
       },
     ],
-    explanation: `Considering the placement of the return statement, it's easy to make the mistake of thinking the above code will result in #undefined#, although this is not the case. The result is #function# because JavaScript is compiled instead of being a purely interpreted language. Function declarations are evaluated during compile time, and therefore while creating the #bar# function #foo# is also created, since it is in the scope of #bar#.
+    explanation: [
+      {
+        content: `Considering the placement of the return statement, it's easy to make the mistake of thinking the above code will result in #undefined#, although this is not the case. The result is #function# because JavaScript is compiled instead of being a purely interpreted language. Function declarations are evaluated during compile time, and therefore while creating the #bar# function #foo# is also created, since it is in the scope of #bar#.
 
-    If it were a function expression instead of a declaration it would result in #undefined#, since it would not have been evaluated at compile time.`,
+        If it were a function expression instead of a declaration it would result in #undefined#, since it would not have been evaluated at compile time.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-6',
-    codeString: `function f() {
-  console.log(this);
-}
-f();`,
+    codeString: `function f() {\n  console.log(this);\n}\nf();`,
     level: 'intermediate',
     subjects: ['browser', 'scope'],
     title: 'What does the following code output on the browser?',
@@ -262,16 +283,17 @@ f();`,
         isCorrect: false,
       },
     ],
-    explanation:
-      'Since the code above is not in strict mode, and because the value of #this# was not set by the call, #this# will default to the global object, in this case #window#.',
+    explanation: [
+      {
+        content:
+          'Since the code above is not in strict mode, and because the value of #this# was not set by the call, #this# will default to the global object, in this case #window#.',
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-7',
-    codeString: `(function(x) {
-  return (function(y) {
-      console.log(x);
-  })(2)
-})(1);`,
+    codeString: `(function(x) {\n  return (function(y) {\n    console.log(x);\n  })(2)\n})(1);`,
     level: 'intermediate',
     subjects: ['scope'],
     title: 'What does the following code output?',
@@ -301,25 +323,30 @@ f();`,
         isCorrect: false,
       },
     ],
-    explanation: `The output will be #1#, even though the value of #x# is never set in the inner function. Here’s why:
+    explanation: [
+      {
+        content: `The output will be #1#, even though the value of #x# is never set in the inner function. Here’s why:
 
-    A closure is a function, along with all variables or functions that were in-scope at the time that the closure was created. In JavaScript, a closure is implemented as an “inner function”; i.e., a function defined within the body of another function. An important feature of closures is that an inner function still has access to the outer function’s variables.
+        A closure is a function, along with all variables or functions that were in-scope at the time that the closure was created. In JavaScript, a closure is implemented as an “inner function”; i.e., a function defined within the body of another function. An important feature of closures is that an inner function still has access to the outer function’s variables.
 
-    Therefore, in this example, since x is not defined in the inner function, the scope of the outer function is searched for a defined variable #x#, which is found to have a value of #1#.`,
+        Therefore, in this example, since x is not defined in the inner function, the scope of the outer function is searched for a defined variable #x#, which is found to have a value of #1#.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-8',
     codeString: `const myObject = {
-  foo: 'bar',
-  func: function() {
-      var self = this;
-      console.log(this.foo);
-      console.log(self.foo);
-      (function() {
-          console.log(this.foo);
-          console.log(self.foo);
-      }());
-  }
+foo: 'bar',
+func: function() {
+  var self = this;
+  console.log(this.foo);
+  console.log(self.foo);
+  (function() {
+    console.log(this.foo);
+    console.log(self.foo);
+  }());
+}
 };
 myObject.func();`,
     level: 'intermediate',
@@ -351,9 +378,14 @@ myObject.func();`,
         isCorrect: false,
       },
     ],
-    explanation: `In the outer function, both #this# and #self# refer to #myObject# and therefore both can properly reference and access #foo#.
+    explanation: [
+      {
+        content: `In the outer function, both #this# and #self# refer to #myObject# and therefore both can properly reference and access #foo#.
 
-    In the inner function, though, #this# no longer refers to #myObject#. As a result, #this.foo# is #undefined# in the inner function, whereas the reference to the local variable #self# remains in scope and is accessible there.`,
+        In the inner function, though, #this# no longer refers to #myObject#. As a result, #this.foo# is #undefined# in the inner function, whereas the reference to the local variable #self# remains in scope and is accessible there.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-9',
@@ -386,27 +418,29 @@ myObject.func();`,
         isCorrect: false,
       },
     ],
-    explanation: `
-    Some of the key benefits of strict mode include:
+    explanation: [
+      {
+        content: `Some of the key benefits of strict mode include:
 
-    Makes debugging easier: Code errors that would otherwise have been ignored or would have failed silently will now generate errors or throw exceptions, alerting you sooner to problems in your code and directing you more quickly to their source.
+        • Makes debugging easier: Code errors that would otherwise have been ignored or would have failed silently will now generate errors or throw exceptions, alerting you sooner to problems in your code and directing you more quickly to their source.
 
-    Prevents accidental globals: Without strict mode, assigning a value to an undeclared variable automatically creates a global variable with that name. This is one of the most common errors in JavaScript. In strict mode, attempting to do so throws an error.
+        • Prevents accidental globals: Without strict mode, assigning a value to an undeclared variable automatically creates a global variable with that name. This is one of the most common errors in JavaScript. In strict mode, attempting to do so throws an error.
 
-    Eliminates #this# coercion: Without strict mode, a reference to a #this# value of null or undefined is automatically coerced to the global. This can cause many headfakes and pull-out-your-hair kind of bugs. In strict mode, referencing #this# value of null or undefined throws an error.
+        • Eliminates #this# coercion: Without strict mode, a reference to a #this# value of null or undefined is automatically coerced to the global. This can cause many headfakes and pull-out-your-hair kind of bugs. In strict mode, referencing #this# value of null or undefined throws an error.
 
-    Disallows duplicate property names or parameter values: Strict mode throws an error when it detects a duplicate named property in an object (e.g., #var object = {foo: "bar", foo: "baz"};#) or a duplicate named argument for a function (e.g., #function foo(val1, val2, val1){}#), thereby catching what is almost certainly a bug in your code that you might otherwise have wasted lots of time tracking down.
+        • Disallows duplicate property names or parameter values: Strict mode throws an error when it detects a duplicate named property in an object (e.g., #var object = {foo: "bar", foo: "baz"};#) or a duplicate named argument for a function (e.g., #function foo(val1, val2, val1){}#), thereby catching what is almost certainly a bug in your code that you might otherwise have wasted lots of time tracking down.
 
-    Makes #eval()# safer: There are some differences in the way #eval()# behaves in strict mode and in non-strict mode. Most significantly, in strict mode, variables and functions declared inside of an #eval()# statement are not created in the containing scope (they are created in the containing scope in non-strict mode, which can also be a common source of problems).
+        • Makes #eval()# safer: There are some differences in the way #eval()# behaves in strict mode and in non-strict mode. Most significantly, in strict mode, variables and functions declared inside of an #eval()# statement are not created in the containing scope (they are created in the containing scope in non-strict mode, which can also be a common source of problems).
 
-    Throws error on invalid usage of #delete#: The #delete# operator (used to remove properties from objects) cannot be used on non-configurable properties of the object. Non-strict code will fail silently when an attempt is made to delete a non-configurable property, whereas strict mode will throw an error in such a case.
-    `,
+        • Throws error on invalid usage of #delete#: The #delete# operator (used to remove properties from objects) cannot be used on non-configurable properties of the object. Non-strict code will fail silently when an attempt is made to delete a non-configurable property, whereas strict mode will throw an error in such a case.
+        `,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-10',
-    codeString: `(function(x) {
-  console.log(x);
-})(5);`,
+    codeString: `(function(x) {\n  console.log(x);\n})(5);`,
     level: 'intermediate',
     subjects: ['conceptual'],
     title: "What's the name of the following pattern?",
@@ -436,20 +470,22 @@ myObject.func();`,
         isCorrect: false,
       },
     ],
-    explanation: `
-    An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
+    explanation: [
+      {
+        content: `
+        An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.
 
-    It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts. The first is the anonymous function with lexical scope enclosed within the Grouping Operator #()#. This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+        It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts. The first is the anonymous function with lexical scope enclosed within the Grouping Operator #()#. This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
 
-    The second part creates the immediately executing function expression #()# through which the JavaScript engine will directly interpret the function. You can also pass parameters when invoking the function, as seen in the example above.
-    `,
+        The second part creates the immediately executing function expression #()# through which the JavaScript engine will directly interpret the function. You can also pass parameters when invoking the function, as seen in the example above.
+        `,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-11',
-    codeString: `foo();
-var foo = function () {
-  console.log('Hello');
-}`,
+    codeString: "foo();\nvar foo = function () {\n  console.log('Hello');\n}",
     level: 'intermediate',
     subjects: ['scope'],
     title: 'What will be the output of the following code?',
@@ -479,22 +515,21 @@ var foo = function () {
         isCorrect: false,
       },
     ],
-    explanation: `You'll be met with the error #TypeError: foo is not a function#, because in line 1 #foo# is #undefined#.
-
-    When assigning a function to a variable (this is called a function expression), it will be defined at run-time (instead of parse/compile-time). This means you can't invoke it before the declaration. If you declare it without assigning it to a variable, you can use it anywhere in your code (even before the declaration).`,
-    explanationCodeString: `foo(); // 'Hello'
-function foo () {
-  console.log('Hello');
-}`,
+    explanation: [
+      {
+        content:
+          "You'll be met with the error #TypeError: foo is not a function#, because in line 1 #foo# is #undefined#.\n\nWhen assigning a function to a variable (this is called a function expression), it will be defined at run-time (instead of parse/compile-time). This means you can't invoke it before the declaration. If you declare it without assigning it to a variable, you can use it anywhere in your code (even before the declaration).",
+        isCodeSection: false,
+      },
+      {
+        content: `foo(); // 'Hello'\nfunction foo () {\n  console.log('Hello');\n}`,
+        isCodeSection: true,
+      },
+    ],
   },
   {
     id: 'intermediate-12',
-    codeString: `let y = 1;
-
- if (function f(){}) {
-   y += typeof f;
- }
- console.log(y);`,
+    codeString: `let y = 1;\n\nif (function f(){}) {\n  y += typeof f;\n}\nconsole.log(y);`,
     level: 'intermediate',
     subjects: ['scope', 'types'],
     title: 'What will be the output of the following code?',
@@ -524,11 +559,16 @@ function foo () {
         isCorrect: false,
       },
     ],
-    explanation: `
-    The scope of the function #f()# is restricted inside of the #if# condition in this case. Even though the statement will evaluate to true #Boolean(function f(){}) === true#, the function will not be defined aftwerwards.
+    explanation: [
+      {
+        content: `
+        The scope of the function #f()# is restricted inside of the #if# condition in this case. Even though the statement will evaluate to true #Boolean(function f(){}) === true#, the function will not be defined aftwerwards.
 
-    #typeof f# will result in #undefined#, and #1 + undefined# will result in #'1undefined'# after a type coercion to string.
-    `,
+        #typeof f# will result in #undefined#, and #1 + undefined# will result in #'1undefined'# after a type coercion to string.
+        `,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-13',
@@ -574,9 +614,14 @@ console.log(c);`,
         isCorrect: false,
       },
     ],
-    explanation: `The spread syntax #...# copies own enumerable properties from a provided object onto a new object. In this case we are copying properties from #a# and #b# into #c#.
+    explanation: [
+      {
+        content: `The spread syntax #...# copies own enumerable properties from a provided object onto a new object. In this case we are copying properties from #a# and #b# into #c#.
 
-    However, since both #a# and #b# have the same property #x#, it will be overwritten when we spread #b# after #a# (an object cannot have two properties with the same key). The property #x# will end up having the value of the last assignment, in this case #x: 3#, inherited from #b#.`,
+        However, since both #a# and #b# have the same property #x#, it will be overwritten when we spread #b# after #a# (an object cannot have two properties with the same key). The property #x# will end up having the value of the last assignment, in this case #x: 3#, inherited from #b#.`,
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-14',
@@ -610,8 +655,13 @@ console.log(c);`,
         isCorrect: false,
       },
     ],
-    explanation:
-      "The output will be #0# because we're dealing with objects here. Objects are passed by reference, that is, #objA# and #objB# point to the same object in memory.",
+    explanation: [
+      {
+        content:
+          "The output will be #0# because we're dealing with objects here. Objects are passed by reference, that is, #objA# and #objB# point to the same object in memory.",
+        isCodeSection: false,
+      },
+    ],
   },
   {
     id: 'intermediate-14',
@@ -645,10 +695,15 @@ console.log(c);`,
         isCorrect: false,
       },
     ],
-    explanation: `The output will #42#.
+    explanation: [
+      {
+        content: `The output will #42#.
 
-    When we assign #objA# to #objB#, the #objB# variable will point to the same object in memory as the #objA# variable.
+        When we assign #objA# to #objB#, the #objB# variable will point to the same object in memory as the #objA# variable.
 
-    However, when we reassign #objB# to an empty object we simply change the #objB# reference. This doesn't affect #objA#.`,
+        However, when we reassign #objB# to an empty object we simply change the #objB# reference. This doesn't affect #objA#.`,
+        isCodeSection: false,
+      },
+    ],
   },
 ];

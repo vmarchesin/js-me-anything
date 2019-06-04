@@ -10,6 +10,11 @@ const typeDefs = gql`
     isCorrect: Boolean
   }
 
+  type Explanation {
+    content: String!
+    isCodeSection: Boolean
+  }
+
   type Question {
     id: ID!
     codeString: String
@@ -17,8 +22,7 @@ const typeDefs = gql`
     subjects: [String]
     title: String!
     answers: [Answer]!
-    explanation: String
-    explanationCodeString: String
+    explanation: [Explanation]
   }
 
   type Query {

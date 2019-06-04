@@ -13,7 +13,12 @@ import Timer from '@components/Timer';
 import { colors } from '@layouts/theme';
 import { sortStrings } from '@utils/array';
 import { capitalize } from '@utils/string';
-import { parseAnswer, parseCode, parseQuestion } from '@utils/parse';
+import {
+  parseAnswer,
+  // parseCode,
+  parseExplanation,
+  parseQuestion,
+} from '@utils/parse';
 import { answerClickEvent } from '@events/eventList';
 
 import { startTimer, stopTimer } from '@redux/game/duck';
@@ -58,7 +63,6 @@ function Question({
   id,
   answers,
   explanation,
-  explanationCodeString,
   subjects,
   next,
 }) {
@@ -119,17 +123,11 @@ function Question({
         ))}
       </Answers>
 
-      <div className="hide-solution explanation" style={{ marginTop: 16 }}>
-        {parseCode(explanation)}
-      </div>
-
-      <div className="hide-solution" style={{ marginTop: 16 }}>
-        {explanationCodeString ? (
-          <SyntaxHighlighter language="javascript" style={dark} showLineNumbers>
-            {explanationCodeString}
-          </SyntaxHighlighter>
-        ) : null}
-      </div>
+      {explanation && (
+        <div className="hide-solution explanation">
+          {parseExplanation(explanation)}
+        </div>
+      )}
 
       <div className="actions">
         <Button

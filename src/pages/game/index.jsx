@@ -53,8 +53,10 @@ export default class extends React.Component {
                 title
                 level
                 subjects
-                explanation
-                explanationCodeString
+                explanation {
+                  content
+                  isCodeSection
+                }
                 answers {
                   id
                   value

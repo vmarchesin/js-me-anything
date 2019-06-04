@@ -15,14 +15,14 @@ export const StyledQuestion = styled.div`
 
   .explanation {
     max-width: 800px;
-    margin-top: 16px;
+    margin-top: 32px;
     line-height: 32px;
 
     > div > div {
       text-align: center;
     }
 
-    pre {
+    > div pre {
       display: inline !important;
     }
   }

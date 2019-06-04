@@ -49,7 +49,7 @@ export function parseAnswer(str, applySyntaxHighlight) {
   return <div>{content}</div>;
 }
 
-export function parseCode(str) {
+export function parseCode(str, key = 'code') {
   const content = str
     .split(/(#[^#]*#)/)
     .map((s, i) =>
@@ -77,7 +77,30 @@ export function parseCode(str) {
     )
     .reduce((prev, curr) => [prev, '', curr]);
 
-  return <div>{content}</div>;
+  return <div key={key}>{content}</div>;
+}
+
+export function parseExplanation(exp) {
+  const content = exp
+    .map((e, i) => {
+      if (e.isCodeSection) {
+        return (
+          <SyntaxHighlighter
+            showLineNumbers
+            language="javascript"
+            style={{ ...dark }}
+            key={i}
+          >
+            {e.content}
+          </SyntaxHighlighter>
+        );
+      }
+
+      return parseCode(e.content);
+    })
+    .reduce((prev, curr) => [prev, '', curr]);
+
+  return content;
 }
 
 export function parseQuestion(str) {
