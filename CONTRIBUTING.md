@@ -31,8 +31,7 @@ Any submitted question must follow the question schema presented below. Any chan
   subjects: Array<String>,
   title: String,
   answers: Array<{ id: String, value: String, applySyntaxHighlight: Boolean, isCorrect: Boolean }>,
-  explanation: String,
-  explanationCodeString: String,
+  explanation: Array<{ content: String, isCodeSection: Boolean }>,
 }
 ```
 
@@ -89,15 +88,13 @@ The question itself. Ask your question and provide any needed information here. 
 
 - **explanation**
 
-A string to explain the answer. It will be shown only after an answer has been selected. This is parsed before displaying, so you can put formatted code inside. To highlight code on this string just wrap it around `##` characters. Example:
+An array with the content to be displayed as the explanation to the answer. It's designed this way to maintain a single schema (avoiding returning different types for this field) and allowing you to insert code blocks inside the explanation.
+
+Every element of the array will be displayed as a html tag. If `isCodeSection` is `false` the section will be rendered inside a \<div> tag, and if it's `true` it will be rendered as a code block inside a \<pre> tag.
+
+If `isCodeSection` is `false`, to highlight code on the `content` string just wrap it around `##` characters. Example:
 
 `The length of the #[1, 2, 3]# array is #3#`
-
-The content inside `##` will be highlited inside a \<pre> tag.
-
-- **explanationCodeString**
-
-If you wish to provide another block of code to explain the answer, do it here. This will be displayed at the end, after the `explanation`, and shares the same principles of `codeString`.
 
 ## Example Question
 
@@ -113,14 +110,21 @@ Here's an example for a new question. Use this format to submit new questions.
     answers: [
         { id: 'beginner-20-a', value: "'11'", applySyntaxHighlight: true, isCorrect: true },
         { id: 'beginner-20-b', value: '11', applySyntaxHighlight: true, isCorrect: false },
-        { id: 'beginner-20-c', value: 'number', applySyntaxHighlight: true, isCorrect: false },
+        { id: 'beginner-20-c', value: "'number'", applySyntaxHighlight: true, isCorrect: false },
         { id: 'beginner-20-d', value: '1', applySyntaxHighlight: true, isCorrect: false },
     ],
-    explanation: `
-    Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on).
+    explanation: [
+        {
+            content: `Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on).
 
-    The #+# operator will coerce numbers to strings when performing an operation with strings, resulting in #'11'# instead of #11#.
-    `,
+            The #+# operator will coerce numbers to strings when performing an operation with strings, resulting in #'11'# instead of #11#.`,
+            isCodeSection: false,
+        },
+        {
+            content: "console.log('1' + 1); // also '11'",
+            isCodeSection: true,
+        },
+    ],
 },
 ```
 
