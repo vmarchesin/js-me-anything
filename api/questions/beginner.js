@@ -99,7 +99,7 @@ module.exports = [
       { id: 'beginner-5-d', value: "['f']['o']['o']", isCorrect: false },
     ],
     explanation:
-      "Two arrays added together equal the empty string. This is because arrays are objects, not primitive data types. During evaluation JavaScript first tries to conver the array into a primitive, but this just results in the array, so it is converted to a string. Since the arrays are empty they both convert to the empty string #''#, which when added to #'f,o,o'# doesn't change anything.",
+      "Two arrays added together equal the empty string. This is because arrays are objects, not primitive data types. During evaluation JavaScript first tries to convert the array into a primitive, but this just results in the array, so it is converted to a string. Since the arrays are empty they both convert to the empty string #''#, which when added to #'f,o,o'# doesn't change anything.",
   },
   {
     id: 'beginner-6',
