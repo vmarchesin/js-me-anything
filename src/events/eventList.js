@@ -23,6 +23,7 @@ export function finishGameEvent(score, total) {
   pushEvent(
     composeNonInteractiveEvent({
       action: 'finish',
+      label: 'Finish Game',
       value: Number(((score / total) * 100).toFixed(0)),
     })
   );
@@ -61,6 +62,7 @@ export function playAgainClickEvent() {
     composeClickEvent({
       category: 'navigation',
       action: 'play_again',
+      label: 'Play Again',
     })
   );
 }
@@ -70,6 +72,7 @@ export function startGameClickEvent() {
     composeClickEvent({
       category: 'navigation',
       action: 'game_start',
+      label: 'Start Game',
     })
   );
 }
